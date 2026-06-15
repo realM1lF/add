@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Footer } from "./sections/Footer";
+import { NavLink } from "./NavLink";
 import "./globals.css";
 
 const structuredData = {
@@ -162,24 +163,9 @@ export default function RootLayout({
                 ADHS-Spektrum
               </Link>
               <nav className="flex items-center gap-4 text-sm">
-                <Link
-                  href="/themen"
-                  className="hidden text-muted-foreground transition-colors hover:text-foreground sm:inline"
-                >
-                  Das Spektrum
-                </Link>
-                <Link
-                  href="/strategien"
-                  className="hidden text-muted-foreground transition-colors hover:text-foreground sm:inline"
-                >
-                  Strategien
-                </Link>
-                <Link
-                  href="/quellen"
-                  className="hidden text-muted-foreground transition-colors hover:text-foreground sm:inline"
-                >
-                  Quellen
-                </Link>
+                <NavLink href="/themen">Das Spektrum</NavLink>
+                <NavLink href="/strategien">Strategien</NavLink>
+                <NavLink href="/quellen">Quellen</NavLink>
                 <Link
                   href="/screener"
                   className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"

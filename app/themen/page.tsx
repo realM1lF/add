@@ -29,9 +29,9 @@ export default function TopicsOverviewPage() {
               Das Spektrum
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              ADHS zeigt sich auf viele Weisen. Hier findest du zu jeder Dimension
-              eine einfühlsame Erklärung, alltagsnahe Beispiele, konkrete
-              Strategien und wissenschaftliche Quellen.
+              ADHS zeigt sich auf viele Weisen. Hier findest du zu jeder
+              Dimension eine einfühlsame Erklärung, alltagsnahe Beispiele,
+              konkrete Strategien und wissenschaftliche Quellen.
             </p>
           </div>
 
@@ -42,7 +42,6 @@ export default function TopicsOverviewPage() {
 
         <Alert className="mt-8 max-w-3xl border-l-4 border-l-primary bg-card/50">
           <Info className="size-5 text-primary" />
-          <AlertTitle>ADHS ist ein Spektrum</AlertTitle>
           <AlertDescription>
             Nicht alle Themen müssen auf dich zutreffen. Manche Menschen haben
             vor allem Schwierigkeiten mit der Aufmerksamkeit, andere mit

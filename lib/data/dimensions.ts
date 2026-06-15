@@ -597,9 +597,9 @@ export const extendedQuestions: Question[] = [
   {
     id: "hf6",
     dimensionId: "hyperfokus",
-    text: `Wie oft tauchst du in ein scheinbar zufälliges Thema so tief ein, dass du am Ende mehr darüber weißt als viele Experten?`,
+    text: `Wie oft passiert es, dass du etwas auf das du dich fokusiert, alles andere um dich herum komplett ausblendet?`,
     examples: [
-      `Du entdeckst ein neues Interesse und nach wenigen Tagen hast du Artikel, Podcasts und Videos durchgearbeitet wie ein:e Vollprofi.`,
+      `Du bist an deinem Arbeitsplatz und siehst dir ein Video zu einem spannenden Thema an, bis du deinen Kollegen schreiben hörst: "Heeyy, hast du mich nicht gehört? Ich habe 3x deinen Namen gesagt"`,
     ],
   },
 
