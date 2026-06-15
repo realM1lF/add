@@ -120,7 +120,7 @@ export const asrsQuestions: Question[] = [
   {
     id: "asrs-1",
     dimensionId: "unaufmerksamkeit",
-    text: `Wie oft hast du Schwierigkeiten, dich bei langwierigen oder komplexen Aufgaben konzentriert zu halten?`,
+    text: `Wie oft hast du Schwierigkeiten, dich bei langwierigen oder komplexen Aufgaben konzentriert zu halten, bzw. den Fokus nicht zu verlieren?`,
     examples: [
       `Du baust einen IKEA-Schrank auf und belohnst dich sehr oft mit Pausen oder Ablenkungen`,
     ],
@@ -209,7 +209,7 @@ export const extendedQuestions: Question[] = [
   {
     id: "u5",
     dimensionId: "unaufmerksamkeit",
-    text: `Wie oft „schaltest du ab“ mitten in einem Gespräch und musst dich zurückholen, ohne dass es anderen auffällt?`,
+    text: `Wie oft „schaltest du in Mitten eines Gesprächs ab und musst dich zurückholen, ohne dass es anderen auffällt?`,
     examples: [
       `Jemand redet mit dir, und plötzlich merkst du, dass du zwar nickst, aber kein Wort mitbekommen hast – du musst aus dem Kontext erraten, was gerade gesagt wurde.`,
     ],
@@ -273,7 +273,7 @@ export const extendedQuestions: Question[] = [
     dimensionId: "impulsivitaet",
     text: `Wie oft triffst du spontane Entscheidungen, die du später bereust?`,
     examples: [
-      `Du stimmst Sachen zu, ohne darüber nachzudenken.`,
+      `Du stimmst Sachen zu, ohne über weitere Details nachzudenken.`,
       `Du möchtest plötzlich irgendetwas unbedingt haben und kaufst es auch sofort, obwohl du weist, dass dein Budget für diesen Monat ausgeschöpft ist.`,
     ],
   },
@@ -423,6 +423,7 @@ export const extendedQuestions: Question[] = [
     examples: [
       `Eine Freundin antwortet nicht sofort auf deine Nachricht und du denkst sofort: „Sie mag mich nicht mehr.“`,
       `Deine Freundin ist nicht gut drauf spricht in einem ernsteren Ton mit dir - du denkst direkt es stimmt was nicht“`,
+      `Deine Freundin meckert heute viel mit dir. Du nimmst es sehr persönlich und dein Kopf blockiert komplett und es belastet dich sehr, wodurch noch mehr "Fehler" leichter passieren können.`,
     ],
   },
   {
@@ -431,7 +432,7 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft vermeidest du Situationen, in denen du Kritik oder Ablehnung erfahren könntest?`,
     examples: [
       `Du bewirbst dich nicht auf eine Stelle, fragst nicht um Hilfe oder gehst nicht zu einer Verabredung, weil du Angst vor Ablehnung hast.`,
-      `Deine Freundin meckert heute viel mit dir. Du nimmst es sehr persönlich und dein Kopf blockiert komplett und es belastet dich sehr, wodurch noch mehr "Fehler" leichter passieren können.`,
+      `Du erzählst deiner Freundin am Telefon, dass du unbedingt Duschen musst. Das gleiche erzählst du ihr 3 Stunden später wieder. Nach weiteren 3 Stunden warst du immer noch nicht Duschen, sagst ihr dann aber, dass du Duschen warst. Das ganze tust du, weil es dir unangenehm ist, da du es immer noch nicht geschaft hast.`,
     ],
   },
   {
@@ -525,7 +526,7 @@ export const extendedQuestions: Question[] = [
     dimensionId: "interozeption",
     text: `Wie oft ignorierst du körperliche Signale wie Müdigkeit oder Schmerzen, bis sie unerträglich werden?`,
     examples: [
-      `Du bist seit Stunden müde, aber du merkst es erst, wenn deine Augen brennen und du kaum noch denken kannst.`,
+      `Du arbeitest an einem spannenden Projekt. Deine Augen sind schwer, aber du bist so auf das Doing fixiert, dass du erst afuhörrst, wenn es wirklich nicht mehr geht.`,
     ],
   },
   {
@@ -649,9 +650,11 @@ export const extendedQuestions: Question[] = [
   {
     id: "mk1",
     dimensionId: "masking",
-    text: `Wie oft wirkest du nach außen viel gefasster, als du dich innerlich fühlst?`,
+    text: `Wie oft wirkst du nach außen viel gefasster, organisierter oder eben als hättest du dein Leben im Griff, als du dich innerlich fühlst?`,
     examples: [
-      `Andere sehen eine:r, die alles im Griff hat – während du innerlich kämpfst, den Faden nicht zu verlieren.`,
+      `Du räumst deine Wohnung erst richtig auf, kurz bevor jamend zu Besuch kommt.`,
+      `Du sprichst vor deinen Freunden über viele Themen nicht so negativ, wie sie eigentlich sind oder lässt die ganz weg`,
+      `Du hast es geschaft dich in deinem Arbeitsumfeld gut zu organisieren, aber verschweigst wie viel Zeit du für die Organisation aufgewendet hast (viel).`,
     ],
   },
   {
