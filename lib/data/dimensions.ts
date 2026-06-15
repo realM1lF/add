@@ -1,0 +1,814 @@
+export interface Dimension {
+  id: string;
+  name: string;
+  shortName: string;
+  description: string;
+  color: string;
+  fill: string;
+}
+
+export interface Question {
+  id: string;
+  dimensionId: string;
+  text: string;
+  examples: string[];
+}
+
+export const dimensions: Dimension[] = [
+  {
+    id: "unaufmerksamkeit",
+    name: "Unaufmerksamkeit",
+    shortName: "U",
+    description:
+      "Schwierigkeiten, die Aufmerksamkeit zu steuern, ablenkbar zu sein, Details zu übersehen.",
+    color: "#7BA4C8",
+    fill: "rgba(123, 164, 200, 0.25)",
+  },
+  {
+    id: "hyperaktivitaet",
+    name: "Hyperaktivität",
+    shortName: "H",
+    description:
+      "Äußere oder innere Unruhe, Bewegungsdrang, Schwierigkeiten mit Stillsitzen.",
+    color: "#E8A87C",
+    fill: "rgba(232, 168, 124, 0.25)",
+  },
+  {
+    id: "impulsivitaet",
+    name: "Impulsivität",
+    shortName: "I",
+    description:
+      "Handeln ohne Nachdenken, Schwierigkeiten mit Warten, Unterbrechen, spontane Entscheidungen.",
+    color: "#D76A6A",
+    fill: "rgba(215, 106, 106, 0.25)",
+  },
+  {
+    id: "exekutive-funktionen",
+    name: "Exekutive Funktionen",
+    shortName: "EF",
+    description:
+      "Planen, Organisieren, Priorisieren, Starten, Beenden, Arbeitsgedächtnis.",
+    color: "#6BA8A4",
+    fill: "rgba(107, 168, 164, 0.25)",
+  },
+  {
+    id: "emotionale-dysregulation",
+    name: "Emotionale Dysregulation",
+    shortName: "ED",
+    description:
+      "Starke, schnelle Gefühle, Schwierigkeiten, Emotionen zu modulieren, Frustrationstoleranz.",
+    color: "#C98CB3",
+    fill: "rgba(201, 140, 179, 0.25)",
+  },
+  {
+    id: "rsd",
+    name: "Rejection Sensitivity",
+    shortName: "RSD",
+    description:
+      "Extreme emotionale Schmerzen bei wahrgenommener Ablehnung oder Kritik.",
+    color: "#9B8DC3",
+    fill: "rgba(155, 141, 195, 0.25)",
+  },
+  {
+    id: "zeitwahrnehmung",
+    name: "Zeitwahrnehmung",
+    shortName: "ZW",
+    description:
+      "Schwierigkeiten, Zeit abzuschätzen, zu strukturieren und pünktlich zu sein.",
+    color: "#8BBDD8",
+    fill: "rgba(139, 189, 216, 0.25)",
+  },
+  {
+    id: "interozeption",
+    name: "Interozeption",
+    shortName: "IN",
+    description:
+      "Wahrnehmung innerer Körpersignale wie Hunger, Durst, Müdigkeit, Emotionen.",
+    color: "#8FC499",
+    fill: "rgba(143, 196, 153, 0.25)",
+  },
+  {
+    id: "hyperfokus",
+    name: "Hyperfokus",
+    shortName: "HF",
+    description:
+      "Intensive, lange anhaltende Konzentration auf interessante Dinge, oft mit Zeitverlust.",
+    color: "#DAB866",
+    fill: "rgba(218, 184, 102, 0.25)",
+  },
+  {
+    id: "sensorik",
+    name: "Sensorische Verarbeitung",
+    shortName: "SV",
+    description:
+      "Über- oder Unterempfindlichkeit für Geräusche, Licht, Berührung, Gerüche etc.",
+    color: "#A8A8A8",
+    fill: "rgba(168, 168, 168, 0.25)",
+  },
+  {
+    id: "masking",
+    name: "Masking / Kompensation",
+    shortName: "MK",
+    description:
+      "Anstrengender Aufwand, ADHS-Merkmale nach außen zu verbergen und neurotypisch zu wirken.",
+    color: "#8B7DBF",
+    fill: "rgba(139, 125, 191, 0.25)",
+  },
+];
+
+export const asrsQuestions: Question[] = [
+  {
+    id: "asrs-1",
+    dimensionId: "unaufmerksamkeit",
+    text:
+      `Wie oft hast du Schwierigkeiten, dich bei langwierigen oder komplexen Aufgaben konzentriert zu halten?`,
+    examples:
+      [
+        `Du liest denselben Absatz in einer E-Mail drei Mal, weil deine Gedanken abschweifen, obwohl du weißt, dass es wichtig ist.`,
+      ],
+  },
+  {
+    id: "asrs-2",
+    dimensionId: "unaufmerksamkeit",
+    text:
+      `Wie oft verlierst du leicht den Faden in Gesprächen oder bei Besprechungen?`,
+    examples:
+      [
+        `Jemand erzählt dir etwas, und plötzlich merkst du, dass du gar nicht mehr zugehört hast – du weißt nur noch das erste Wort.`,
+      ],
+  },
+  {
+    id: "asrs-3",
+    dimensionId: "unaufmerksamkeit",
+    text:
+      `Wie oft vergisst du wichtige Termine, Verpflichtungen oder Dinge, die du erledigen wolltest?`,
+    examples:
+      [
+        `Du hast einen Arzttermin, an den du den ganzen Tag gedacht hast, aber trotzdem kommst du zu spät oder vergisst ihn.`,
+      ],
+  },
+  {
+    id: "asrs-4",
+    dimensionId: "hyperaktivitaet",
+    text:
+      `Wie oft fällt es dir schwer, stillzusitzen oder dich längere Zeit ruhig zu verhalten?`,
+    examples:
+      [
+        `Bei einem längeren Essen oder im Kino musst du ständig die Position wechseln, mit den Fingern trommeln oder dich bewegen.`,
+      ],
+  },
+  {
+    id: "asrs-5",
+    dimensionId: "hyperaktivitaet",
+    text:
+      `Wie oft fühlst du dich innerlich unruhig oder angetrieben?`,
+    examples:
+      [
+        `Abends, wenn du eigentlich entspannen willst, kannst du nicht „runterfahren“ – dein Kopf rast und du musst etwas tun.`,
+      ],
+  },
+  {
+    id: "asrs-6",
+    dimensionId: "impulsivitaet",
+    text:
+      `Wie oft handelst du, ohne über die Konsequenzen nachzudenken?`,
+    examples:
+      [
+        `Du kaufst spontan etwas online, obwohl du weißt, dass das Budget eigentlich knapp ist.`,
+      ],
+  },
+];
+
+export const extendedQuestions: Question[] = [
+  // ── Unaufmerksamkeit (5 erweiterte Fragen) ──
+  {
+    id: "u1",
+    dimensionId: "unaufmerksamkeit",
+    text:
+      `Wie oft wirst du von äußeren Reizen oder eigenen Gedanken abgelenkt, wenn du etwas erledigen musst?`,
+    examples:
+      [
+        `Du wolltest nur schnell eine E-Mail schreiben, aber nach fünf Minuten bist du in einem Wikipedia-Artikel über Pinguine gelandet.`,
+      ],
+  },
+  {
+    id: "u2",
+    dimensionId: "unaufmerksamkeit",
+    text:
+      `Wie oft übersiehst du Fehler in deiner Arbeit oder verpasst wichtige Details?`,
+    examples:
+      [
+        `Du schickst eine wichtige E-Mail ab und merkst erst danach, dass du den Anhang vergessen hast oder einen Tippfehler im Betreff stehen hast.`,
+      ],
+  },
+  {
+    id: "u3",
+    dimensionId: "unaufmerksamkeit",
+    text:
+      `Wie oft fühlt sich dein Kopf an wie ein Browser mit vielen Tabs – und du weißt nicht, bei welchem du anfangen sollst?`,
+    examples:
+      [
+        `Du sitzt vor einer Aufgabe, aber deine Gedanken springen zwischen Terminen, einer Unterhaltung von gestern und fünf anderen Dingen hin und her.`,
+      ],
+  },
+  {
+    id: "u4",
+    dimensionId: "unaufmerksamkeit",
+    text:
+      `Wie oft legst du etwas gerade ab und findest es Sekunden später nicht wieder?`,
+    examples:
+      [
+        `Du hältst dein Handy „nur kurz“ in die Hand – und suchst es zwei Minuten später in allen Zimmern.`,
+      ],
+  },
+  {
+    id: "u5",
+    dimensionId: "unaufmerksamkeit",
+    text:
+      `Wie oft „schaltest du ab“ mitten in einem Gespräch und musst dich zurückholen, ohne dass es anderen auffällt?`,
+    examples:
+      [
+        `Jemand redet mit dir, und plötzlich merkst du, dass du zwar nickst, aber kein Wort mitbekommen hast – du musst aus dem Kontext erraten, was gerade gesagt wurde.`,
+      ],
+  },
+
+  // ── Hyperaktivität (5 erweiterte Fragen) ──
+  {
+    id: "h1",
+    dimensionId: "hyperaktivitaet",
+    text:
+      `Wie oft fühlst du dich innerlich unruhig oder „unter Strom“?`,
+    examples:
+      [
+        `Auch wenn du körperlich stillsitzt, fühlt sich dein Körper an, als würde er vibrieren – wie ein Motor, der nicht abschaltet.`,
+      ],
+  },
+  {
+    id: "h2",
+    dimensionId: "hyperaktivitaet",
+    text:
+      `Wie oft musst du dich körperlich bewegen, um klar denken zu können?`,
+    examples:
+      [
+        `Du merkst, dass du beim Telefonieren automatisch herumläufst oder mit einem Stift spielen musst, damit deine Gedanken fließen.`,
+      ],
+  },
+  {
+    id: "h3",
+    dimensionId: "hyperaktivitaet",
+    text:
+      `Wie oft zeigt sich bei dir kleine motorische Unruhe, auch wenn du versuchst, still zu sein?`,
+    examples:
+      [
+        `Du wippst mit dem Fuß, knibbelst an den Fingernägeln, zwirbelst Haare oder klickst permanent mit dem Kugelschreiber.`,
+      ],
+  },
+  {
+    id: "h4",
+    dimensionId: "hyperaktivitaet",
+    text:
+      `Wie oft hast du das Gefühl, ständig beschäftigt sein zu müssen?`,
+    examples:
+      [
+        `Du hast mehrere Projekte gleichzeitig angefangen, weil Pausen oder Langeweile dich unruhig machen.`,
+      ],
+  },
+  {
+    id: "h5",
+    dimensionId: "hyperaktivitaet",
+    text:
+      `Wie oft fällt es dir schwer, dich zu entspannen und runterzukommen, wenn du Zeit für dich hast?`,
+    examples:
+      [
+        `Am Wochenende kannst du einfach nicht „nichts tun“ – du musst dich beschäftigen, sonst wird es unangenehm.`,
+      ],
+  },
+
+  // ── Impulsivität (5 erweiterte Fragen) ──
+  {
+    id: "i1",
+    dimensionId: "impulsivitaet",
+    text:
+      `Wie oft sagst oder tust du Dinge, bevor du darüber nachgedacht hast?`,
+    examples:
+      [
+        `In einem Gespräch fällt dir etwas ein und du sagst es sofort – auch wenn es unpassend ist oder den anderen unterbricht.`,
+      ],
+  },
+  {
+    id: "i2",
+    dimensionId: "impulsivitaet",
+    text:
+      `Wie oft triffst du spontane Entscheidungen, die du später bereust?`,
+    examples:
+      [
+        `Du kaufst impulsiv etwas, sagst ja zu einem Termin, den du eigentlich nicht haben willst, oder machst einen Plan, den du nicht durchhältst.`,
+      ],
+  },
+  {
+    id: "i3",
+    dimensionId: "impulsivitaet",
+    text:
+      `Wie oft unterbrichst du andere Menschen im Gespräch?`,
+    examples:
+      [
+        `Du weißt, dass du den anderen ausreden lassen solltest, aber du kannst deinen Gedanken nicht festhalten, wenn du ihn nicht sofort loswirst.`,
+      ],
+  },
+  {
+    id: "i4",
+    dimensionId: "impulsivitaet",
+    text:
+      `Wie oft geht es bei dir „ganz oder gar nicht“ – ohne Zwischentöne?`,
+    examples:
+      [
+        `Wenn du etwas beginnst, bist du sofort mit vollem Eifer dabei – oder du kommst überhaupt nicht in Gang. Ein halbes Maß gibt es kaum.`,
+      ],
+  },
+  {
+    id: "i5",
+    dimensionId: "impulsivitaet",
+    text:
+      `Wie oft kommen deine Gedanken schneller als deine Worte, sodass du unterbrichst oder mitten im Satz abdriftest?`,
+    examples:
+      [
+        `Im Gespräch willst du etwas sagen, aber bevor du fertig bist, hat dein Gehirn schon drei neue Punkte – du unterbrichst dich selbst oder andere.`,
+      ],
+  },
+
+  // ── Exekutive Funktionen (6 erweiterte Fragen) ──
+  {
+    id: "ef1",
+    dimensionId: "exekutive-funktionen",
+    text:
+      `Wie oft hast du Schwierigkeiten, mit Aufgaben anzufangen, auch wenn sie wichtig sind?`,
+    examples:
+      [
+        `Du weißt, dass du die Steuer machen musst, aber du kannst dich nicht dazu überwinden, den ersten Schritt zu tun.`,
+      ],
+  },
+  {
+    id: "ef2",
+    dimensionId: "exekutive-funktionen",
+    text:
+      `Wie oft fällt es dir schwer, Aufgaben zu priorisieren?`,
+    examples:
+      [
+        `Du hast 20 Dinge auf der Liste und fängst stattdessen an, die Küche zu putzen, obwohl eine wichtige Deadline morgen fällig ist.`,
+      ],
+  },
+  {
+    id: "ef3",
+    dimensionId: "exekutive-funktionen",
+    text:
+      `Wie oft hast du einen „Doom Pile“ – einen Stapel aus Post, Wäsche oder Geschirr, den du regelrecht nicht wahrnehmen kannst?`,
+    examples:
+      [
+        `Dein Schreibtisch ist ein Haufen Papier, den du immer wieder beiseiteschiebst, weil du nicht weißt, wo du anfangen sollst.`,
+      ],
+  },
+  {
+    id: "ef4",
+    dimensionId: "exekutive-funktionen",
+    text:
+      `Wie oft vergisst du, was du gerade tun wolltest, wenn du unterbrochen wirst?`,
+    examples:
+      [
+        `Du gehst in die Küche, um etwas zu holen, aber wenn du dort ankommst, weißt du nicht mehr, warum du eigentlich gekommen bist.`,
+      ],
+  },
+  {
+    id: "ef5",
+    dimensionId: "exekutive-funktionen",
+    text:
+      `Wie oft fängst du mehrere Dinge hintereinander an und beendest keine davon?`,
+    examples:
+      [
+        `Du beginnst die Spülmaschine, öffnest dann ein Fenster, merkst Staub, holst den Staubwedel – und am Abend steht nichts davon wirklich fertig.`,
+      ],
+  },
+  {
+    id: "ef6",
+    dimensionId: "exekutive-funktionen",
+    text:
+      `Wie oft ist etwas für dich „aus den Augen, aus dem Sinn“ – auch wenn es wichtig ist?`,
+    examples:
+      [
+        `Du hast deine Medikamente oder einen Termin vor Augen, aber sobald sie nicht sichtbar sind, vergisst du sie, als hätten sie nie existiert.`,
+      ],
+  },
+
+  // ── Emotionale Dysregulation (6 erweiterte Fragen) ──
+  {
+    id: "ed1",
+    dimensionId: "emotionale-dysregulation",
+    text:
+      `Wie oft werden deine Gefühle schnell sehr intensiv?`,
+    examples:
+      [
+        `Eine kleine Kritik oder ein ärgerlicher Moment lässt dich innerlich explodieren, auch wenn du weißt, dass es „nicht so schlimm“ ist.`,
+      ],
+  },
+  {
+    id: "ed2",
+    dimensionId: "emotionale-dysregulation",
+    text:
+      `Wie oft hast du Schwierigkeiten, wieder runterzukommen, wenn du einmal wütend oder traurig bist?`,
+    examples:
+      [
+        `Ein kleiner Konflikt verfolgt dich stundenlang oder tagelang und du kannst nicht aufhören, ihn zu analysieren.`,
+      ],
+  },
+  {
+    id: "ed3",
+    dimensionId: "emotionale-dysregulation",
+    text:
+      `Wie oft fühlst du dich von kleinen Rückschlägen oder Veränderungen überfordert?`,
+    examples:
+      [
+        `Dein Plan ändert sich kurzfristig und du fühlst dich sofort aus der Bahn geworfen, frustriert oder panisch.`,
+      ],
+  },
+  {
+    id: "ed4",
+    dimensionId: "emotionale-dysregulation",
+    text:
+      `Wie oft hat dein Gefühlsregler nur die Stufen „null“ und „zehn“ – mit kaum einem Mittelmaß dazwischen?`,
+    examples:
+      [
+        `Entweder bist du komplett gefasst oder völlig überwältigt – ein sanfteres Maß an Intensität fällt dir schwer.`,
+      ],
+  },
+  {
+    id: "ed5",
+    dimensionId: "emotionale-dysregulation",
+    text:
+      `Wie oft hältst du den Tag über alles zusammen und fällst zu Hause in ein Loch?`,
+    examples:
+      [
+        `Auf der Arbeit oder unter Menschen funktionierst du mühsam – sobald du zu Hause bist, brichst du zusammen oder bist reizbar und erschöpft.`,
+      ],
+  },
+  {
+    id: "ed6",
+    dimensionId: "emotionale-dysregulation",
+    text:
+      `Wie oft bist du besonders kurz angebunden bei den Menschen, die dir am meisten bedeuten?`,
+    examples:
+      [
+        `Du reagierst schneller genervt oder lauter auf Partner:in, Familie oder enge Freund:innen – und fühlst dich hinterher schuldig.`,
+      ],
+  },
+
+  // ── Rejection Sensitivity (6 erweiterte Fragen) ──
+  {
+    id: "rsd1",
+    dimensionId: "rsd",
+    text:
+      `Wie oft fühlst du dich von Kritik oder Rückmeldungen unverhältnismäßig stark getroffen?`,
+    examples:
+      [
+        `Dein Chef gibt dir einen kleinen Verbesserungsvorschlag und du fühlst den Rest des Tages wie ein Versager.`,
+      ],
+  },
+  {
+    id: "rsd2",
+    dimensionId: "rsd",
+    text:
+      `Wie oft interpretierst du neutrale Signale als Ablehnung?`,
+    examples:
+      [
+        `Eine Freundin antwortet nicht sofort auf deine Nachricht und du denkst sofort: „Sie mag mich nicht mehr.“`,
+      ],
+  },
+  {
+    id: "rsd3",
+    dimensionId: "rsd",
+    text:
+      `Wie oft vermeidest du Situationen, in denen du Kritik oder Ablehnung erfahren könntest?`,
+    examples:
+      [
+        `Du bewirbst dich nicht auf eine Stelle, fragst nicht um Hilfe oder gehst nicht zu einer Verabredung, weil du Angst vor Ablehnung hast.`,
+      ],
+  },
+  {
+    id: "rsd4",
+    dimensionId: "rsd",
+    text:
+      `Wie oft entschuldigst du dich, bevor du überhaupt etwas falsch gemacht hast – nur für alle Fälle?`,
+    examples:
+      [
+        `Du sagst „Sorry“ für normale Bedürfnisse, für deine Meinung oder einfach dafür, dass du existierst.`,
+      ],
+  },
+  {
+    id: "rsd5",
+    dimensionId: "rsd",
+    text:
+      `Wie oft spielst du Gespräche tagelang in deinem Kopf durch und suchst nach dem, was du falsch gemacht haben könntest?`,
+    examples:
+      [
+        `Ein Gespräch von vor drei Wochen spukt dir immer noch durch den Kopf und du schämst dich dafür.`,
+      ],
+  },
+  {
+    id: "rsd6",
+    dimensionId: "rsd",
+    text:
+      `Wie oft wiegt eine einzige kritische Bemerkung schwerer als viele Lobworte?`,
+    examples:
+      [
+        `Du bekommst zehn positive Rückmeldungen und eine kleine Kritik – und am Abend denkst du nur noch an die Kritik.`,
+      ],
+  },
+
+  // ── Zeitwahrnehmung (6 erweiterte Fragen) ──
+  {
+    id: "zw1",
+    dimensionId: "zeitwahrnehmung",
+    text:
+      `Wie oft unterschätzt du, wie lange eine Aufgabe dauert?`,
+    examples:
+      [
+        `Du denkst: „Das dauert nur fünf Minuten“, aber eine Stunde später bist du immer noch dabei.`,
+      ],
+  },
+  {
+    id: "zw2",
+    dimensionId: "zeitwahrnehmung",
+    text:
+      `Wie oft kommst du zu spät, obwohl du dir wirklich Mühe gibst, pünktlich zu sein?`,
+    examples:
+      [
+        `Du planst alles im Kopf, legst früher los und kommst trotzdem zu spät – ohne dass du genau sagen kannst, warum.`,
+      ],
+  },
+  {
+    id: "zw3",
+    dimensionId: "zeitwahrnehmung",
+    text:
+      `Wie oft verlierst du das Zeitgefühl, wenn du etwas Interessantes tust?`,
+    examples:
+      [
+        `Du spielst ein Spiel oder arbeitest an einem Hobby und merkst plötzlich, dass es Nacht ist und du vergessen hast zu essen.`,
+      ],
+  },
+  {
+    id: "zw4",
+    dimensionId: "zeitwahrnehmung",
+    text:
+      `Wie oft gerätst du in den „Wartemodus“ und kannst vor einem Termin nichts Produktives tun?`,
+    examples:
+      [
+        `Du hast um 16 Uhr einen Anruf und kannst den ganzen Nachmittag vorher nichts anfangen, weil der Termin „bald“ kommt.`,
+      ],
+  },
+  {
+    id: "zw5",
+    dimensionId: "zeitwahrnehmung",
+    text:
+      `Wie oft dauern Dinge am Ende dreimal so lange wie geplant?`,
+    examples:
+      [
+        `Du sagst: „Ich bin in zehn Minuten fertig“, und eine halbe Stunde später bist du noch mitten drin.`,
+      ],
+  },
+  {
+    id: "zw6",
+    dimensionId: "zeitwahrnehmung",
+    text:
+      `Wie oft ist Krise dein eigentlicher Produktivitätsmodus – ohne Deadline bewegt sich nichts?`,
+    examples:
+      [
+        `Du weißt seit Wochen, dass etwas fällig ist, aber du fängst erst in der letzten Nacht an, wenn der Druck unerträglich wird.`,
+      ],
+  },
+
+  // ── Interozeption (5 erweiterte Fragen) ──
+  {
+    id: "in1",
+    dimensionId: "interozeption",
+    text:
+      `Wie oft merkst du erst spät, dass du hungrig oder durstig bist?`,
+    examples:
+      [
+        `Du merkst erst, dass du den ganzen Tag nichts gegessen hast, wenn du plötzlich erschöpft oder reizbar bist.`,
+      ],
+  },
+  {
+    id: "in2",
+    dimensionId: "interozeption",
+    text:
+      `Wie oft ignorierst du körperliche Signale wie Müdigkeit oder Schmerzen, bis sie unerträglich werden?`,
+    examples:
+      [
+        `Du bist seit Stunden müde, aber du merkst es erst, wenn deine Augen brennen und du kaum noch denken kannst.`,
+      ],
+  },
+  {
+    id: "in3",
+    dimensionId: "interozeption",
+    text:
+      `Wie oft fällt es dir schwer, deine eigenen Gefühle oder Bedürfnisse zu benennen?`,
+    examples:
+      [
+        `Jemand fragt: „Was brauchst du gerade?“ und du weißt es nicht – du spürst nur, dass etwas nicht stimmt.`,
+      ],
+  },
+  {
+    id: "in4",
+    dimensionId: "interozeption",
+    text:
+      `Wie oft vergisst du, zur Toilette zu gehen, dich zu strecken oder Pausen zu machen?`,
+    examples:
+      [
+        `Du sitzt stundenlang am Schreibtisch und merkst erst, als dein Körper protestiert, dass du ihn vernachlässigt hast.`,
+      ],
+  },
+  {
+    id: "in5",
+    dimensionId: "interozeption",
+    text:
+      `Wie oft merkst du erst im Nachhinein, dass du überfordert oder gestresst warst?`,
+    examples:
+      [
+        `Erst wenn du zusammenbrichst oder explodierst, merkst du: „Ah, ich war wohl die ganze Zeit überfordert.“`,
+      ],
+  },
+
+  // ── Hyperfokus (6 erweiterte Fragen) ──
+  {
+    id: "hf1",
+    dimensionId: "hyperfokus",
+    text:
+      `Wie oft vertiefst du dich so sehr in etwas, dass du alles um dich herum vergisst?`,
+    examples:
+      [
+        `Du wolltest nur „kurz“ etwas recherchieren und stellst fest, dass fünf Stunden vergangen sind, ohne dass du es gemerkt hast.`,
+      ],
+  },
+  {
+    id: "hf2",
+    dimensionId: "hyperfokus",
+    text:
+      `Wie oft fällt es dir schwer, von einer spannenden Aktivität abzulassen, um alltägliche Pflichten zu erledigen?`,
+    examples:
+      [
+        `Du bist in ein Buch oder Spiel vertieft und kannst nicht aufhören, obwohl du weißt, dass du eigentlich schlafen musst.`,
+      ],
+  },
+  {
+    id: "hf3",
+    dimensionId: "hyperfokus",
+    text:
+      `Wie oft entwickelst du ein intensives, fast obsessives Interesse an neuen Themen?`,
+    examples:
+      [
+        `Du entdeckst ein neues Hobby und recherchierst/tagträumst/tagelang darüber – bis das nächste Interesse kommt.`,
+      ],
+  },
+  {
+    id: "hf4",
+    dimensionId: "hyperfokus",
+    text:
+      `Wie oft hyperfokussierst du wochenlang auf etwas, lässt es dann aber komplett fallen und kommst nicht mehr zurück?`,
+    examples:
+      [
+        `Du kaufst Material für ein neues Hobby, vertiefst dich tagelang – und zwei Monate später liegt alles unberührt in der Ecke.`,
+      ],
+  },
+  {
+    id: "hf5",
+    dimensionId: "hyperfokus",
+    text:
+      `Wie oft verliebst du dich in neue Hobbies so sehr, wie andere sich in Menschen verlieben?`,
+    examples:
+      [
+        `Ein neues Thema fasziniert dich total: Du denkst ständig darüber nach, recherchierst alles und kannst kaum davon loskommen.`,
+      ],
+  },
+  {
+    id: "hf6",
+    dimensionId: "hyperfokus",
+    text:
+      `Wie oft tauchst du in ein scheinbar zufälliges Thema so tief ein, dass du am Ende mehr darüber weißt als viele Experten?`,
+    examples:
+      [
+        `Du entdeckst ein neues Interesse und nach wenigen Tagen hast du Artikel, Podcasts und Videos durchgearbeitet wie ein:e Vollprofi.`,
+      ],
+  },
+
+  // ── Sensorische Verarbeitung (5 erweiterte Fragen) ──
+  {
+    id: "sv1",
+    dimensionId: "sensorik",
+    text:
+      `Wie oft reagierst du stark auf laute Geräusche, helles Licht oder starke Gerüche?`,
+    examples:
+      [
+        `Ein quietschender Stuhl, greller Neonlicht oder der Geruch von Parfüm in der Bahn machen dich sofort nervös oder wütend.`,
+      ],
+  },
+  {
+    id: "sv2",
+    dimensionId: "sensorik",
+    text:
+      `Wie oft fühlst du dich in überfüllten oder lauten Umgebungen schnell überfordert?`,
+    examples:
+      [
+        `Ein Einkaufszentrum, eine Demo oder eine volle Kneipe fühlt sich für dich schnell wie Sinnestrubel an.`,
+      ],
+  },
+  {
+    id: "sv3",
+    dimensionId: "sensorik",
+    text:
+      `Wie oft hast du bestimmte Texturen, Kleidung oder Berührungen, die du extrem unangenehm findest?`,
+    examples:
+      [
+        `Ein bestimmtes Etikett im Shirt, eine bestimmte Stoffhose oder das Gefühl von Nagellack können dich den ganzen Tag ablenken.`,
+      ],
+  },
+  {
+    id: "sv4",
+    dimensionId: "sensorik",
+    text:
+      `Wie oft suchst du gezielt nach sensorischen Reizen, um dich zu beruhigen oder zu fokussieren?`,
+    examples:
+      [
+        `Du brauchst Hintergrundgeräusche (brown noise), eine Kuscheldecke oder etwas in der Hand, um konzentriert arbeiten zu können.`,
+      ],
+  },
+  {
+    id: "sv5",
+    dimensionId: "sensorik",
+    text:
+      `Wie oft merkst du, dass du besonders empfindlich auf plötzliche Veränderungen in deiner Umgebung reagierst?`,
+    examples:
+      [
+        `Jemand klingelt unerwartet an der Tür oder das Licht flackert – und du bist sofort aus dem Konzept.`,
+      ],
+  },
+
+  // ── Masking / Kompensation (5 erweiterte Fragen) ──
+  {
+    id: "mk1",
+    dimensionId: "masking",
+    text:
+      `Wie oft wirkest du nach außen viel gefasster, als du dich innerlich fühlst?`,
+    examples:
+      [
+        `Andere sehen eine:r, die alles im Griff hat – während du innerlich kämpfst, den Faden nicht zu verlieren.`,
+      ],
+  },
+  {
+    id: "mk2",
+    dimensionId: "masking",
+    text:
+      `Wie oft weiß niemand in deinem Umfeld, wie anstrengend es für dich ist, „normal“ zu wirken?`,
+    examples:
+      [
+        `Du investierst enorme Energie in Planen, Erinnern und Kontrolle – und niemand merkt, wie viel Arbeit das kostet.`,
+      ],
+  },
+  {
+    id: "mk3",
+    dimensionId: "masking",
+    text:
+      `Wie oft hast du dir antrainiert, neurotypisch auszusehen – so gut, dass andere deine Probleme nicht glauben?`,
+    examples:
+      [
+        `Wenn du von deinen Schwierigkeiten erzählst, sagen Menschen: „Du siehst gar nicht so aus, als hättest du ADHS.“`,
+      ],
+  },
+  {
+    id: "mk4",
+    dimensionId: "masking",
+    text:
+      `Wie oft hast du unterschiedliche Versionen von dir für verschiedene Menschen, die dich Energie kosten?`,
+    examples:
+      [
+        `Du passt dich je nach Kontext an – beruflich, privat, in der Familie – und am Ende fühlst du dich erschöpft und nicht mehr du selbst.`,
+      ],
+  },
+  {
+    id: "mk5",
+    dimensionId: "masking",
+    text:
+      `Wie oft bereitest du dich übermäßig vor, nur um normal zu wirken – und schämst dich dann dafür?`,
+    examples:
+      [
+        `Du planst Gespräche vor, legst Kleidung schon am Abend zurecht oder machst endlose Listen – nur um morgens nicht auffällig zu scheitern.`,
+      ],
+  },
+];
+
+export const allQuestions: Question[] = [...asrsQuestions, ...extendedQuestions];
+
+export const answerLabels: Record<number, string> = {
+  0: "Nie",
+  1: "Selten",
+  2: "Manchmal",
+  3: "Oft",
+  4: "Sehr oft",
+};
