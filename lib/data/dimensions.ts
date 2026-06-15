@@ -222,12 +222,13 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft fühlst du dich innerlich unruhig oder „unter Strom“?`,
     examples: [
       `Auch wenn du körperlich stillsitzt, fühlt sich dein Körper an, als würde er vibrieren – wie ein Motor, der nicht abschaltet.`,
+      `Du weißt nicht, wieso du dich fühlst wie du dich fühlst. Du weißt nur dass du aufgeregt bist ohne Grund`,
     ],
   },
   {
     id: "h2",
     dimensionId: "hyperaktivitaet",
-    text: `Wie oft musst du dich körperlich bewegen, um klar denken zu können?`,
+    text: `Wie oft musst du dich körperlich bewegen? Ggf. um klar denken zu können?`,
     examples: [
       `Du merkst, dass du beim Telefonieren automatisch herumläufst oder mit einem Stift spielen musst, damit deine Gedanken fließen.`,
     ],
@@ -261,9 +262,10 @@ export const extendedQuestions: Question[] = [
   {
     id: "i1",
     dimensionId: "impulsivitaet",
-    text: `Wie oft sagst oder tust du Dinge, bevor du darüber nachgedacht hast?`,
+    text: `Wie oft sagst oder tust du Dinge, bevor du darüber nachgedacht hast? Ggf. tust du diese Dinge auch stürmischer oder lauter sie sein sollten.`,
     examples: [
       `In einem Gespräch fällt dir etwas ein und du sagst es sofort – auch wenn es unpassend ist oder den anderen unterbricht.`,
+      `Du lauscht einem spannenden Gespräch in einer Kneipe und dir kommt kurzerhand etwas super witziges in den Kopf - du rufst es laut hinaus und das ganze Lokal dreht sich nach dir um.`,
     ],
   },
   {
@@ -271,7 +273,8 @@ export const extendedQuestions: Question[] = [
     dimensionId: "impulsivitaet",
     text: `Wie oft triffst du spontane Entscheidungen, die du später bereust?`,
     examples: [
-      `Du kaufst impulsiv etwas, sagst ja zu einem Termin, den du eigentlich nicht haben willst, oder machst einen Plan, den du nicht durchhältst.`,
+      `Du stimmst Sachen zu, ohne darüber nachzudenken.`,
+      `Du möchtest plötzlich irgendetwas unbedingt haben und kaufst es auch sofort, obwohl du weist, dass dein Budget für diesen Monat ausgeschöpft ist.`,
     ],
   },
   {
@@ -285,9 +288,10 @@ export const extendedQuestions: Question[] = [
   {
     id: "i4",
     dimensionId: "impulsivitaet",
-    text: `Wie oft geht es bei dir „ganz oder gar nicht“ – ohne Zwischentöne?`,
+    text: `Ganz oder gar nicht?`,
     examples: [
       `Wenn du etwas beginnst, bist du sofort mit vollem Eifer dabei – oder du kommst überhaupt nicht in Gang. Ein halbes Maß gibt es kaum.`,
+      `Du hast eine neue Idee klar vor Augen und willst sie so schnell umsetzen wie möglich. Am besten gleich sofort. Wenn es dann länger dauert als gedacht und deine Zeit knapp wird, regt es dich sehr auf.`,
     ],
   },
   {
@@ -303,37 +307,31 @@ export const extendedQuestions: Question[] = [
   {
     id: "ef1",
     dimensionId: "exekutive-funktionen",
-    text: `Wie oft hast du Schwierigkeiten, mit Aufgaben anzufangen, auch wenn sie wichtig sind?`,
+    text: `Wie oft hast du Schwierigkeiten, mit scheinbar kleinen Aufgaben anzufangen, auch wenn sie ggf. sehr wichtig sind?`,
     examples: [
       `Du weißt, dass du die Steuer machen musst, aber du kannst dich nicht dazu überwinden, den ersten Schritt zu tun.`,
+      `Du lagerst irgendwo Papier-Kartons und sagst dir, dass du sie einfach nach und nach beim Verlassen der Wohnung zum Papier-Müll bringen wirst. Du verpasst den Zeitpunkt das zu tun und es werden immer mehr Kartons. Du wirst von anderen darauf angesprochen und es belastet dich sehr - erledigen wirst du es trotzdem nicht so schnell`,
     ],
   },
   {
     id: "ef2",
     dimensionId: "exekutive-funktionen",
-    text: `Wie oft fällt es dir schwer, Aufgaben zu priorisieren?`,
+    text: `Wie oft fällt es dir schwer, Aufgaben zu priorisieren oder Chaos-Stapel wahrzunehmen und anzugehen?`,
     examples: [
-      `Du hast 20 Dinge auf der Liste und fängst stattdessen an, die Küche zu putzen, obwohl eine wichtige Deadline morgen fällig ist.`,
+      `Du hast mit deiner Freundin vereinbart, dass du am nächsten Tag Erledigungen machst - stress dich nicht, irgendwann bis mittags hat sie gesagt. Die Zeitangabe war zu wage für dich und du hat bis Mittag alles mögliche gemacht, nur nicht das, was vereinbart war.`,
+      `Dein Schreibtisch ist ein Haufen Papier, den du immer wieder beiseiteschiebst, weil du nicht weißt, wo du anfangen sollst.`,
     ],
   },
   {
     id: "ef3",
     dimensionId: "exekutive-funktionen",
-    text: `Wie oft hast du einen „Doom Pile“ – einen Stapel aus Post, Wäsche oder Geschirr, den du regelrecht nicht wahrnehmen kannst?`,
-    examples: [
-      `Dein Schreibtisch ist ein Haufen Papier, den du immer wieder beiseiteschiebst, weil du nicht weißt, wo du anfangen sollst.`,
-    ],
-  },
-  {
-    id: "ef4",
-    dimensionId: "exekutive-funktionen",
-    text: `Wie oft vergisst du, was du gerade tun wolltest, wenn du unterbrochen wirst?`,
+    text: `Wie oft vergisst du, was du gerade tun wolltes?`,
     examples: [
       `Du gehst in die Küche, um etwas zu holen, aber wenn du dort ankommst, weißt du nicht mehr, warum du eigentlich gekommen bist.`,
     ],
   },
   {
-    id: "ef5",
+    id: "ef4",
     dimensionId: "exekutive-funktionen",
     text: `Wie oft fängst du mehrere Dinge hintereinander an und beendest keine davon?`,
     examples: [
@@ -341,11 +339,20 @@ export const extendedQuestions: Question[] = [
     ],
   },
   {
-    id: "ef6",
+    id: "ef5",
     dimensionId: "exekutive-funktionen",
     text: `Wie oft ist etwas für dich „aus den Augen, aus dem Sinn“ – auch wenn es wichtig ist?`,
     examples: [
       `Du hast deine Medikamente oder einen Termin vor Augen, aber sobald sie nicht sichtbar sind, vergisst du sie, als hätten sie nie existiert.`,
+    ],
+  },
+  {
+    id: "ef6",
+    dimensionId: "exekutive-funktionen",
+    text: `Wie oft passiert es, dass du Aufgaben nicht erledigst, die keine Deadline haben?`,
+    examples: [
+      `Du erhälst auf der Arbeit die Aufgabe etwas zu tun - bekommst aber gesagt, dass es kein Eile hat. - Die Chance, dass du es von selbst nicht erledigst, bis du wieder daran erinnert wirst, bzw. dann eine Deadline bekommst, ist sehr sehr hoch.`,
+      `Du schafst es dir selbst keine verbindlichen Deadlines zu setzen - z. B. um die Pfandflaschen endlich mal wegzubringen, bevor wieder alles überquillt.`,
     ],
   },
 
@@ -395,7 +402,7 @@ export const extendedQuestions: Question[] = [
     dimensionId: "emotionale-dysregulation",
     text: `Wie oft bist du besonders kurz angebunden bei den Menschen, die dir am meisten bedeuten?`,
     examples: [
-      `Du reagierst schneller genervt oder lauter auf Partner:in, Familie oder enge Freund:innen – und fühlst dich hinterher schuldig.`,
+      `Du reagierst schneller genervt oder lauter auf Menschen die dir nahe stehen – und fühlst dich hinterher schuldig.`,
     ],
   },
 
@@ -403,9 +410,10 @@ export const extendedQuestions: Question[] = [
   {
     id: "rsd1",
     dimensionId: "rsd",
-    text: `Wie oft fühlst du dich von Kritik oder Rückmeldungen unverhältnismäßig stark getroffen?`,
+    text: `Wie oft fühlst du dich von Kritik oder negativen Rückmeldungen unverhältnismäßig stark getroffen?`,
     examples: [
-      `Dein Chef gibt dir einen kleinen Verbesserungsvorschlag und du fühlst den Rest des Tages wie ein Versager.`,
+      `Dein Chef ist von deiner letzten Arbeit enttäuscht und du fühlst den Rest des Tages wie ein Versager.`,
+      `Kleine Sticheleien - z. B. eine Nachricht von einem Freund, nimmst du manchmal zu ernst und ggf. belastet dich diese.`,
     ],
   },
   {
@@ -414,6 +422,7 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft interpretierst du neutrale Signale als Ablehnung?`,
     examples: [
       `Eine Freundin antwortet nicht sofort auf deine Nachricht und du denkst sofort: „Sie mag mich nicht mehr.“`,
+      `Deine Freundin ist nicht gut drauf spricht in einem ernsteren Ton mit dir - du denkst direkt es stimmt was nicht“`,
     ],
   },
   {
@@ -422,6 +431,7 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft vermeidest du Situationen, in denen du Kritik oder Ablehnung erfahren könntest?`,
     examples: [
       `Du bewirbst dich nicht auf eine Stelle, fragst nicht um Hilfe oder gehst nicht zu einer Verabredung, weil du Angst vor Ablehnung hast.`,
+      `Deine Freundin meckert heute viel mit dir. Du nimmst es sehr persönlich und dein Kopf blockiert komplett und es belastet dich sehr, wodurch noch mehr "Fehler" leichter passieren können.`,
     ],
   },
   {
@@ -456,6 +466,7 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft unterschätzt du, wie lange eine Aufgabe dauert?`,
     examples: [
       `Du denkst: „Das dauert nur fünf Minuten“, aber eine Stunde später bist du immer noch dabei.`,
+      `Du arbeitest nur schnell 10 Minuten an etwas - in wirklichkeitn sind aber bereits 40 Minuten vergangen.`,
     ],
   },
   {
@@ -469,9 +480,10 @@ export const extendedQuestions: Question[] = [
   {
     id: "zw3",
     dimensionId: "zeitwahrnehmung",
-    text: `Wie oft verlierst du das Zeitgefühl, wenn du etwas Interessantes tust?`,
+    text: `Wie oft verlierst du das Gefühl für die Zeit, wenn du gerade etwas tust oder auch nicht tust?`,
     examples: [
-      `Du spielst ein Spiel oder arbeitest an einem Hobby und merkst plötzlich, dass es Nacht ist und du vergessen hast zu essen.`,
+      `Du schaust auf die Uhr und wunderst dich, dass bereits Stunden vergangen sind – oder dass gerade erst zehn Minuten vergangen sind, obwohl es sich viel länger angefühlt hat.`,
+      `Du sagst: „Ich mache das noch schnell“, und plötzlich ist der halbe Tag vorbei, ohne dass du es bewusst wahrgenommen hast.`,
     ],
   },
   {
