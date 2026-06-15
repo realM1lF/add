@@ -111,7 +111,7 @@ export function ResultClient() {
           Dein Ergebnis
         </p>
         <h1 className="text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
-          Dein ADHS-Profil
+          Dein individuelles Profil
         </h1>
         <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground">
           Eine Momentaufnahme entlang verschiedener Dimensionen. Keine Diagnose –

@@ -128,17 +128,19 @@ export const asrsQuestions: Question[] = [
   {
     id: "asrs-2",
     dimensionId: "unaufmerksamkeit",
-    text: `Wie oft verlierst du leicht den Faden in Gesprächen oder bei Besprechungen?`,
+    text: `Wie oft verlierst du leicht den Faden in Gesprächen oder bekommst erst gar nicht mit, dass man mit dir spricht?`,
     examples: [
       `Jemand erzählt dir etwas, und plötzlich merkst du, dass du gar nicht mehr zugehört hast – du weißt höchstens noch die ersten Wörter.`,
+      `Du wirst des öfteren darauf aufmerksam gemacht, dass man oder jemand mit dir spricht, nachdem sie keine Antwort von dir erhalten haben. (Du hast es überhaupt nicht mitbekommen)`,
     ],
   },
   {
     id: "asrs-3",
     dimensionId: "unaufmerksamkeit",
-    text: `Wie oft vergisst du wichtige Termine, Verpflichtungen oder Dinge, die du erledigen wolltest?`,
+    text: `Wie oft vergisst du wichtige Termine, Verpflichtungen oder Dinge, die du erledigen oder vereinbaren wolltest?`,
     examples: [
-      `Du hast einen Arzttermin, an den du den ganzen Tag gedacht hast, aber trotzdem kommst du zu spät oder vergisst ihn.`,
+      `Du vergisst die Geburtstage deiner Liebsten`,
+      `Du müsstest eigentlich mal wegen einer belastenden Beschwerde zum Arzt gehen, aber machst einfach keinen Termin aus`,
     ],
   },
   {
@@ -175,20 +177,22 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft wirst du von äußeren Reizen oder eigenen Gedanken abgelenkt, wenn du etwas erledigen musst?`,
     examples: [
       `Du wolltest nur schnell eine E-Mail schreiben, aber nach fünf Minuten bist du in einem Wikipedia-Artikel über Pinguine gelandet.`,
+      `Du liest ein Buch aber das Gelesene vermischt sich mit deinen Gedanken und du merkst plötzlich, dass du nicht mehr weißt, was du gerade gelesen hast.`,
     ],
   },
   {
     id: "u2",
     dimensionId: "unaufmerksamkeit",
-    text: `Wie oft übersiehst du Fehler in deiner Arbeit oder verpasst wichtige Details?`,
+    text: `Wie oft bekommst du wichtige Informationen nicht mit oder übersiehst wichtige Details?`,
     examples: [
-      `Du schickst eine wichtige E-Mail ab und merkst erst danach, dass du den Anhang vergessen hast oder einen Tippfehler im Betreff stehen hast.`,
+      `Freunde von dir haben einen Städtetrip geplant und dir in einer Whatsapp-Gruppe alle Infos mitgeteilt. Du hast dir Details zu dem Trip aber nur halbherzig überflogen`,
+      `Eine Rundmail der Geschäftsleitung mit der Bitte eine Anpassung an deiner E-Mail-Signatzur zu machen, ignurierst du gekonnt. Ggf. denkst du dir "Das geht so schnell und scheint nicht so wichtig zu sein, dass kann ich ja jederzeit machen."`,
     ],
   },
   {
     id: "u3",
     dimensionId: "unaufmerksamkeit",
-    text: `Wie oft fühlt sich dein Kopf an wie ein Browser mit vielen Tabs – und du weißt nicht, bei welchem du anfangen sollst?`,
+    text: `Wie oft fühlt sich dein Kopf wie ein Browser mit vielen offenen Tabs an. Der aktive Tab wechselt automatisch immer wieder von alleine durch und die Übersicht zu behalten ist kaum möglich.`,
     examples: [
       `Du sitzt vor einer Aufgabe, aber deine Gedanken springen zwischen Terminen, einer Unterhaltung von gestern und fünf anderen Dingen hin und her.`,
     ],
@@ -196,9 +200,10 @@ export const extendedQuestions: Question[] = [
   {
     id: "u4",
     dimensionId: "unaufmerksamkeit",
-    text: `Wie oft legst du etwas gerade ab und findest es Sekunden später nicht wieder?`,
+    text: `Wie oft legst du etwas ab und findest es kurze Zeit später nicht wieder?`,
     examples: [
-      `Du hältst dein Handy „nur kurz“ in die Hand – und suchst es zwei Minuten später in allen Zimmern.`,
+      `Du hattest dein Handy doch gerade noch in der Hand.`,
+      `Du legst Gegenstände unwissentlich irgendwo ab und hast keinen blassen Schimmer davon. (z. B. Kaffee-Tasse auf Arbeit)`,
     ],
   },
   {
