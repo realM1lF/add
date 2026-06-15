@@ -130,7 +130,7 @@ export const asrsQuestions: Question[] = [
     dimensionId: "unaufmerksamkeit",
     text: `Wie oft verlierst du leicht den Faden in Gesprächen oder bei Besprechungen?`,
     examples: [
-      `Jemand erzählt dir etwas, und plötzlich merkst du, dass du gar nicht mehr zugehört hast – du weißt nur noch das erste Wort.`,
+      `Jemand erzählt dir etwas, und plötzlich merkst du, dass du gar nicht mehr zugehört hast – du weißt höchstens noch die ersten Wörter.`,
     ],
   },
   {
