@@ -10,24 +10,24 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://adhs-spektrum.de/#website",
-      url: "https://adhs-spektrum.de",
+      "@id": "https://adhsleben.org/#website",
+      url: "https://adhsleben.org",
       name: "ADHS-Spektrum",
       description:
         "Verstehe dein individuelles ADHS-Profil entlang elf Dimensionen. Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck.",
       publisher: {
-        "@id": "https://adhs-spektrum.de/#organization",
+        "@id": "https://adhsleben.org/#organization",
       },
       inLanguage: "de-DE",
     },
     {
       "@type": "Organization",
-      "@id": "https://adhs-spektrum.de/#organization",
+      "@id": "https://adhsleben.org/#organization",
       name: "ADHS-Spektrum",
-      url: "https://adhs-spektrum.de",
+      url: "https://adhsleben.org",
       contactPoint: {
         "@type": "ContactPoint",
-        email: "hallo@adhs-spektrum.de",
+        email: "hallo@adhsleben.org",
         contactType: "Kontakt",
         availableLanguage: "German",
       },
@@ -54,7 +54,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://adhs-spektrum.de"),
+  metadataBase: new URL("https://adhsleben.org"),
   title: {
     default: "ADHS-Spektrum – Dein persönlicher Spiegel",
     template: "%s – ADHS-Spektrum",
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "de_DE",
-    url: "https://adhs-spektrum.de",
+    url: "https://adhsleben.org",
     siteName: "ADHS-Spektrum",
     title: "ADHS-Spektrum – Dein persönlicher Spiegel",
     description:

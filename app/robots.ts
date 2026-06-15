@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://adhs-spektrum.de/sitemap.xml",
+    sitemap: "https://adhsleben.org/sitemap.xml",
   };
 }

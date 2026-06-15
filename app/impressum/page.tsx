@@ -52,10 +52,10 @@ export default function ImpressumPage() {
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 E-Mail:{" "}
                 <a
-                  href="mailto:hallo@adhs-spektrum.de"
+                  href="mailto:hallo@adhsleben.org"
                   className="underline underline-offset-2 transition-colors hover:text-foreground"
                 >
-                  hallo@adhs-spektrum.de
+                  hallo@adhsleben.org
                 </a>
               </p>
             </section>

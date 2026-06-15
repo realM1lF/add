@@ -74,11 +74,11 @@ export function Footer() {
               ))}
             </ul>
             <a
-              href="mailto:hallo@adhs-spektrum.de"
+              href="mailto:hallo@adhsleben.org"
               className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               <Mail className="size-4" />
-              hallo@adhs-spektrum.de
+              hallo@adhsleben.org
             </a>
           </div>
         </div>

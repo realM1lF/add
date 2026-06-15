@@ -4,7 +4,7 @@ import { topics } from "@/lib/data/topics";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://adhs-spektrum.de";
+  const baseUrl = "https://adhsleben.org";
 
   const staticRoutes = [
     "/",

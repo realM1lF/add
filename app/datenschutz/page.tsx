@@ -62,10 +62,10 @@ export default function DatenschutzPage() {
                 <br />
                 E-Mail:{" "}
                 <a
-                  href="mailto:hallo@adhs-spektrum.de"
+                  href="mailto:hallo@adhsleben.org"
                   className="underline underline-offset-2 transition-colors hover:text-foreground"
                 >
-                  hallo@adhs-spektrum.de
+                  hallo@adhsleben.org
                 </a>
               </p>
             </section>
