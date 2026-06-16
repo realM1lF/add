@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Heart, Shield, Mail } from "lucide-react";
+import { Heart, Shield } from "lucide-react";
 
 const navLinks = [
   { href: "/themen", label: "Das Spektrum" },
@@ -73,13 +73,6 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <a
-              href="mailto:hallo@adhsleben.org"
-              className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <Mail className="size-4" />
-              hallo@adhsleben.org
-            </a>
           </div>
         </div>
 
@@ -89,15 +82,7 @@ export function Footer() {
             <Heart className="inline size-3 text-primary" aria-hidden="true" /> für
             mehr Verständnis gebaut.
           </p>
-          <p className="text-xs text-muted-foreground">
-            Bei akuten Krisen: Telefonseelsorge{" "}
-            <a
-              href="tel:08001110111"
-              className="underline underline-offset-2 transition-colors hover:text-foreground"
-            >
-              0800 / 111 0 111
-            </a>
-          </p>
+
         </div>
       </div>
     </footer>
