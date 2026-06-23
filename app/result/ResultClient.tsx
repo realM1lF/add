@@ -105,7 +105,7 @@ export function ResultClient() {
   ];
 
   return (
-    <div className="mx-auto max-w-4xl">
+    <div className="mx-auto w-full min-w-0 max-w-4xl">
       <section className="space-y-6 text-center">
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
           Dein Ergebnis
@@ -239,15 +239,25 @@ export function ResultClient() {
             />
           </div>
           <div className="relative h-5 w-full text-xs text-muted-foreground">
-            {scaleSteps.map((step) => (
-              <span
-                key={step.label}
-                className="absolute -translate-x-1/2"
-                style={{ left: `${step.threshold}%` }}
-              >
-                {step.label}
-              </span>
-            ))}
+            {scaleSteps.map((step, index) => {
+              const isFirst = index === 0;
+              const isLast = index === scaleSteps.length - 1;
+              return (
+                <span
+                  key={step.label}
+                  className={`absolute ${
+                    isFirst
+                      ? "left-0"
+                      : isLast
+                      ? "translate-x-[-100%]"
+                      : "-translate-x-1/2"
+                  }`}
+                  style={{ left: `${step.threshold}%` }}
+                >
+                  {step.label}
+                </span>
+              );
+            })}
           </div>
         </div>
 
