@@ -24,7 +24,7 @@ export function NavLink({
     <Link
       href={href}
       className={cn(
-        "hidden transition-colors sm:inline",
+        "transition-colors",
         isActive
           ? "font-medium text-foreground"
           : "text-muted-foreground hover:text-foreground",

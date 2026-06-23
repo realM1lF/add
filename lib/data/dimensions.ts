@@ -194,7 +194,9 @@ export const extendedQuestions: Question[] = [
     dimensionId: "unaufmerksamkeit",
     text: `Wie oft fühlt sich dein Kopf wie ein Browser mit vielen offenen Tabs an. Der aktive Tab wechselt automatisch immer wieder von alleine durch und die Übersicht zu behalten ist kaum möglich.`,
     examples: [
+      `Deine Gedanken fühlen sich unkontrolliert an und wenn du nicht gerade wirklich bei der Sache bist, quasselst deine innere Stimme pausenlos`,
       `Du sitzt vor einer Aufgabe, aber deine Gedanken springen zwischen Terminen, einer Unterhaltung von gestern und fünf anderen Dingen hin und her.`,
+      `Deine Gedanken springen hin und her - in Konversationen mit Anderen kann es passieren, dass du A bis B gedacht hast, du aber nur C mitteilst, worudch deinem Gegenüber Kontext fehlt.`,
     ],
   },
   {

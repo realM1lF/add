@@ -4,6 +4,7 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Footer } from "./sections/Footer";
 import { NavLink } from "./NavLink";
+import { MobileNav } from "./MobileNav";
 import "./globals.css";
 
 const structuredData = {
@@ -162,7 +163,7 @@ export default function RootLayout({
               >
                 ADHS-Spektrum
               </Link>
-              <nav className="flex items-center gap-4 text-sm">
+              <nav className="hidden items-center gap-4 text-sm sm:flex">
                 <NavLink href="/themen">Das Spektrum</NavLink>
                 <NavLink href="/strategien">Strategien</NavLink>
                 <NavLink href="/quellen">Quellen</NavLink>
@@ -173,6 +174,7 @@ export default function RootLayout({
                   Screener
                 </Link>
               </nav>
+              <MobileNav />
             </div>
           </header>
 
