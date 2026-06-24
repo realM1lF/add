@@ -326,7 +326,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
               Möchtest du wissen, wie stark diese Dimension bei dir ausgeprägt ist?
             </h3>
             <p className="mt-2 text-muted-foreground">
-              Der Screener erstellt dein persönliches Profil entlang aller elf Dimensionen.
+              Der Screener erstellt dein persönliches Profil entlang aller zwölf Dimensionen.
             </p>
             <Button asChild className="mt-6 gap-2 rounded-full">
               <Link href="/screener">

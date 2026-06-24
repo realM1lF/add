@@ -151,7 +151,7 @@ export function SeoAccordion() {
                   kann sich im Berufsleben anders zeigen.
                 </p>
                 <p>
-                  Diese Website versteht ADHS als Spektrum entlang elf Dimensionen.
+                  Diese Website versteht ADHS als Spektrum entlang zwölf Dimensionen.
                   Das Ziel ist nicht, dich in eine Schublade zu stecken, sondern dir zu
                   helfen, deine individuellen Muster besser zu verstehen. Daraus
                   lassen sich passendere Strategien, offenere Gespräche mit Fachkräften
@@ -232,7 +232,7 @@ export function SeoAccordion() {
                 </p>
                 <p>
                   Auf ADHS-Spektrum findest du einen wissenschaftlich fundierten
-                  Fragebogen, erklärende Artikel zu elf Dimensionen, praktische
+                  Fragebogen, erklärende Artikel zu zwölf Dimensionen, praktische
                   Strategien und kuratierte Quellen. Das Ziel ist nicht, dir ein Label
                   zu geben, sondern dir dabei zu helfen, dein individuelles Profil besser
                   zu verstehen – mit Respekt, Fakten und ohne Diagnose-Druck. Wenn du

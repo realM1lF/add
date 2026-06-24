@@ -1,7 +1,7 @@
 # Umsetzungsplan: Nächste Erweiterungen
 
 **Projekt:** ADHS-Spektrum (Next.js 16 App Router, React 19, Tailwind CSS v4, shadcn/ui)  
-**Stand:** Ergebnisseite überarbeitet, 11 Themen-Seiten live, Screener mit 66 Fragen in 11 Dimensionen.  
+**Stand:** Ergebnisseite überarbeitet, 12 Themen-Seiten live, Screener mit 68 Fragen in 12 Dimensionen.  
 **Ziel:** Drei gezielte Erweiterungen planen, die aus vorhandenen Inhalten und Research-Dokumenten maximalen Nutzen für die Besucher:innen ziehen.
 
 ---
@@ -102,7 +102,7 @@ Transparenz schaffen: Besucher:innen sollen verstehen, wie der Screener arbeitet
 
 - **Route:** `/so-funktioniert-es`
 - **Unterseiten / Abschnitte:**
-  1. **Die 11 Dimensionen** – kurze Erklärung, warum diese gewählt wurden (Bezug zu `research/03-adhs-typen-und-spektrum.md`).
+  1. **Die 12 Dimensionen** – kurze Erklärung, warum diese gewählt wurden (Bezug zu `research/03-adhs-typen-und-spektrum.md`).
   2. **ASRS-5 im Kontext** – Herkunft der 6 Kerfragen, Cutoff, Sensitivität/ Spezifität.
   3. **Neurotypischer Mittelwert** – Erklärung der Vergleichswerte aus Adler et al. (2018) und dem aktuellen Trend-Anpassung.
   4. **Grenzen des Screenings** – Selbstbericht, keine Diagnose, Kontextabhängigkeit.

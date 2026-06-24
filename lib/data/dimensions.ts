@@ -114,6 +114,15 @@ export const dimensions: Dimension[] = [
     color: "#8B7DBF",
     fill: "rgba(139, 125, 191, 0.25)",
   },
+  {
+    id: "schlaf",
+    name: "Schlaf & Zirkadiane Rhythmen",
+    shortName: "SZ",
+    description:
+      "Schwierigkeiten mit dem Einschlafen, der Schlafqualität oder dem inneren Rhythmus.",
+    color: "#7B9EA8",
+    fill: "rgba(123, 158, 168, 0.25)",
+  },
 ];
 
 export const extendedQuestions: Question[] = [
@@ -121,7 +130,7 @@ export const extendedQuestions: Question[] = [
   {
     id: "asrs-1",
     dimensionId: "unaufmerksamkeit",
-    text: `Wie oft hast du Schwierigkeiten, dich bei langwierigen oder komplexen Aufgaben konzentriert zu halten, bzw. den Fokus nicht zu verlieren?`,
+    text: `Wie oft hast du Schwierigkeiten, dich bei langwierigen oder komplexen Aufgaben konzentriert zu halten?`,
     examples: [
       `Du baust einen IKEA-Schrank auf und belohnst dich sehr oft mit Pausen oder Ablenkungen`,
     ],
@@ -132,7 +141,7 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft verlierst du leicht den Faden in Gesprächen oder bekommst erst gar nicht mit, dass man mit dir spricht?`,
     examples: [
       `Jemand erzählt dir etwas, und plötzlich merkst du, dass du gar nicht mehr zugehört hast – du weißt höchstens noch die ersten Wörter.`,
-      `Du wirst des öfteren darauf aufmerksam gemacht, dass man oder jemand mit dir spricht, nachdem sie keine Antwort von dir erhalten haben. (Du hast es überhaupt nicht mitbekommen)`,
+      `Dir wird des Öfteren gesagt, dass jemand mit dir gesprochen hat, nachdem sie keine Antwort von dir erhalten haben. Du hast es überhaupt nicht mitbekommen.`,
     ],
   },
   {
@@ -169,14 +178,14 @@ export const extendedQuestions: Question[] = [
     ],
   },
 
-  // ── Unaufmerksamkeit (5 erweiterte Fragen) ──
+  // ── Unaufmerksamkeit (4 erweiterte Fragen) ──
   {
     id: "u1",
     dimensionId: "unaufmerksamkeit",
     text: `Wie oft wirst du von äußeren Reizen oder eigenen Gedanken abgelenkt, wenn du etwas erledigen musst?`,
     examples: [
       `Du wolltest nur schnell eine E-Mail schreiben, aber nach fünf Minuten bist du in einem Wikipedia-Artikel über Pinguine gelandet.`,
-      `Du liest ein Buch aber das Gelesene vermischt sich mit deinen Gedanken und du merkst plötzlich, dass du nicht mehr weißt, was du gerade gelesen hast.`,
+      `Du liest ein Buch, aber das Gelesene vermischt sich mit deinen Gedanken und du merkst plötzlich, dass du nicht mehr weißt, was du gerade gelesen hast.`,
     ],
   },
   {
@@ -184,8 +193,8 @@ export const extendedQuestions: Question[] = [
     dimensionId: "unaufmerksamkeit",
     text: `Wie oft bekommst du wichtige Informationen nicht mit oder übersiehst wichtige Details?`,
     examples: [
-      `Freunde von dir haben einen Städtetrip geplant und dir in einer Whatsapp-Gruppe alle Infos mitgeteilt. Du hast dir Details zu dem Trip aber nur halbherzig überflogen`,
-      `Eine Rundmail der Geschäftsleitung mit der Bitte eine Anpassung an deiner E-Mail-Signatzur zu machen, ignurierst du gekonnt. Ggf. denkst du dir "Das geht so schnell und scheint nicht so wichtig zu sein, dass kann ich ja jederzeit machen."`,
+      `Freund:innen von dir haben einen Städtetrip geplant und dir in einer WhatsApp-Gruppe alle Infos mitgeteilt. Du hast dir Details zu dem Trip aber nur halbherzig überflogen.`,
+      `Eine Rundmail der Geschäftsleitung mit der Bitte, eine Anpassung an deiner E-Mail-Signatur zu machen, ignorierst du gekonnt. Ggf. denkst du dir: „Das geht so schnell und scheint nicht so wichtig zu sein, das kann ich ja jederzeit machen."`,
     ],
   },
   {
@@ -193,9 +202,9 @@ export const extendedQuestions: Question[] = [
     dimensionId: "unaufmerksamkeit",
     text: `Wie oft fühlt sich dein Kopf wie ein Browser mit vielen offenen Tabs an. Der aktive Tab wechselt automatisch immer wieder von alleine durch und die Übersicht zu behalten ist kaum möglich.`,
     examples: [
-      `Deine Gedanken fühlen sich unkontrolliert an und wenn du nicht gerade wirklich bei der Sache bist, quasselst deine innere Stimme pausenlos`,
+      `Deine Gedanken fühlen sich unkontrolliert an und wenn du nicht gerade wirklich bei der Sache bist, quasselst deine innere Stimme pausenlos.`,
       `Du sitzt vor einer Aufgabe, aber deine Gedanken springen zwischen Terminen, einer Unterhaltung von gestern und fünf anderen Dingen hin und her.`,
-      `Deine Gedanken springen hin und her - in Konversationen mit Anderen kann es passieren, dass du A bis B gedacht hast, du aber nur C mitteilst, worudch deinem Gegenüber Kontext fehlt.`,
+      `Deine Gedanken springen hin und her – in Konversationen mit Anderen kann es passieren, dass du von A bis B gedacht hast, du aber nur C mitteilst, wodurch deinem Gegenüber Kontext fehlt.`,
     ],
   },
   {
@@ -204,28 +213,11 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft legst du etwas ab und findest es kurze Zeit später nicht wieder?`,
     examples: [
       `Du hattest dein Handy doch gerade noch in der Hand.`,
-      `Du legst Gegenstände unwissentlich irgendwo ab und hast keinen blassen Schimmer davon. (z. B. Kaffee-Tasse auf Arbeit)`,
-    ],
-  },
-  {
-    id: "u5",
-    dimensionId: "unaufmerksamkeit",
-    text: `Wie oft „schaltest du in Mitten eines Gesprächs ab und musst dich zurückholen, ohne dass es anderen auffällt?`,
-    examples: [
-      `Jemand redet mit dir, und plötzlich merkst du, dass du zwar nickst, aber kein Wort mitbekommen hast – du musst aus dem Kontext erraten, was gerade gesagt wurde.`,
+      `Du legst Gegenstände unwissentlich irgendwo ab und hast keinen blassen Schimmer davon. (z. B. Kaffee-Tasse auf der Arbeit)`,
     ],
   },
 
-  // ── Hyperaktivität (5 erweiterte Fragen) ──
-  {
-    id: "h1",
-    dimensionId: "hyperaktivitaet",
-    text: `Wie oft fühlst du dich innerlich unruhig oder „unter Strom“?`,
-    examples: [
-      `Auch wenn du körperlich stillsitzt, fühlt sich dein Körper an, als würde er vibrieren – wie ein Motor, der nicht abschaltet.`,
-      `Du weißt nicht, wieso du dich fühlst wie du dich fühlst. Du weißt nur dass du aufgeregt bist ohne Grund`,
-    ],
-  },
+  // ── Hyperaktivität (4 erweiterte Fragen) ──
   {
     id: "h2",
     dimensionId: "hyperaktivitaet",
@@ -259,14 +251,14 @@ export const extendedQuestions: Question[] = [
     ],
   },
 
-  // ── Impulsivität (5 erweiterte Fragen) ──
+  // ── Impulsivität (4 erweiterte Fragen) ──
   {
     id: "i1",
     dimensionId: "impulsivitaet",
-    text: `Wie oft sagst oder tust du Dinge, bevor du darüber nachgedacht hast? Ggf. tust du diese Dinge auch stürmischer oder lauter sie sein sollten.`,
+    text: `Wie oft sagst oder tust du Dinge, bevor du darüber nachgedacht hast? Ggf. tust du diese Dinge auch stürmischer oder lauter, als sie sein sollten.`,
     examples: [
       `In einem Gespräch fällt dir etwas ein und du sagst es sofort – auch wenn es unpassend ist oder den anderen unterbricht.`,
-      `Du lauscht einem spannenden Gespräch in einer Kneipe und dir kommt kurzerhand etwas super witziges in den Kopf - du rufst es laut hinaus und das ganze Lokal dreht sich nach dir um.`,
+      `Du lauscht einem spannenden Gespräch in einer Kneipe und dir kommt kurzerhand etwas super Witziges in den Kopf – du rufst es laut hinaus und das ganze Lokal dreht sich nach dir um.`,
     ],
   },
   {
@@ -275,7 +267,7 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft triffst du spontane Entscheidungen, die du später bereust?`,
     examples: [
       `Du stimmst Sachen zu, ohne über weitere Details nachzudenken.`,
-      `Du möchtest plötzlich irgendetwas unbedingt haben und kaufst es auch sofort, obwohl du weist, dass dein Budget für diesen Monat ausgeschöpft ist.`,
+      `Du möchtest plötzlich irgendetwas unbedingt haben und kaufst es auch sofort, obwohl du weißt, dass dein Budget für diesen Monat ausgeschöpft ist.`,
     ],
   },
   {
@@ -288,19 +280,11 @@ export const extendedQuestions: Question[] = [
   },
   {
     id: "i4",
-    dimensionId: "impulsivitaet",
+    dimensionId: "emotionale-dysregulation",
     text: `Ganz oder gar nicht?`,
     examples: [
       `Wenn du etwas beginnst, bist du sofort mit vollem Eifer dabei – oder du kommst überhaupt nicht in Gang. Ein halbes Maß gibt es kaum.`,
-      `Du hast eine neue Idee klar vor Augen und willst sie so schnell umsetzen wie möglich. Am besten gleich sofort. Wenn es dann länger dauert als gedacht und deine Zeit knapp wird, regt es dich sehr auf.`,
-    ],
-  },
-  {
-    id: "i5",
-    dimensionId: "impulsivitaet",
-    text: `Wie oft kommen deine Gedanken schneller als deine Worte, sodass du unterbrichst oder mitten im Satz abdriftest?`,
-    examples: [
-      `Im Gespräch willst du etwas sagen, aber bevor du fertig bist, hat dein Gehirn schon drei neue Punkte – du unterbrichst dich selbst oder andere.`,
+      `Du hast eine neue Idee klar vor Augen und willst sie so schnell wie möglich umsetzen. Am besten gleich sofort. Wenn es dann länger dauert als gedacht und deine Zeit knapp wird, regt es dich sehr auf.`,
     ],
   },
 
@@ -311,7 +295,7 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft hast du Schwierigkeiten, mit scheinbar kleinen Aufgaben anzufangen, auch wenn sie ggf. sehr wichtig sind?`,
     examples: [
       `Du weißt, dass du die Steuer machen musst, aber du kannst dich nicht dazu überwinden, den ersten Schritt zu tun.`,
-      `Du lagerst irgendwo Papier-Kartons und sagst dir, dass du sie einfach nach und nach beim Verlassen der Wohnung zum Papier-Müll bringen wirst. Du verpasst den Zeitpunkt das zu tun und es werden immer mehr Kartons. Du wirst von anderen darauf angesprochen und es belastet dich sehr - erledigen wirst du es trotzdem nicht so schnell`,
+      `Du lagerst irgendwo Pappkartons und sagst dir, dass du sie einfach nach und nach beim Verlassen der Wohnung zum Papier-Müll bringen wirst. Du verpasst den Zeitpunkt dafür und es werden immer mehr Kartons. Du wirst von anderen darauf angesprochen und es belastet dich sehr – erledigen wirst du es trotzdem nicht so schnell.`,
     ],
   },
   {
@@ -319,14 +303,14 @@ export const extendedQuestions: Question[] = [
     dimensionId: "exekutive-funktionen",
     text: `Wie oft fällt es dir schwer, Aufgaben zu priorisieren oder Chaos-Stapel wahrzunehmen und anzugehen?`,
     examples: [
-      `Du hast mit deiner Freundin vereinbart, dass du am nächsten Tag Erledigungen machst - stress dich nicht, irgendwann bis mittags hat sie gesagt. Die Zeitangabe war zu wage für dich und du hat bis Mittag alles mögliche gemacht, nur nicht das, was vereinbart war.`,
+      `Du hast mit deiner Partner:in vereinbart, dass du am nächsten Tag Erledigungen machst – stress dich nicht, irgendwann bis mittags hat sie gesagt. Die Zeitangabe war zu wage für dich und du hast bis Mittag alles Mögliche gemacht, nur nicht das, was vereinbart war.`,
       `Dein Schreibtisch ist ein Haufen Papier, den du immer wieder beiseiteschiebst, weil du nicht weißt, wo du anfangen sollst.`,
     ],
   },
   {
     id: "ef3",
     dimensionId: "exekutive-funktionen",
-    text: `Wie oft vergisst du, was du gerade tun wolltes?`,
+    text: `Wie oft vergisst du, was du gerade tun wolltest?`,
     examples: [
       `Du gehst in die Küche, um etwas zu holen, aber wenn du dort ankommst, weißt du nicht mehr, warum du eigentlich gekommen bist.`,
     ],
@@ -352,8 +336,8 @@ export const extendedQuestions: Question[] = [
     dimensionId: "exekutive-funktionen",
     text: `Wie oft passiert es, dass du Aufgaben nicht erledigst, die keine Deadline haben?`,
     examples: [
-      `Du erhälst auf der Arbeit die Aufgabe etwas zu tun - bekommst aber gesagt, dass es kein Eile hat. - Die Chance, dass du es von selbst nicht erledigst, bis du wieder daran erinnert wirst, bzw. dann eine Deadline bekommst, ist sehr sehr hoch.`,
-      `Du schafst es dir selbst keine verbindlichen Deadlines zu setzen - z. B. um die Pfandflaschen endlich mal wegzubringen, bevor wieder alles überquillt.`,
+      `Du erhältst auf der Arbeit die Aufgabe, etwas zu tun, bekommst aber gesagt, dass es keine Eile hat. Die Chance, dass du es von selbst nicht erledigst, bis du wieder daran erinnert wirst bzw. dann eine Deadline bekommst, ist sehr hoch.`,
+      `Du schaffst es dir selbst nicht, verbindliche Deadlines zu setzen – z. B. um die Pfandflaschen endlich mal wegzubringen, bevor wieder alles überquillt.`,
     ],
   },
 
@@ -403,7 +387,7 @@ export const extendedQuestions: Question[] = [
     dimensionId: "emotionale-dysregulation",
     text: `Wie oft bist du besonders kurz angebunden bei den Menschen, die dir am meisten bedeuten?`,
     examples: [
-      `Du reagierst schneller genervt oder lauter auf Menschen die dir nahe stehen – und fühlst dich hinterher schuldig.`,
+      `Du reagierst schneller genervt oder lauter auf Menschen, die dir nahe stehen – und fühlst dich hinterher schuldig.`,
     ],
   },
 
@@ -414,7 +398,7 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft fühlst du dich von Kritik oder negativen Rückmeldungen unverhältnismäßig stark getroffen?`,
     examples: [
       `Dein Chef ist von deiner letzten Arbeit enttäuscht und du fühlst den Rest des Tages wie ein Versager.`,
-      `Kleine Sticheleien - z. B. eine Nachricht von einem Freund, nimmst du manchmal zu ernst und ggf. belastet dich diese.`,
+      `Kleine Sticheleien – z. B. eine Nachricht von einem Freund – nimmst du manchmal zu ernst und ggf. belastet dich diese.`,
     ],
   },
   {
@@ -422,9 +406,9 @@ export const extendedQuestions: Question[] = [
     dimensionId: "rsd",
     text: `Wie oft interpretierst du neutrale Signale als Ablehnung?`,
     examples: [
-      `Eine Freundin antwortet nicht sofort auf deine Nachricht und du denkst sofort: „Sie mag mich nicht mehr.“`,
-      `Deine Freundin ist nicht gut drauf spricht in einem ernsteren Ton mit dir - du denkst direkt es stimmt was nicht“`,
-      `Deine Freundin meckert heute viel mit dir. Du nimmst es sehr persönlich und dein Kopf blockiert komplett und es belastet dich sehr, wodurch noch mehr "Fehler" leichter passieren können.`,
+      `Eine Freund:in antwortet nicht sofort auf deine Nachricht und du denkst sofort: „Sie mag mich nicht mehr."`,
+      `Deine Partner:in ist nicht gut drauf, spricht in einem ernsteren Ton mit dir – du denkst direkt, es stimmt etwas nicht.`,
+      `Deine Partner:in meckert heute viel mit dir. Du nimmst es sehr persönlich, dein Kopf blockiert komplett und es belastet dich sehr, wodurch noch mehr „Fehler" leichter passieren können.`,
     ],
   },
   {
@@ -433,7 +417,7 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft vermeidest du Situationen, in denen du Kritik oder Ablehnung erfahren könntest?`,
     examples: [
       `Du bewirbst dich nicht auf eine Stelle, fragst nicht um Hilfe oder gehst nicht zu einer Verabredung, weil du Angst vor Ablehnung hast.`,
-      `Du erzählst deiner Freundin am Telefon, dass du unbedingt Duschen musst. Das gleiche erzählst du ihr 3 Stunden später wieder. Nach weiteren 3 Stunden warst du immer noch nicht Duschen, sagst ihr dann aber, dass du Duschen warst. Das ganze tust du, weil es dir unangenehm ist, da du es immer noch nicht geschaft hast.`,
+      `Du erzählst deiner Partner:in am Telefon, dass du unbedingt Duschen musst. Das gleiche erzählst du ihr 3 Stunden später wieder. Nach weiteren 3 Stunden warst du immer noch nicht Duschen, sagst ihr dann aber, dass du Duschen warst. Das Ganze tust du, weil es dir unangenehm ist, da du es immer noch nicht geschafft hast.`,
     ],
   },
   {
@@ -468,7 +452,7 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft unterschätzt du, wie lange eine Aufgabe dauert?`,
     examples: [
       `Du denkst: „Das dauert nur fünf Minuten“, aber eine Stunde später bist du immer noch dabei.`,
-      `Du arbeitest nur schnell 10 Minuten an etwas - in wirklichkeitn sind aber bereits 40 Minuten vergangen.`,
+      `Du arbeitest nur schnell 10 Minuten an etwas – in Wirklichkeit sind aber bereits 40 Minuten vergangen.`,
     ],
   },
   {
@@ -493,7 +477,7 @@ export const extendedQuestions: Question[] = [
     dimensionId: "zeitwahrnehmung",
     text: `Wie oft gerätst du in den „Wartemodus“ und kannst vor einem Termin nichts Produktives tun?`,
     examples: [
-      `Du hast um 16 Uhr einen Anruf und kannst den ganzen Nachmittag vorher nichts anfangen, weil der Termin „bald“ kommt.`,
+      `Du hast um 16 Uhr einen Anruf und kannst den ganzen Nachmittag vorher nichts anfangen, weil der Termin „bald" kommt.`,
     ],
   },
   {
@@ -527,7 +511,7 @@ export const extendedQuestions: Question[] = [
     dimensionId: "interozeption",
     text: `Wie oft ignorierst du körperliche Signale wie Müdigkeit oder Schmerzen, bis sie unerträglich werden?`,
     examples: [
-      `Du arbeitest an einem spannenden Projekt. Deine Augen sind schwer, aber du bist so auf das Doing fixiert, dass du erst afuhörrst, wenn es wirklich nicht mehr geht.`,
+      `Du arbeitest an einem spannenden Projekt. Deine Augen sind schwer, aber du bist so auf das Doing fixiert, dass du erst aufhörst, wenn es wirklich nicht mehr geht.`,
     ],
   },
   {
@@ -551,11 +535,11 @@ export const extendedQuestions: Question[] = [
     dimensionId: "interozeption",
     text: `Wie oft merkst du erst im Nachhinein, dass du überfordert oder gestresst warst?`,
     examples: [
-      `Erst wenn du zusammenbrichst oder explodierst, merkst du: „Ah, ich war wohl die ganze Zeit überfordert.“`,
+      `Erst wenn du zusammenbrichst oder explodierst, merkst du: „Ah, ich war wohl die ganze Zeit überfordert."`,
     ],
   },
 
-  // ── Hyperfokus (6 erweiterte Fragen) ──
+  // ── Hyperfokus (5 erweiterte Fragen) ──
   {
     id: "hf1",
     dimensionId: "hyperfokus",
@@ -578,30 +562,23 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft entwickelst du ein intensives, fast obsessives Interesse an neuen Themen?`,
     examples: [
       `Du entdeckst ein neues Hobby und recherchierst/tagträumst/tagelang darüber – bis das nächste Interesse kommt.`,
+      `Ein neues Thema fasziniert dich total: Du denkst ständig darüber nach, recherchierst alles und kannst kaum davon loskommen.`,
     ],
   },
   {
     id: "hf4",
     dimensionId: "hyperfokus",
-    text: `Wie oft hyperfokussierst du wochenlang auf etwas, lässt es dann aber komplett fallen und kommst nicht mehr zurück?`,
+    text: `Wie oft fokussierst du dich wochenlang auf etwas, lässt es dann aber komplett fallen und kommst nicht mehr zurück?`,
     examples: [
       `Du kaufst Material für ein neues Hobby, vertiefst dich tagelang – und zwei Monate später liegt alles unberührt in der Ecke.`,
     ],
   },
   {
-    id: "hf5",
-    dimensionId: "hyperfokus",
-    text: `Wie oft verliebst du dich in neue Hobbies so sehr, wie andere sich in Menschen verlieben?`,
-    examples: [
-      `Ein neues Thema fasziniert dich total: Du denkst ständig darüber nach, recherchierst alles und kannst kaum davon loskommen.`,
-    ],
-  },
-  {
     id: "hf6",
     dimensionId: "hyperfokus",
-    text: `Wie oft passiert es, dass du etwas auf das du dich fokusiert, alles andere um dich herum komplett ausblendet?`,
+    text: `Wie oft passiert es, dass du etwas, auf das du dich fokussiert, alles andere um dich herum komplett ausblendest?`,
     examples: [
-      `Du bist an deinem Arbeitsplatz und siehst dir ein Video zu einem spannenden Thema an, bis du deinen Kollegen schreiben hörst: "Heeyy, hast du mich nicht gehört? Ich habe 3x deinen Namen gesagt"`,
+      `Du bist an deinem Arbeitsplatz und siehst dir ein Video zu einem spannenden Thema an, bis du deine Kolleg:innen schreiben hörst: „Heeyy, hast du mich nicht gehört? Ich habe 3x deinen Namen gesagt."`,
     ],
   },
 
@@ -653,9 +630,9 @@ export const extendedQuestions: Question[] = [
     dimensionId: "masking",
     text: `Wie oft wirkst du nach außen viel gefasster, organisierter oder eben als hättest du dein Leben im Griff, als du dich innerlich fühlst?`,
     examples: [
-      `Du räumst deine Wohnung erst richtig auf, kurz bevor jamend zu Besuch kommt.`,
-      `Du sprichst vor deinen Freunden über viele Themen nicht so negativ, wie sie eigentlich sind oder lässt die ganz weg`,
-      `Du hast es geschaft dich in deinem Arbeitsumfeld gut zu organisieren, aber verschweigst wie viel Zeit du für die Organisation aufgewendet hast (viel).`,
+      `Du räumst deine Wohnung erst richtig auf, kurz bevor jemand zu Besuch kommt.`,
+      `Du sprichst vor deinen Freund:innen über viele Themen nicht so negativ, wie sie eigentlich sind, oder lässt sie ganz weg.`,
+      `Du hast es geschafft, dich in deinem Arbeitsumfeld gut zu organisieren, aber verschweigst, wie viel Zeit du für die Organisation aufgewendet hast (viel).`,
     ],
   },
   {
@@ -671,7 +648,7 @@ export const extendedQuestions: Question[] = [
     dimensionId: "masking",
     text: `Wie oft hast du dir antrainiert, neurotypisch auszusehen – so gut, dass andere deine Probleme nicht glauben?`,
     examples: [
-      `Wenn du von deinen Schwierigkeiten erzählst, sagen Menschen: „Du siehst gar nicht so aus, als hättest du ADHS.“`,
+      `Wenn du von deinen Schwierigkeiten erzählst, sagen Menschen: „Du siehst gar nicht so aus, als hättest du ADHS."`,
     ],
   },
   {
@@ -690,6 +667,56 @@ export const extendedQuestions: Question[] = [
       `Du planst Gespräche vor, legst Kleidung schon am Abend zurecht oder machst endlose Listen – nur um morgens nicht auffällig zu scheitern.`,
     ],
   },
+
+  // ── Schlaf & Zirkadiane Rhythmen (6 erweiterte Fragen) ──
+  {
+    id: "sz1",
+    dimensionId: "schlaf",
+    text: `Wie oft fällt es dir schwer, zur gewünschten Zeit einzuschlafen?`,
+    examples: [
+      `Du liegst lange wach, weil dein Kopf noch nicht bereit ist, den Tag loszulassen.`,
+    ],
+  },
+  {
+    id: "sz2",
+    dimensionId: "schlaf",
+    text: `Wie oft fühlst du dich trotz ausreichender Schlafdauer tagsüber müde oder nicht richtig wach?`,
+    examples: [
+      `Du hast genug Stunden geschlafen, fühlst dich aber trotzdem wie durch Watte gedrückt.`,
+    ],
+  },
+  {
+    id: "sz3",
+    dimensionId: "schlaf",
+    text: `Wie oft verschiebt sich dein innerer Rhythmus, sodass du spät wach und müde aufwachst?`,
+    examples: [
+      `Am Wochenende gleitest du automatisch in einen späten Schlafrhythmus ab und hast am Montag Schwierigkeiten, wieder früher zu schlafen.`,
+    ],
+  },
+  {
+    id: "sz4",
+    dimensionId: "schlaf",
+    text: `Wie oft brauchst du lange, um abends herunterzufahren?`,
+    examples: [
+      `Du weißt, dass du schlafen solltest, aber dein Kopf oder Körper will noch nicht zur Ruhe kommen.`,
+    ],
+  },
+  {
+    id: "sz5",
+    dimensionId: "schlaf",
+    text: `Wie oft werden deine Schlaf- und Wachphasen durch unregelmäßige Gewohnheiten bestimmt?`,
+    examples: [
+      `Du gehst unterschiedlich spät ins Bett, isst spät oder nutzt bis kurz vor dem Schlafengehen Bildschirme – und merkst, dass dein Körper keinen klaren Rhythmus findet.`,
+    ],
+  },
+  {
+    id: "sz6",
+    dimensionId: "schlaf",
+    text: `Wie oft beeinflusst Schlafmangel deine Konzentration oder Stimmung am nächsten Tag?`,
+    examples: [
+      `Nach einer schlechten Nacht reagierst du schneller gereizt, kannst dich schlechter fokussieren oder fühlst dich emotional weniger stabil.`,
+    ],
+  },
 ];
 
 export const allQuestions: Question[] = [...extendedQuestions];
@@ -701,3 +728,13 @@ export const answerLabels: Record<number, string> = {
   3: "Oft",
   4: "Sehr oft",
 };
+
+// IDs der sechs ASRS-5 Kernfragen (entsprechen dem validierten WHO ASRS-5 Screening).
+export const ASRS5_QUESTION_IDS = [
+  "asrs-1",
+  "asrs-2",
+  "asrs-3",
+  "asrs-4",
+  "asrs-5",
+  "asrs-6",
+] as const;

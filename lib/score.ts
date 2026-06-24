@@ -1,4 +1,4 @@
-import { allQuestions, dimensions } from "./data/dimensions";
+import { allQuestions, dimensions, ASRS5_QUESTION_IDS } from "./data/dimensions";
 
 export interface Answers {
   [questionId: string]: number;
@@ -49,6 +49,34 @@ export function calculateDimensionScores(answers: Answers): DimensionScore[] {
   });
 }
 
+// ASRS-5 (WHO Adult ADHD Self-Report Scale, 6 Items).
+// The first six questions of the screener map to this validated instrument.
+// Score range: 0–24. Cut-off ≥ 14 points indicates an elevated likelihood
+// of ADHD (research/04, research/10).
+export function calculateASRS5Score(answers: Answers): number {
+  return ASRS5_QUESTION_IDS.reduce((sum, id) => sum + (answers[id] ?? 0), 0);
+}
+
+export type ASRS5Level = "niedrig" | "mittel" | "erhöht";
+
+export function getASRS5Level(score: number): ASRS5Level {
+  if (score <= 9) return "niedrig";
+  if (score <= 13) return "mittel";
+  return "erhöht";
+}
+
+export function getASRS5Interpretation(score: number): string {
+  const level = getASRS5Level(score);
+  switch (level) {
+    case "niedrig":
+      return "Deine Antworten auf den validierten ASRS-5 Schnell-Screener liegen im niedrigen Bereich.";
+    case "mittel":
+      return "Deine Antworten auf den ASRS-5 liegen im mittleren Bereich. Beobachte weiter, in welchen Situationen du Unterstützung brauchst.";
+    case "erhöht":
+      return "Deine Antworten auf den ASRS-5 liegen im erhöhten Bereich. Das ist ein Hinweis, mit einer Fachkraft über eine Abklärung zu sprechen.";
+  }
+}
+
 export function encodeScores(scores: DimensionScore[]): string {
   try {
     const payload = scores.map((s) => [s.id, s.value]);
@@ -97,6 +125,7 @@ const NEUROTYPICAL_AVERAGE: Record<string, number> = {
   hyperfokus: 30,
   sensorik: 30,
   masking: 30,
+  schlaf: 30,
 };
 
 export const exampleAverageScores: DimensionScore[] = dimensions.map((dim) => ({

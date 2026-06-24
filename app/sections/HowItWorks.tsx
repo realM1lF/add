@@ -3,7 +3,7 @@ const steps = [
     number: "01",
     title: "Schnell einschätzen",
     description:
-      "Beantworte den Fragebogen entlang elf Dimensionen. Ein Schritt nach dem anderen.",
+      "Beantworte den Fragebogen entlang zwölf Dimensionen. Ein Schritt nach dem anderen.",
   },
   {
     number: "02",

@@ -937,6 +937,88 @@ export const topics: Topic[] = [
       { title: "Sol Smith – Restraint Collapse & Masking" },
     ],
   },
+  {
+    id: "schlaf",
+    slug: "schlaf",
+    name: "Schlaf & Zirkadiane Rhythmen",
+    shortName: "SZ",
+    description:
+      "Schwierigkeiten mit dem Einschlafen, der Schlafqualität oder dem inneren Rhythmus.",
+    color: "#7B9EA8",
+    fill: "rgba(123, 158, 168, 0.25)",
+    tagline: "Dein innerer Taktgeber tickt anders – das ist kein Charakterfehler.",
+    examples: [
+      {
+        question: "Wie oft fällt es dir schwer, zur gewünschten Zeit einzuschlafen?",
+        situation:
+          "Du liegst lange wach, weil dein Kopf noch nicht bereit ist, den Tag loszulassen.",
+      },
+      {
+        question: "Wie oft fühlst du dich trotz Schlaf tagsüber müde?",
+        situation:
+          "Du hast genug Stunden geschlafen, fühlst dich aber trotzdem wie durch Watte gedrückt.",
+      },
+      {
+        question: "Wie oft verschiebt sich dein innerer Rhythmus?",
+        situation:
+          "Am Wochenende gleitest du automatisch in einen späten Schlafrhythmus ab und hast am Montag Schwierigkeiten, wieder früher zu schlafen.",
+      },
+      {
+        question: "Wie oft brauchst du lange, um abends herunterzufahren?",
+        situation:
+          "Du weißt, dass du schlafen solltest, aber dein Kopf oder Körper will noch nicht zur Ruhe kommen.",
+      },
+      {
+        question: "Wie oft beeinflusst Schlafmangel deine Stimmung oder Konzentration?",
+        situation:
+          "Nach einer schlechten Nacht reagierst du schneller gereizt und kannst dich schlechter fokussieren.",
+      },
+    ],
+    livedExperienceQuotes: [
+      "Mein Körper will erst um 2 Uhr schlafen, aber die Welt beginnt um 8.",
+      "Schlafen fühlt sich manchmal wie eine Aufgabe an, die ich einfach nicht starten kann.",
+    ],
+    neurobiology: {
+      intro:
+        "Schlaf und ADHS beeinflussen sich gegenseitig. Viele Menschen mit ADHS haben einen verzögerten inneren Rhythmus, Schwierigkeiten, abends herunterzufahren, oder eine unruhige Schlafqualität. Das liegt nicht an mangelnder Disziplin, sondern an der Regulierung von Wachheit und Schlaf.",
+      mechanism:
+        "Das circadiane System wird durch Licht, Melatonin und körpereigene Signale gesteuert. Bei ADHS kann die Melatonin-Freisetzung später erfolgen, sodass der Körper erst später müde wird. Zudem beeinflussen Dopamin und Norepinephrin die Einschlafbereitschaft: Ein noch aktives Belohnungs- und Aufmerksamkeitssystem macht das Herunterfahren schwierig.",
+      context:
+        "Schlafmangel verstärkt ADHS-typische Symptome wie Reizbarkeit, Ablenkbarkeit und Schwierigkeiten mit dem Task-Initiation. Umgekehrt können ADHS-Muster – spätes Hyperfokussieren, unregelmäßige Routinen, körperliche Unruhe – den Schlaf erschweren. Ein gezielter Fokus auf Schlafhygiene und Rhythmus kann deshalb große Wirkung entfalten.",
+    },
+    strategies: [
+      {
+        title: "Licht als Taktgeber nutzen",
+        description:
+          "Morgens helles Licht, abends gedimmtes Licht. Licht ist der stärkste Einfluss auf den circadianen Rhythmus.",
+      },
+      {
+        title: "Wind-down-Routine statt perfekten Schlafhygiene",
+        description:
+          "Eine feste Abfolge von 20–30 Minuten vor dem Schlafengehen hilft dem Nervensystem, herunterzufahren.",
+      },
+      {
+        title: "Bildschirme früher reduzieren",
+        description:
+          "Blaues Licht und spannende Inhalte aktivieren das Belohnungssystem. Versuche, abends sanftere Reize zu wählen.",
+      },
+      {
+        title: "Aufstehzeit priorisieren",
+        description:
+          "Eine konsequente Aufstehzeit stabilisiert den Rhythmus oft besser als eine feste Schlafenszeit.",
+      },
+      {
+        title: "Schlaf als Nervensystem-Wartung reframen",
+        description:
+          "Schlaf ist keine Zeitverschwendung, sondern essenziell für Regulation, Gedächtnis und Emotionen.",
+      },
+    ],
+    sources: [
+      { title: "Huberman Lab Podcast #37 – Schlaf & Circadiane Rhythmen" },
+      { title: "American Psychiatric Association (2022) – DSM-5-TR" },
+      { title: "ADHD Foundation UK – Schlaf und ADHS" },
+    ],
+  },
 ];
 
 export function getTopicBySlug(slug: string): Topic | undefined {

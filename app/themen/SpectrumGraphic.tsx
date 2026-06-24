@@ -3,10 +3,10 @@
 import { topics } from "@/lib/data/topics";
 
 const seededRadii = [
-  0.78, 0.62, 0.91, 0.55, 0.83, 0.68, 0.74, 0.59, 0.87, 0.71, 0.66,
+  0.78, 0.62, 0.91, 0.55, 0.83, 0.68, 0.74, 0.59, 0.87, 0.71, 0.66, 0.64,
 ];
 
-const seededNodeRadii = [10, 7, 12, 6, 9, 8, 11, 7, 13, 8, 9];
+const seededNodeRadii = [10, 7, 12, 6, 9, 8, 11, 7, 13, 8, 9, 8];
 
 export function SpectrumGraphic() {
   const size = 320;

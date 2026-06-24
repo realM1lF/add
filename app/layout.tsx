@@ -16,7 +16,7 @@ const structuredData = {
       url: "https://adhsleben.org",
       name: "ADHS-Spektrum",
       description:
-        "Verstehe dein individuelles ADHS-Profil entlang elf Dimensionen. Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck.",
+        "Verstehe dein individuelles ADHS-Profil entlang zwölf Dimensionen. Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck.",
       publisher: {
         "@id": "https://adhsleben.org/#organization",
       },
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     template: "%s – ADHS-Spektrum",
   },
   description:
-    "Verstehe dein individuelles ADHS-Profil entlang elf Dimensionen. Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck. Mit interaktivem Radar-Chart und praktischen Strategien.",
+    "Verstehe dein individuelles ADHS-Profil entlang zwölf Dimensionen. Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck. Mit interaktivem Radar-Chart und praktischen Strategien.",
   keywords: [
     "ADHS",
     "ADHS-Spektrum",
@@ -96,13 +96,13 @@ export const metadata: Metadata = {
     siteName: "ADHS-Spektrum",
     title: "ADHS-Spektrum – Dein persönlicher Spiegel",
     description:
-      "Verstehe dein individuelles ADHS-Profil entlang elf Dimensionen. Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck.",
+      "Verstehe dein individuelles ADHS-Profil entlang zwölf Dimensionen. Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck.",
   },
   twitter: {
     card: "summary_large_image",
     title: "ADHS-Spektrum – Dein persönlicher Spiegel",
     description:
-      "Verstehe dein individuelles ADHS-Profil entlang elf Dimensionen. Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck.",
+      "Verstehe dein individuelles ADHS-Profil entlang zwölf Dimensionen. Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck.",
   },
   verification: {
     google: undefined,

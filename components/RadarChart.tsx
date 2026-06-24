@@ -36,6 +36,62 @@ export interface RadarChartPoint {
   color: string;
 }
 
+interface AngleAxisTickProps {
+  x: string | number;
+  y: string | number;
+  payload: { value: string };
+  textAnchor?: "start" | "middle" | "end" | "inherit";
+}
+
+function AngleAxisTick({ x, y, payload, textAnchor }: AngleAxisTickProps) {
+  return (
+    <text
+      x={x}
+      y={y}
+      textAnchor={textAnchor}
+      className="fill-foreground text-[10px] font-mono uppercase tracking-wider sm:text-xs"
+    >
+      {payload.value}
+    </text>
+  );
+}
+
+interface TooltipPayloadItem {
+  payload: {
+    fullName: string;
+    own: number;
+    compare: number;
+  };
+}
+
+interface ChartTooltipProps {
+  active?: boolean;
+  payload?: TooltipPayloadItem[];
+  showCompare?: boolean;
+  hasCompare?: boolean;
+}
+
+function ChartTooltip({
+  active,
+  payload,
+  showCompare,
+  hasCompare,
+}: ChartTooltipProps) {
+  if (!active || !payload || payload.length === 0) return null;
+  const point = payload[0].payload;
+  return (
+    <div className="rounded-lg border bg-card px-3 py-2 text-sm shadow-sm">
+      <p className="font-medium">{point.fullName}</p>
+      <p className="text-muted-foreground">Mein Profil: {Math.round(point.own)}%</p>
+      {hasCompare && showCompare && (
+        <p className="text-muted-foreground">
+          Neurotypischer Mittelwert: {Math.round(point.compare)}%
+        </p>
+      )}
+    </div>
+  );
+}
+
 interface RadarChartProps {
   ownScores: RadarChartPoint[];
   compareScores?: RadarChartPoint[];
@@ -111,19 +167,7 @@ export function RadarChart({
             margin={{ top: 24, right: 24, bottom: 24, left: 24 }}
           >
             <PolarGrid stroke="rgba(30, 35, 48, 0.12)" />
-            <PolarAngleAxis
-              dataKey="subject"
-              tick={({ payload, x, y, textAnchor }) => (
-                <text
-                  x={x}
-                  y={y}
-                  textAnchor={textAnchor}
-                  className="fill-foreground text-[10px] sm:text-xs font-mono uppercase tracking-wider"
-                >
-                  {payload.value}
-                </text>
-              )}
-            />
+            <PolarAngleAxis dataKey="subject" tick={AngleAxisTick} />
             <PolarRadiusAxis
               angle={90}
               domain={[0, 100]}
@@ -151,27 +195,12 @@ export function RadarChart({
               isAnimationActive={animate}
             />
             <Tooltip
-              content={({ active, payload }) => {
-                if (!active || !payload || payload.length === 0) return null;
-                const point = payload[0].payload as {
-                  fullName: string;
-                  own: number;
-                  compare: number;
-                };
-                return (
-                  <div className="rounded-lg border bg-card px-3 py-2 text-sm shadow-sm">
-                    <p className="font-medium">{point.fullName}</p>
-                    <p className="text-muted-foreground">
-                      Mein Profil: {Math.round(point.own)}%
-                    </p>
-                    {hasCompare && showCompare && (
-                      <p className="text-muted-foreground">
-                        Neurotypischer Mittelwert: {Math.round(point.compare)}%
-                      </p>
-                    )}
-                  </div>
-                );
-              }}
+              content={
+                <ChartTooltip
+                  showCompare={showCompare}
+                  hasCompare={!!hasCompare}
+                />
+              }
             />
           </RechartsRadarChart>
         </ResponsiveContainer>

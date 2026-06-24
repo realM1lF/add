@@ -27,7 +27,7 @@ export function Footer() {
               ADHS-Spektrum
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              Verstehe dein individuelles ADHS-Profil entlang elf Dimensionen.
+              Verstehe dein individuelles ADHS-Profil entlang zwölf Dimensionen.
               Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck. Deine
               Daten bleiben auf deinem Gerät.
             </p>

@@ -178,7 +178,7 @@ function getActions(band: Band): Action[] {
           icon: <ClipboardList className="size-4" />,
           title: "Erweitertes Profil ausfüllen",
           description:
-            "Mit 60 Fragen entlang elf Dimensionen bekommst du ein genaueres Bild.",
+            "Mit 68 Fragen entlang zwölf Dimensionen bekommst du ein genaueres Bild.",
           cta: { label: "Profil erweitern", href: "/screener", variant: "default" },
         },
       ];

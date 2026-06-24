@@ -10,7 +10,7 @@ export function Cta() {
           Fange mit einem Schritt an
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-lg text-background/80">
-          Starte den Screener und beantworte 66 Fragen entlang elf Dimensionen.
+          Starte den Screener und beantworte 68 Fragen entlang zwölf Dimensionen.
           Danach siehst du dein vollständiges Radar-Chart.
         </p>
         <Button

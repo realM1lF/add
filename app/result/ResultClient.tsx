@@ -8,8 +8,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   calculateDimensionScores,
+  calculateASRS5Score,
   decodeScores,
   exampleAverageScores,
+  getASRS5Interpretation,
+  getASRS5Level,
   getAverageScore,
   getLevelColor,
   getLevelLabel,
@@ -21,16 +24,24 @@ import {
   Sparkles,
   AlertTriangle,
   Info,
+  ClipboardList,
 } from "lucide-react";
 import { ResultActionGuide } from "./ResultActionGuide";
+import { ResponseReview } from "./ResponseReview";
+
+let cachedRaw: string | null = "__initial__";
+let cachedAnswers: Record<string, number> = {};
 
 function loadAnswers(): Record<string, number> {
-  if (typeof window === "undefined") return {};
+  if (typeof window === "undefined") return cachedAnswers;
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : {};
+    if (raw === cachedRaw) return cachedAnswers;
+    cachedRaw = raw;
+    cachedAnswers = raw ? JSON.parse(raw) : {};
+    return cachedAnswers;
   } catch {
-    return {};
+    return cachedAnswers;
   }
 }
 
@@ -38,7 +49,7 @@ function useLocalStorageAnswers(): Record<string, number> {
   return React.useSyncExternalStore(
     () => () => {},
     () => loadAnswers(),
-    () => ({})
+    () => cachedAnswers
   );
 }
 
@@ -79,6 +90,15 @@ export function ResultClient() {
   const averageScore = getAverageScore(scores);
   const levelColor = getLevelColor(averageScore);
   const levelLabel = getLevelLabel(averageScore);
+
+  const asrs5Score = calculateASRS5Score(localAnswers);
+  const asrs5Level = getASRS5Level(asrs5Score);
+  const asrs5Color =
+    asrs5Level === "erhöht"
+      ? "hsl(0, 76%, 44%)"
+      : asrs5Level === "mittel"
+      ? "hsl(40, 76%, 44%)"
+      : "hsl(142, 76%, 44%)";
 
   const scaleSteps = [
     { label: "Unauffällig", threshold: 0 },
@@ -233,6 +253,52 @@ export function ResultClient() {
         />
       </section>
 
+      <section className="mt-16">
+        <Card className="border-0 shadow-sm">
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center gap-2 text-base font-medium">
+              <ClipboardList className="size-4 text-primary" />
+              ASRS-5 Schnell-Screener
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+              <div
+                className="flex size-16 items-center justify-center rounded-full border-4 border-background shadow-lg"
+                style={{ backgroundColor: asrs5Color }}
+              >
+                <span className="text-2xl font-medium text-white">
+                  {asrs5Score}
+                </span>
+              </div>
+              <div className="text-center sm:text-left">
+                <p
+                  className="text-2xl font-medium tracking-tight"
+                  style={{ color: asrs5Color }}
+                >
+                  {asrs5Level.charAt(0).toUpperCase() + asrs5Level.slice(1)}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Von maximal 24 Punkten
+                </p>
+              </div>
+            </div>
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+              {getASRS5Interpretation(asrs5Score)}
+            </p>
+            <div className="mt-4 text-sm text-muted-foreground">
+              <p>
+                Der ASRS-5 ist ein wissenschaftlich validiertes Screening-Instrument der WHO.
+                Ein Wert von 14 oder mehr Punkten gilt als Hinweis auf eine erhöhte Wahrscheinlichkeit
+                von ADHS. Er ersetzt keine Diagnose.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      <ResponseReview answers={localAnswers} />
+
       <Card className="mt-16 border-l-4 border-l-primary">
         <CardContent className="flex gap-4 py-6">
           <AlertTriangle className="mt-0.5 size-5 shrink-0 text-primary" />
@@ -253,7 +319,7 @@ export function ResultClient() {
             Möchtest du das Profil wiederholen?
           </h3>
           <p className="text-muted-foreground">
-            Das Profil umfasst 66 Fragen entlang elf Dimensionen.
+            Das Profil umfasst 68 Fragen entlang zwölf Dimensionen.
           </p>
         </div>
         <div className="flex gap-3">

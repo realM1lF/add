@@ -11,7 +11,7 @@ import { TopicsSeoAccordion } from "./TopicsSeoAccordion";
 export const metadata: Metadata = {
   title: "Das Spektrum – ADHS-Spektrum",
   description:
-    "Entdecke die elf Dimensionen von ADHS: Erklärungen, Alltagsbeispiele, Strategien und Quellen – wissenschaftlich fundiert und verständlich erklärt.",
+    "Entdecke die zwölf Dimensionen von ADHS: Erklärungen, Alltagsbeispiele, Strategien und Quellen – wissenschaftlich fundiert und verständlich erklärt.",
 };
 
 export default function TopicsOverviewPage() {
@@ -22,7 +22,7 @@ export default function TopicsOverviewPage() {
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-xs font-medium text-muted-foreground shadow-sm">
               <Sparkles className="size-3.5 text-primary" />
-              11 Dimensionen – verständlich erklärt
+              12 Dimensionen – verständlich erklärt
             </div>
 
             <h1 className="text-balance text-3xl font-medium tracking-tight text-foreground sm:text-4xl md:text-5xl">

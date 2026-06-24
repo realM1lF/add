@@ -83,14 +83,14 @@ export function TopicsSeoAccordion() {
                 <p>
                   Eine Selbsteinschätzung kann ein sinnvoller erster Schritt sein, um
                   das eigene ADHS-Spektrum besser zu verstehen. Der Fragebogen auf
-                  dieser Website erfasst elf Dimensionen – von Unaufmerksamkeit und
+                  dieser Website erfasst zwölf Dimensionen – von Unaufmerksamkeit und
                   Hyperaktivität bis zu exekutiven Funktionen, emotionaler Regulation,
                   Zeitwahrnehmung und Co. Wichtig ist, dass eine
                   Selbsteinschätzung keine Diagnose ersetzt – aber sie kann ein
                   wertvolles Gesprächsangebot für Fachkräfte sein.
                 </p>
                 <p>
-                  Auf dieser Website kannst du entlang der elf Dimensionen einschätzen,
+                  Auf dieser Website kannst du entlang der zwölf Dimensionen einschätzen,
                   welche Bereiche für dich besonders relevant sind. Das Ergebnis ist
                   kein Etikett, sondern ein Spiegel. Es hilft dir, Muster zu erkennen,
                   passende Strategien zu finden und gezielter über mögliche nächste

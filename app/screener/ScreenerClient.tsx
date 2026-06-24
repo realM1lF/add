@@ -12,8 +12,17 @@ import { ArrowLeft, ArrowRight, RotateCcw, AlertCircle } from "lucide-react";
 
 const TOTAL_QUESTIONS = allQuestions.length;
 
+function useIsClient() {
+  return React.useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+}
+
 export function ScreenerClient() {
   const router = useRouter();
+  const isClient = useIsClient();
   const {
     currentQuestion,
     currentIndex,
@@ -47,7 +56,7 @@ export function ScreenerClient() {
     reset();
   };
 
-  if (!currentQuestion) {
+  if (!isClient || !currentQuestion) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
         <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
@@ -88,7 +97,7 @@ export function ScreenerClient() {
       <div className="mb-8">
         <div className="mb-3 flex items-center justify-between text-sm text-muted-foreground">
           <span className="font-mono">Frage {currentIndex + 1} / {TOTAL_QUESTIONS}</span>
-          <span>Elf Dimensionen</span>
+          <span>Zwölf Dimensionen</span>
         </div>
         <Progress value={progress} className="h-2" />
       </div>
@@ -174,7 +183,7 @@ export function ScreenerClient() {
       <p className="mt-6 text-center text-xs text-muted-foreground">
         Du kannst jederzeit pausieren und später zurückkehren. Dein Fortschritt
         wird automatisch in diesem Browser gespeichert. Das vollständige Profil
-        umfasst {TOTAL_QUESTIONS} Fragen.
+        umfasst {TOTAL_QUESTIONS} Fragen entlang zwölf Dimensionen.
       </p>
     </div>
   );
