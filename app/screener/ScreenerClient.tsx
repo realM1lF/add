@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { useScreener } from "@/hooks/useScreener";
-import { calculateAsrsScore, calculateDimensionScores, encodeScores } from "@/lib/score";
+import { calculateDimensionScores, encodeScores } from "@/lib/score";
 import { allQuestions, answerLabels } from "@/lib/data/dimensions";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -56,7 +56,6 @@ export function ScreenerClient() {
   }
 
   if (showResume) {
-    const asrs = calculateAsrsScore(answers);
     return (
       <Card className="mx-auto max-w-2xl">
         <CardContent className="pt-8 text-center">
@@ -67,7 +66,7 @@ export function ScreenerClient() {
             Du hast alle Fragen beantwortet
           </h2>
           <p className="mt-3 text-muted-foreground">
-            ASRS-5-Score: <strong className="text-foreground">{asrs.score} / 24</strong> ({asrs.label})
+            Jetzt kannst du dein Profil als interaktives Radar-Chart ansehen.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Button onClick={handleFinish} className="gap-2 rounded-full">
@@ -89,7 +88,7 @@ export function ScreenerClient() {
       <div className="mb-8">
         <div className="mb-3 flex items-center justify-between text-sm text-muted-foreground">
           <span className="font-mono">Frage {currentIndex + 1} / {TOTAL_QUESTIONS}</span>
-          <span>ASRS-5 + erweitertes Profil</span>
+          <span>Elf Dimensionen</span>
         </div>
         <Progress value={progress} className="h-2" />
       </div>

@@ -116,7 +116,8 @@ export const dimensions: Dimension[] = [
   },
 ];
 
-export const asrsQuestions: Question[] = [
+export const extendedQuestions: Question[] = [
+  // ── Kernfragen zu Unaufmerksamkeit, Hyperaktivität und Impulsivität ──
   {
     id: "asrs-1",
     dimensionId: "unaufmerksamkeit",
@@ -167,9 +168,7 @@ export const asrsQuestions: Question[] = [
       `Du kaufst spontan etwas online, obwohl du weißt, dass das Budget eigentlich knapp ist.`,
     ],
   },
-];
 
-export const extendedQuestions: Question[] = [
   // ── Unaufmerksamkeit (5 erweiterte Fragen) ──
   {
     id: "u1",
@@ -693,10 +692,7 @@ export const extendedQuestions: Question[] = [
   },
 ];
 
-export const allQuestions: Question[] = [
-  ...asrsQuestions,
-  ...extendedQuestions,
-];
+export const allQuestions: Question[] = [...extendedQuestions];
 
 export const answerLabels: Record<number, string> = {
   0: "Nie",

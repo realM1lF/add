@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { asrsQuestions, Question } from "@/lib/data/dimensions";
+import { Question } from "@/lib/data/dimensions";
 
 export interface Answers {
   [questionId: string]: number;
@@ -134,6 +134,3 @@ export function useScreener(questions: Question[]) {
   };
 }
 
-export function useAsrsScreener() {
-  return useScreener(asrsQuestions);
-}

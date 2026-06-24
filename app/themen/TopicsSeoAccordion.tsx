@@ -82,10 +82,10 @@ export function TopicsSeoAccordion() {
               <div className="prose prose-sm max-w-none text-muted-foreground">
                 <p>
                   Eine Selbsteinschätzung kann ein sinnvoller erster Schritt sein, um
-                  das eigene ADHS-Spektrum besser zu verstehen. Validierte Instrumente
-                  wie der ASRS-5 erfassen die Kernsymptome. Ergänzt um weitere Fragen
-                  zu exekutiven Funktionen, emotionaler Regulation, Zeitwahrnehmung
-                  und Co. entsteht ein differenzierteres Bild. Wichtig ist, dass eine
+                  das eigene ADHS-Spektrum besser zu verstehen. Der Fragebogen auf
+                  dieser Website erfasst elf Dimensionen – von Unaufmerksamkeit und
+                  Hyperaktivität bis zu exekutiven Funktionen, emotionaler Regulation,
+                  Zeitwahrnehmung und Co. Wichtig ist, dass eine
                   Selbsteinschätzung keine Diagnose ersetzt – aber sie kann ein
                   wertvolles Gesprächsangebot für Fachkräfte sein.
                 </p>

@@ -201,12 +201,12 @@ export function RadarChart({
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="top" className="max-w-xs text-center">
-                Orientierungswert für Erwachsene ohne ADHS-Diagnose. Basierend auf
-                ASRS-5-Normdaten (Adler et al., 2018), leicht angehoben wegen
-                aktueller Bevölkerungstrends (z. B. Social Media, erhöhte
-                Auffälligkeitsraten in England 2023/24). Für die erweiterten
-                Dimensionen liegt keine Normierung vor; hier wurde ein
-                konservativer Schätzwert verwendet.
+                Orientierungswert für Erwachsene ohne ADHS-Diagnose. Für
+                Unaufmerksamkeit, Hyperaktivität und Impulsivität angelehnt an
+                Screening-Forschung zu erwachsenem ADHS, leicht angehoben wegen
+                aktueller Bevölkerungstrends. Für die weiteren Dimensionen liegt
+                keine Normierung vor; hier wurde ein konservativer Schätzwert
+                verwendet.
               </TooltipContent>
             </UiTooltip>
           </TooltipProvider>

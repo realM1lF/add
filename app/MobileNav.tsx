@@ -17,10 +17,6 @@ export function MobileNav() {
   const pathname = usePathname();
 
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     if (!open) return;
 
     const originalOverflow = document.body.style.overflow;

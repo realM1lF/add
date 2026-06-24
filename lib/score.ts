@@ -1,4 +1,4 @@
-import { allQuestions, asrsQuestions, dimensions } from "./data/dimensions";
+import { allQuestions, dimensions } from "./data/dimensions";
 
 export interface Answers {
   [questionId: string]: number;
@@ -11,42 +11,6 @@ export interface DimensionScore {
   value: number; // 0–100
   color: string;
   fill: string;
-}
-
-export interface AsrsResult {
-  score: number;
-  level: "low" | "moderate" | "elevated";
-  label: string;
-  interpretation: string;
-}
-
-export function calculateAsrsScore(answers: Answers): AsrsResult {
-  const score = asrsQuestions.reduce((sum, q) => {
-    return sum + (answers[q.id] ?? 0);
-  }, 0);
-
-  let level: AsrsResult["level"];
-  let label: string;
-  let interpretation: string;
-
-  if (score <= 9) {
-    level = "low";
-    label = "Niedrig";
-    interpretation =
-      "Deine Antworten deuten nicht auf auffällige ADHS-Symptome hin. Das bedeutet nicht, dass du keine Unterstützung verdienst – nur dass die typischen ADHS-Muster in diesem Screening nicht stark ausgeprägt sind.";
-  } else if (score <= 13) {
-    level = "moderate";
-    label = "Mittel";
-    interpretation =
-      "Einige deiner Antworten passen zu ADHS-typischen Mustern. Das ist ein guter Anlass, genauer hinzuschauen – entweder mit dem erweiterten Profil hier oder im Gespräch mit einer Fachkraft.";
-  } else {
-    level = "elevated";
-    label = "Erhöht";
-    interpretation =
-      "Deine Antworten decken sich stark mit ADHS-typischen Mustern. Wir empfehlen dir, das erweiterte Profil auszufüllen und mit einer Fachkraft über eine mögliche Abklärung zu sprechen.";
-  }
-
-  return { score, level, label, interpretation };
 }
 
 export function calculateDimensionScores(answers: Answers): DimensionScore[] {
@@ -113,9 +77,9 @@ export function decodeScores(hash: string): DimensionScore[] | null {
 }
 
 // Neurotypical (community) reference values used for the "compare" overlay.
-// - ASRS-5 Part A community mean from Adler et al. (2018), n=22,397:
-//   M = 10.88 / 24 max = ~45%.
-//   This applies to the three ASRS-5 dimensions (U, H, I).
+// - The reference values for Unaufmerksamkeit, Hyperaktivität and Impulsivität
+//   are loosely derived from adult ADHD screening research (community samples
+//   such as Adler et al., 2018).
 // - Because newer data (e.g. NHS England 2023/24; Nivins et al. 2026) suggest
 //   a modest population-level rise in ADHD-like symptoms, we nudge these
 //   reference values up slightly to ~50% and use ~30% for the extended

@@ -10,8 +10,8 @@ export function Cta() {
           Fange mit einem Schritt an
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-lg text-background/80">
-          Starte mit dem ASRS-5-Screener und ergänze bei Bedarf das erweiterte
-          Profil. Danach siehst du dein vollständiges Radar-Chart.
+          Starte den Screener und beantworte 66 Fragen entlang elf Dimensionen.
+          Danach siehst du dein vollständiges Radar-Chart.
         </p>
         <Button
           asChild

@@ -24,10 +24,10 @@ export function Hero() {
         </h1>
 
         <p className="mx-auto mt-8 max-w-2xl text-balance text-lg leading-relaxed text-muted-foreground sm:text-xl">
-          Verstehe dein individuelles Profil entlang elf Dimensionen – mit dem
-          validierten ASRS-5-Screener, einem erweiterten Fragebogen und einem
-          interaktiven Radar-Chart. Kein Label, kein Druck. Nur ein Spiegel,
-          der dir hilft, dein Gehirn besser zu verstehen.
+          Verstehe dein individuelles Profil entlang elf Dimensionen – mit einem
+          wissenschaftlich fundierten Fragebogen und einem interaktiven
+          Radar-Chart. Kein Label, kein Druck. Nur ein Spiegel, der dir hilft,
+          dein Gehirn besser zu verstehen.
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { topics } from "@/lib/data/topics";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { ArrowRight, Sparkles, Info } from "lucide-react";
 import { SpectrumGraphic } from "./SpectrumGraphic";
 import { TopicsSeoAccordion } from "./TopicsSeoAccordion";

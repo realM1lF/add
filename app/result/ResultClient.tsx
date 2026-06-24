@@ -7,16 +7,13 @@ import { RadarChart } from "@/components/RadarChart";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  calculateAsrsScore,
   calculateDimensionScores,
   decodeScores,
   exampleAverageScores,
   getAverageScore,
   getLevelColor,
   getLevelLabel,
-  type AsrsResult,
 } from "@/lib/score";
-import { asrsQuestions } from "@/lib/data/dimensions";
 import { STORAGE_KEY } from "@/hooks/useScreener";
 import {
   ArrowLeft,
@@ -37,39 +34,26 @@ function loadAnswers(): Record<string, number> {
   }
 }
 
+function useLocalStorageAnswers(): Record<string, number> {
+  return React.useSyncExternalStore(
+    () => () => {},
+    () => loadAnswers(),
+    () => ({})
+  );
+}
+
 export function ResultClient() {
   const searchParams = useSearchParams();
+  const localAnswers = useLocalStorageAnswers();
+  const scoreHash = searchParams.get("scores");
 
-  const [scores, setScores] = React.useState(() => {
-    const hash = searchParams.get("scores");
-    if (hash) {
-      const decoded = decodeScores(hash);
+  const scores = React.useMemo(() => {
+    if (scoreHash) {
+      const decoded = decodeScores(scoreHash);
       if (decoded) return decoded;
     }
-    // Konsistenter Server/Client-Default, wenn keine URL-Daten vorliegen.
-    // Die echten LocalStorage-Daten werden nach der Hydration geladen.
-    return calculateDimensionScores({});
-  });
-
-  const [asrs, setAsrs] = React.useState<AsrsResult>({
-    score: 0,
-    level: "low",
-    label: "–",
-    interpretation: "",
-  });
-
-  React.useEffect(() => {
-    const hash = searchParams.get("scores");
-    if (hash) return; // URL-Daten haben Vorrang
-
-    const answers = loadAnswers();
-    setScores(calculateDimensionScores(answers));
-
-    const valid = asrsQuestions.every((q) => answers[q.id] !== undefined);
-    if (valid) {
-      setAsrs(calculateAsrsScore(answers));
-    }
-  }, [searchParams]);
+    return calculateDimensionScores(localAnswers);
+  }, [scoreHash, localAnswers]);
 
   const ownPoints = scores.map((s) => ({
     subject: s.shortName,
@@ -154,7 +138,7 @@ export function ResultClient() {
         />
       </section>
 
-      <section className="mt-16 grid gap-6 sm:grid-cols-2">
+      <section className="mt-16">
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-base font-medium">
@@ -165,8 +149,8 @@ export function ResultClient() {
           <CardContent>
             {topDimensions.length === 0 ? (
               <p className="text-sm text-muted-foreground">
-                Der Screener deckt nur drei Dimensionen ab. Fülle das erweiterte
-                Profil aus, um alle Bereiche zu sehen.
+                Bisher liegen noch keine ausreichenden Daten vor. Starte den
+                Screener, um deine Schwerpunkte zu ermitteln.
               </p>
             ) : (
               <ul className="space-y-3">
@@ -186,43 +170,12 @@ export function ResultClient() {
             )}
           </CardContent>
         </Card>
-
-        <Card className="border-0 shadow-sm">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-base font-medium">ASRS-5 Einschätzung</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-medium tracking-tight text-foreground">
-                {asrs.score}
-              </span>
-              <span className="text-sm text-muted-foreground">/ 24 Punkte</span>
-            </div>
-            <p
-              className={`inline-flex rounded-full px-3 py-1 text-sm font-medium ${
-                asrs.level === "elevated"
-                  ? "bg-primary/10 text-primary"
-                  : asrs.level === "moderate"
-                  ? "bg-secondary/10 text-secondary"
-                  : "bg-muted text-muted-foreground"
-              }`}
-            >
-              {asrs.label}
-            </p>
-            {asrs.interpretation && (
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {asrs.interpretation}
-              </p>
-            )}
-          </CardContent>
-        </Card>
       </section>
 
       <section className="mt-16">
         <div className="space-y-4">
           <div className="flex items-center justify-between text-sm">
             <span className="font-medium text-foreground">Einschätzungs-Skala</span>
-            <span className="text-muted-foreground">ASRS-5-Cutoff bei ca. 60 %</span>
           </div>
           <div className="relative h-2 w-full rounded-full bg-muted">
             <div
@@ -264,9 +217,10 @@ export function ResultClient() {
         <div className="mt-6 flex items-start gap-3 text-sm text-muted-foreground">
           <Info className="mt-0.5 size-4 shrink-0" />
           <p>
-            Die Skala zeigt Orientierungswerte. Ab etwa 60 % entspricht das in etwa
-            dem ASRS-5-Cutoff (14/24 Punkte), ab dem eine weiterführende Abklärung
-            sinnvoll ist. Die finale Beurteilung obliegt aber immer einer Fachkraft.
+            Die Skala zeigt Orientierungswerte auf Basis deines Durchschnitts über
+            alle Dimensionen. Höhere Werte deuten auf eine stärkere Ausprägung hin.
+            Sie ersetzen keine Diagnose – die finale Beurteilung obliegt immer einer
+            Fachkraft.
           </p>
         </div>
       </section>
@@ -296,10 +250,10 @@ export function ResultClient() {
       <section className="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl border border-border bg-card p-6 sm:flex-row">
         <div>
           <h3 className="text-lg font-medium text-foreground">
-            Möchtest du tiefer blicken?
+            Möchtest du das Profil wiederholen?
           </h3>
           <p className="text-muted-foreground">
-            Das erweiterte Profil umfasst 60 Fragen entlang elf Dimensionen.
+            Das Profil umfasst 66 Fragen entlang elf Dimensionen.
           </p>
         </div>
         <div className="flex gap-3">

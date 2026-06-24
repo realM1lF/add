@@ -89,9 +89,10 @@ export function SeoAccordion() {
                   gestellt. Sie basiert auf einer ausführlichen Anamnese, der
                   Befragung von Angehörigen oder Partner:innen, klinischen Tests und
                   der Abgrenzung gegenüber anderen Ursachen wie Depressionen,
-                  Angststörungen, Traumafolgen oder Schlafstörungen. Selbsttests wie
-                  der ASRS-5 können dabei helfen, erste Hinweise zu sammeln und ein
-                  Gespräch mit einer Fachkraft vorzubereiten.
+                  Angststörungen, Traumafolgen oder Schlafstörungen.
+                  Selbsteinschätzungen entlang verschiedener ADHS-Dimensionen können
+                  dabei helfen, erste Hinweise zu sammeln und ein Gespräch mit einer
+                  Fachkraft vorzubereiten.
                 </p>
                 <p>
                   Wichtig ist: Ein Online-Screener ersetzt keine Diagnose. Er kann aber
@@ -225,13 +226,13 @@ export function SeoAccordion() {
                   das Aufmerksamkeit, Impulse, Emotionen, Zeitwahrnehmung und viele
                   weitere Bereiche betreffen kann. Es beginnt oft in der Kindheit,
                   zeigt sich bei Erwachsenen aber häufig anders und wird deshalb oft
-                  spät oder gar nicht erkannt. Wissenschaftlich fundierte Tools wie
-                  der ASRS-5, Selbsterkundung und der Austausch mit Fachkräften können
-                  den Weg zu mehr Klarheit eröffnen.
+                  spät oder gar nicht erkannt. Wissenschaftlich fundierte
+                  Selbsterkundung und der Austausch mit Fachkräften können den Weg zu
+                  mehr Klarheit eröffnen.
                 </p>
                 <p>
                   Auf ADHS-Spektrum findest du einen wissenschaftlich fundierten
-                  Screener, erklärende Artikel zu elf Dimensionen, praktische
+                  Fragebogen, erklärende Artikel zu elf Dimensionen, praktische
                   Strategien und kuratierte Quellen. Das Ziel ist nicht, dir ein Label
                   zu geben, sondern dir dabei zu helfen, dein individuelles Profil besser
                   zu verstehen – mit Respekt, Fakten und ohne Diagnose-Druck. Wenn du

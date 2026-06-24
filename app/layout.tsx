@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     template: "%s – ADHS-Spektrum",
   },
   description:
-    "Verstehe dein individuelles ADHS-Profil entlang elf Dimensionen. Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck. Mit ASRS-5-Screener, erweitertem Profil und interaktivem Radar-Chart.",
+    "Verstehe dein individuelles ADHS-Profil entlang elf Dimensionen. Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck. Mit interaktivem Radar-Chart und praktischen Strategien.",
   keywords: [
     "ADHS",
     "ADHS-Spektrum",

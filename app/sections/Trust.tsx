@@ -4,7 +4,7 @@ const items = [
   {
     icon: Brain,
     title: "Wissenschaftlich fundiert",
-    description: "Basierend auf ASRS-5, DSM-5-TR und aktueller ADHS-Forschung.",
+    description: "Inhaltlich angelehnt an ASRS-5, DSM-5-TR und aktuelle ADHS-Forschung.",
   },
   {
     icon: Shield,
