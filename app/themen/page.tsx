@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { topics } from "@/lib/data/topics";
+import { dimensionById } from "@/lib/data/dimensions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { ArrowRight, Sparkles, Info } from "lucide-react";
 import { SpectrumGraphic } from "./SpectrumGraphic";
@@ -51,47 +53,58 @@ export default function TopicsOverviewPage() {
         </Alert>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {topics.map((topic) => (
-            <Card
-              key={topic.id}
-              className="group flex flex-col overflow-hidden transition-shadow hover:shadow-md"
-            >
-              <CardContent className="flex flex-1 flex-col p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <span
-                    className="flex size-12 shrink-0 items-center justify-center rounded-2xl text-lg font-bold text-white"
-                    style={{ backgroundColor: topic.color }}
+          {topics.map((topic) => {
+            const dimension = dimensionById[topic.id];
+            const isComorbidity = dimension?.category === "comorbidity";
+
+            return (
+              <Card
+                key={topic.id}
+                className="group flex flex-col overflow-hidden transition-shadow hover:shadow-md"
+              >
+                <CardContent className="flex flex-1 flex-col p-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <span
+                      className="flex size-12 shrink-0 items-center justify-center rounded-2xl text-lg font-bold text-white"
+                      style={{ backgroundColor: topic.color }}
+                    >
+                      {topic.shortName}
+                    </span>
+
+                    {isComorbidity && (
+                      <Badge variant="outline" className="rounded-full">
+                        Begleitbereich
+                      </Badge>
+                    )}
+                  </div>
+
+                  <h2 className="mt-5 text-xl font-medium text-foreground">
+                    {topic.name}
+                  </h2>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {topic.description}
+                  </p>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-foreground/80">
+                    {topic.tagline}
+                  </p>
+
+                  <Button
+                    asChild
+                    className="mt-6 w-full gap-2 rounded-full"
+                    style={{
+                      backgroundColor: topic.color,
+                      color: "#ffffff",
+                    }}
                   >
-                    {topic.shortName}
-                  </span>
-                </div>
-
-                <h2 className="mt-5 text-xl font-medium text-foreground">
-                  {topic.name}
-                </h2>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {topic.description}
-                </p>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-foreground/80">
-                  {topic.tagline}
-                </p>
-
-                <Button
-                  asChild
-                  className="mt-6 w-full gap-2 rounded-full"
-                  style={{
-                    backgroundColor: topic.color,
-                    color: "#ffffff",
-                  }}
-                >
-                  <Link href={`/themen/${topic.slug}`}>
-                    Mehr erfahren
-                    <ArrowRight className="size-4" aria-hidden="true" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+                    <Link href={`/themen/${topic.slug}`}>
+                      Mehr erfahren
+                      <ArrowRight className="size-4" aria-hidden="true" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
         <TopicsSeoAccordion />

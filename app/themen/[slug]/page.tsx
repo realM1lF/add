@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { topics, getTopicBySlug } from "@/lib/data/topics";
+import { dimensionById, type DimensionCategory } from "@/lib/data/dimensions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+
 import {
   ArrowLeft,
   Brain,
@@ -14,6 +16,13 @@ import {
   BookOpen,
   Quote,
 } from "lucide-react";
+
+const CATEGORY_LABELS: Record<DimensionCategory | "special", string> = {
+  core: "Kernbereich",
+  experience: "Erfahrungsbereich",
+  comorbidity: "Begleitbereich",
+  special: "Spezielles Thema",
+};
 
 interface TopicPageProps {
   params: Promise<{ slug: string }>;
@@ -41,6 +50,11 @@ export default async function TopicPage({ params }: TopicPageProps) {
   if (!topic) {
     notFound();
   }
+
+  const dimension = dimensionById[topic.id];
+  const categoryLabel = dimension
+    ? CATEGORY_LABELS[dimension.category]
+    : CATEGORY_LABELS.special;
 
   const sectionLinks = [
     { id: "fuehlen", label: "Fühlen", icon: Heart },
@@ -82,8 +96,8 @@ export default async function TopicPage({ params }: TopicPageProps) {
             >
               {topic.shortName}
             </span>
-            <Badge variant="secondary" className="rounded-full">
-              ADHS-Dimension
+            <Badge variant="outline" className="rounded-full">
+              {categoryLabel}
             </Badge>
           </div>
 
@@ -154,7 +168,11 @@ export default async function TopicPage({ params }: TopicPageProps) {
 
             <div className="grid gap-4 sm:grid-cols-2">
               {topic.examples.map((example, index) => (
-                <Card key={index} className="border-l-4" style={{ borderLeftColor: topic.color }}>
+                <Card
+                  key={index}
+                  className="border-l-4"
+                  style={{ borderLeftColor: topic.color }}
+                >
                   <CardContent className="pt-6">
                     <p className="font-medium text-foreground">
                       {example.question}
@@ -323,10 +341,12 @@ export default async function TopicPage({ params }: TopicPageProps) {
           {/* Bottom CTA */}
           <div className="rounded-2xl border border-border bg-card p-8 text-center">
             <h3 className="text-xl font-medium text-foreground">
-              Möchtest du wissen, wie stark diese Dimension bei dir ausgeprägt ist?
+              Möchtest du wissen, wie stark diese Dimension bei dir ausgeprägt
+              ist?
             </h3>
             <p className="mt-2 text-muted-foreground">
-              Der Screener erstellt dein persönliches Profil entlang aller zwölf Dimensionen.
+              Der Screener erstellt dein persönliches Profil entlang aller zwölf
+              Dimensionen.
             </p>
             <Button asChild className="mt-6 gap-2 rounded-full">
               <Link href="/screener">

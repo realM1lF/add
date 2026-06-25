@@ -130,6 +130,10 @@ export const dimensions: Dimension[] = [
   },
 ];
 
+export const dimensionById: Record<string, Dimension> = Object.fromEntries(
+  dimensions.map((d) => [d.id, d]),
+);
+
 export const extendedQuestions: Question[] = [
   // ── ASRS-5 Schnell-Screener (6 offizielle WHO-Items, DSM-5) ──
   // Scoring: ungewichtete 0-4-Summe (Ron Kessler Empfehlung), Cut-off ≥ 14.
