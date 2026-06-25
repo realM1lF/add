@@ -1,5 +1,11 @@
 export type Effort = "low" | "medium" | "high";
 
+export type EvidenceLevel =
+  | "strong"
+  | "moderate"
+  | "emerging"
+  | "lived-experience";
+
 export interface Strategy {
   id: string;
   title: string;
@@ -8,12 +14,20 @@ export interface Strategy {
   dimensionIds: string[];
   situationTags: string[];
   effort: Effort;
+  evidenceLevel: EvidenceLevel;
 }
 
 export const effortLabels: Record<Effort, string> = {
   low: "Leichter Einstieg",
   medium: "Mittlerer Aufwand",
   high: "Mehr Aufwand",
+};
+
+export const evidenceLabels: Record<EvidenceLevel, string> = {
+  strong: "Wirksamkeit gut belegt",
+  moderate: "Befürwortet in Leitlinien",
+  emerging: "Aktuell noch wenig Forschung",
+  "lived-experience": "Viele Betroffene berichten davon",
 };
 
 export const situationTags = [
@@ -54,6 +68,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["unaufmerksamkeit", "exekutive-funktionen"],
     situationTags: ["Alltag", "Arbeit", "Studium"],
     effort: "low",
+    evidenceLevel: "strong",
   },
   {
     id: "u-single-tasking",
@@ -68,6 +83,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["unaufmerksamkeit"],
     situationTags: ["Arbeit", "Studium"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "u-movement-before-focus",
@@ -82,6 +98,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["unaufmerksamkeit", "hyperaktivitaet"],
     situationTags: ["Alltag", "Arbeit", "Studium"],
     effort: "low",
+    evidenceLevel: "strong",
   },
   {
     id: "u-brown-noise",
@@ -96,6 +113,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["unaufmerksamkeit", "sensorik"],
     situationTags: ["Arbeit", "Studium"],
     effort: "low",
+    evidenceLevel: "emerging",
   },
   {
     id: "u-visibility",
@@ -110,6 +128,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["unaufmerksamkeit", "exekutive-funktionen"],
     situationTags: ["Alltag", "Arbeit"],
     effort: "low",
+    evidenceLevel: "lived-experience",
   },
 
   // ── Hyperaktivität ──
@@ -126,6 +145,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["hyperaktivitaet"],
     situationTags: ["Arbeit", "Studium", "Alltag"],
     effort: "low",
+    evidenceLevel: "strong",
   },
   {
     id: "h-standing-desk",
@@ -140,6 +160,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["hyperaktivitaet"],
     situationTags: ["Arbeit", "Studium"],
     effort: "medium",
+    evidenceLevel: "moderate",
   },
   {
     id: "h-fidget-tools",
@@ -154,6 +175,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["hyperaktivitaet"],
     situationTags: ["Arbeit", "Studium", "Alltag"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "h-sport",
@@ -168,6 +190,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["hyperaktivitaet", "interozeption"],
     situationTags: ["Selbstfürsorge", "Alltag"],
     effort: "medium",
+    evidenceLevel: "strong",
   },
   {
     id: "h-movement-learning",
@@ -182,6 +205,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["hyperaktivitaet", "unaufmerksamkeit"],
     situationTags: ["Studium", "Alltag"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
 
   // ── Impulsivität ──
@@ -198,6 +222,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["impulsivitaet"],
     situationTags: ["Alltag", "Beziehungen", "Krisen"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "i-if-then",
@@ -212,6 +237,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["impulsivitaet", "exekutive-funktionen"],
     situationTags: ["Alltag", "Arbeit"],
     effort: "medium",
+    evidenceLevel: "moderate",
   },
   {
     id: "i-budget",
@@ -226,6 +252,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["impulsivitaet"],
     situationTags: ["Alltag"],
     effort: "medium",
+    evidenceLevel: "moderate",
   },
   {
     id: "i-communicate-interruptions",
@@ -240,6 +267,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["impulsivitaet", "beziehungen"],
     situationTags: ["Beziehungen", "Arbeit"],
     effort: "low",
+    evidenceLevel: "lived-experience",
   },
   {
     id: "i-channel-impulses",
@@ -254,6 +282,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["impulsivitaet"],
     situationTags: ["Alltag", "Krisen"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
 
   // ── Exekutive Funktionen ──
@@ -270,6 +299,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["exekutive-funktionen"],
     situationTags: ["Arbeit", "Studium"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "ef-two-minutes",
@@ -284,6 +314,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["exekutive-funktionen"],
     situationTags: ["Alltag", "Arbeit", "Studium"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "ef-visible",
@@ -298,6 +329,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["exekutive-funktionen", "unaufmerksamkeit"],
     situationTags: ["Alltag", "Arbeit"],
     effort: "low",
+    evidenceLevel: "lived-experience",
   },
   {
     id: "ef-triage",
@@ -312,6 +344,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["exekutive-funktionen"],
     situationTags: ["Arbeit", "Studium", "Alltag"],
     effort: "low",
+    evidenceLevel: "lived-experience",
   },
   {
     id: "ef-microsteps",
@@ -326,6 +359,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["exekutive-funktionen"],
     situationTags: ["Arbeit", "Studium", "Alltag"],
     effort: "medium",
+    evidenceLevel: "moderate",
   },
 
   // ── Emotionale Dysregulation ──
@@ -342,6 +376,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["emotionale-dysregulation"],
     situationTags: ["Krisen", "Beziehungen", "Selbstfürsorge"],
     effort: "low",
+    evidenceLevel: "strong",
   },
   {
     id: "ed-physiological-pause",
@@ -356,6 +391,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["emotionale-dysregulation", "interozeption"],
     situationTags: ["Krisen", "Selbstfürsorge"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "ed-mood-tracking",
@@ -370,6 +406,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["emotionale-dysregulation"],
     situationTags: ["Selbstfürsorge", "Alltag"],
     effort: "medium",
+    evidenceLevel: "moderate",
   },
   {
     id: "ed-self-compassion",
@@ -384,6 +421,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["emotionale-dysregulation", "rsd"],
     situationTags: ["Selbstfürsorge", "Krisen"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "ed-therapy",
@@ -398,6 +436,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["emotionale-dysregulation"],
     situationTags: ["Selbstfürsorge", "Krisen"],
     effort: "high",
+    evidenceLevel: "strong",
   },
 
   // ── Rejection Sensitivity ──
@@ -414,6 +453,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["rsd"],
     situationTags: ["Beziehungen", "Arbeit", "Krisen"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "rsd-self-validation",
@@ -428,6 +468,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["rsd", "emotionale-dysregulation"],
     situationTags: ["Selbstfürsorge", "Krisen"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "rsd-calm-nervous-system",
@@ -442,6 +483,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["rsd", "emotionale-dysregulation"],
     situationTags: ["Krisen", "Selbstfürsorge"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "rsd-boundaries",
@@ -456,6 +498,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["rsd"],
     situationTags: ["Beziehungen", "Arbeit"],
     effort: "medium",
+    evidenceLevel: "moderate",
   },
   {
     id: "rsd-medication",
@@ -470,6 +513,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["rsd"],
     situationTags: ["Selbstfürsorge"],
     effort: "high",
+    evidenceLevel: "strong",
   },
 
   // ── Zeitwahrnehmung ──
@@ -486,6 +530,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["zeitwahrnehmung"],
     situationTags: ["Alltag", "Arbeit", "Studium"],
     effort: "low",
+    evidenceLevel: "strong",
   },
   {
     id: "zw-time-blocking",
@@ -500,6 +545,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["zeitwahrnehmung", "exekutive-funktionen"],
     situationTags: ["Arbeit", "Studium"],
     effort: "medium",
+    evidenceLevel: "moderate",
   },
   {
     id: "zw-backwards-planning",
@@ -514,6 +560,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["zeitwahrnehmung", "exekutive-funktionen"],
     situationTags: ["Arbeit", "Studium", "Alltag"],
     effort: "medium",
+    evidenceLevel: "moderate",
   },
   {
     id: "zw-buffer",
@@ -528,6 +575,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["zeitwahrnehmung"],
     situationTags: ["Alltag", "Arbeit"],
     effort: "low",
+    evidenceLevel: "lived-experience",
   },
   {
     id: "zw-artificial-deadlines",
@@ -542,6 +590,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["zeitwahrnehmung", "exekutive-funktionen"],
     situationTags: ["Arbeit", "Studium"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
 
   // ── Interozeption ──
@@ -558,6 +607,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["interozeption"],
     situationTags: ["Selbstfürsorge", "Alltag"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "in-body-scan",
@@ -572,6 +622,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["interozeption"],
     situationTags: ["Selbstfürsorge"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "in-meal-structure",
@@ -586,6 +637,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["interozeption"],
     situationTags: ["Selbstfürsorge", "Alltag"],
     effort: "medium",
+    evidenceLevel: "moderate",
   },
   {
     id: "in-emotions-as-signals",
@@ -600,6 +652,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["interozeption", "emotionale-dysregulation"],
     situationTags: ["Krisen", "Selbstfürsorge"],
     effort: "low",
+    evidenceLevel: "lived-experience",
   },
   {
     id: "in-rest-before-collapse",
@@ -609,11 +662,12 @@ export const strategies: Strategy[] = [
     steps: [
       "Plane täglich mindestens eine kurze Ruhepause ein.",
       "Setze einen Timer, bevor du überforderst bist.",
-      "Nutzte die Pause aktiv zur Erholung, nicht nur zum Weitermachen.",
+      "Nutze die Pause aktiv zur Erholung, nicht nur zum Weitermachen.",
     ],
     dimensionIds: ["interozeption", "masking"],
     situationTags: ["Selbstfürsorge", "Alltag"],
     effort: "medium",
+    evidenceLevel: "moderate",
   },
 
   // ── Hyperfokus ──
@@ -630,6 +684,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["hyperfokus", "interozeption"],
     situationTags: ["Alltag", "Arbeit", "Studium"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "hf-important-first",
@@ -644,6 +699,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["hyperfokus", "exekutive-funktionen"],
     situationTags: ["Arbeit", "Studium"],
     effort: "medium",
+    evidenceLevel: "moderate",
   },
   {
     id: "hf-reward-system",
@@ -658,6 +714,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["hyperfokus", "exekutive-funktionen"],
     situationTags: ["Arbeit", "Studium"],
     effort: "medium",
+    evidenceLevel: "lived-experience",
   },
   {
     id: "hf-external-interrupts",
@@ -672,6 +729,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["hyperfokus"],
     situationTags: ["Alltag", "Beziehungen"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "hf-archive",
@@ -686,6 +744,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["hyperfokus"],
     situationTags: ["Alltag", "Studium"],
     effort: "medium",
+    evidenceLevel: "lived-experience",
   },
 
   // ── Sensorik ──
@@ -702,6 +761,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["sensorik"],
     situationTags: ["Arbeit", "Studium", "Selbstfürsorge"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "sv-sensory-breaks",
@@ -716,6 +776,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["sensorik", "interozeption"],
     situationTags: ["Selbstfürsorge", "Alltag"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "sv-seek-stimuli",
@@ -730,6 +791,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["sensorik"],
     situationTags: ["Selbstfürsorge", "Arbeit", "Studium"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "sv-plan-ahead",
@@ -744,6 +806,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["sensorik"],
     situationTags: ["Alltag", "Beziehungen"],
     effort: "low",
+    evidenceLevel: "lived-experience",
   },
   {
     id: "sv-comfort-clothing",
@@ -758,6 +821,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["sensorik"],
     situationTags: ["Selbstfürsorge", "Alltag"],
     effort: "low",
+    evidenceLevel: "lived-experience",
   },
 
   // ── Masking ──
@@ -774,6 +838,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["masking"],
     situationTags: ["Selbstfürsorge", "Alltag"],
     effort: "medium",
+    evidenceLevel: "lived-experience",
   },
   {
     id: "m-safe-people",
@@ -788,6 +853,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["masking", "rsd"],
     situationTags: ["Beziehungen", "Selbstfürsorge"],
     effort: "medium",
+    evidenceLevel: "moderate",
   },
   {
     id: "m-reduce-decisions",
@@ -802,6 +868,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["masking", "exekutive-funktionen"],
     situationTags: ["Alltag", "Selbstfürsorge"],
     effort: "medium",
+    evidenceLevel: "moderate",
   },
   {
     id: "m-communicate-needs",
@@ -816,6 +883,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["masking"],
     situationTags: ["Beziehungen", "Arbeit"],
     effort: "low",
+    evidenceLevel: "moderate",
   },
   {
     id: "m-therapy",
@@ -830,6 +898,7 @@ export const strategies: Strategy[] = [
     dimensionIds: ["masking"],
     situationTags: ["Selbstfürsorge"],
     effort: "high",
+    evidenceLevel: "strong",
   },
 ];
 

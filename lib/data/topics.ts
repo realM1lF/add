@@ -111,10 +111,10 @@ export const topics: Topic[] = [
       },
     ],
     sources: [
-      { title: "DSM-5-TR (2022) – Kriterien Unaufmerksamkeit" },
-      { title: "Huberman Lab Podcast #37 – ADHD & Focus" },
-      { title: "Spencer et al. (2015) – Low dopamine hypothesis of ADHD" },
-      { title: "Cate Osborn – The ADHD Field Guide for Adults" },
+      { title: "American Psychiatric Association (2022) – DSM-5-TR" },
+      { title: "Kessler et al. (2005) – The World Health Organization Adult ADHD Self-Report Scale (ASRS)", url: "https://www.cambridge.org/core/journals/psychological-medicine/article/abs/world-health-organization-adult-adhd-selfreport-scale-asrs/EBCBF2074DEE66A0A4168B82E056A77B" },
+      { title: "Ustün et al. (2017) – ASRS Screening Scale for DSM-5", url: "https://jamanetwork.com/journals/jamapsychiatry/fullarticle/2604299" },
+      { title: "Ballmann et al. (2022) – German Version of the ASRS-5", url: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.858147/full" },
     ],
   },
   {
@@ -194,9 +194,9 @@ export const topics: Topic[] = [
       },
     ],
     sources: [
-      { title: "DSM-5-TR (2022) – Kriterien Hyperaktivität" },
+      { title: "American Psychiatric Association (2022) – DSM-5-TR" },
       { title: "Barkley, R. A. (2012) – Executive Functions" },
-      { title: "ADHD Foundation UK / NHS Taskforce Report (2025)" },
+      { title: "NHS England (2025) – Report of the independent ADHD Taskforce", url: "https://www.england.nhs.uk/long-read/report-of-the-independent-adhd-taskforce-part-1/" },
     ],
   },
   {
@@ -277,7 +277,7 @@ export const topics: Topic[] = [
     ],
     sources: [
       { title: "Barkley, R. A. (2012) – Executive Functions" },
-      { title: "DSM-5-TR (2022) – Kriterien Impulsivität" },
+      { title: "American Psychiatric Association (2022) – DSM-5-TR" },
       { title: "Brown, T. E. (2017) – Smart but Stuck" },
     ],
   },
@@ -360,7 +360,7 @@ export const topics: Topic[] = [
     sources: [
       { title: "Brown, T. E. (2017) – Smart but Stuck" },
       { title: "Barkley, R. A. (2012) – Executive Functions" },
-      { title: "Alison Lush – Professional Organizing für ADHS" },
+      { title: "Kooij et al. (2019) – Updated European Consensus Statement on adult ADHD", url: "https://www.tandfonline.com/doi/full/10.1080/09297049.2019.1580211" },
     ],
   },
   {
@@ -440,18 +440,18 @@ export const topics: Topic[] = [
       },
     ],
     sources: [
-      { title: "Soler-Gutiérrez et al. (2023) – Emotional dysregulation in ADHD" },
+      { title: "Soler-Gutiérrez et al. (2023) – Emotional dysregulation in ADHD", url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0280131" },
       { title: "Brown, T. E. (2017) – Smart but Stuck" },
-      { title: "Sol Smith – Lived-Experience-Inhalte zu emotionaler Sicherheit" },
+      { title: "American Psychiatric Association (2022) – DSM-5-TR" },
     ],
   },
   {
     id: "rsd",
-    slug: "rsd",
-    name: "Rejection Sensitivity",
-    shortName: "RSD",
+    slug: "rejection-sensitivity",
+    name: "Rejection Sensitivity und ADHS",
+    shortName: "RS",
     description:
-      "Extreme emotionale Schmerzen bei wahrgenommener Ablehnung oder Kritik.",
+      "Starke emotionale Schmerzen bei wahrgenommener Ablehnung, Kritik oder Zurückweisung – oft mit Scham und Vermeidung verbunden.",
     color: "#9B8DC3",
     fill: "rgba(155, 141, 195, 0.25)",
     tagline: "Kritik trifft dich nicht nur im Kopf – sie trifft dich im ganzen Körper.",
@@ -472,11 +472,6 @@ export const topics: Topic[] = [
           "Du bewirbst dich nicht auf eine Stelle, fragst nicht um Hilfe oder gehst nicht zu einer Verabredung.",
       },
       {
-        question: "Wie oft entschuldigst du dich, bevor du etwas falsch gemacht hast?",
-        situation:
-          "Du sagst Sorry für normale Bedürfnisse, für deine Meinung oder einfach dafür, dass du existierst.",
-      },
-      {
         question: "Wie oft spielst du Gespräche tagelang im Kopf durch?",
         situation:
           "Ein Gespräch von vor drei Wochen spukt dir immer noch durch den Kopf und du schämst dich dafür.",
@@ -488,11 +483,11 @@ export const topics: Topic[] = [
     ],
     neurobiology: {
       intro:
-        "Rejection Sensitive Dysphoria ist kein offizieller DSM-5-Begriff, aber klinisch sehr verbreitet. Es beschreibt intensive emotionale Schmerzen bei wahrgenommener Ablehnung – sei es durch Kritik, Zurückweisung oder sogar neutrale Signale.",
+        "Rejection Sensitivity – oft als Rejection Sensitive Dysphoria (RSD) bezeichnet – ist kein offizielles DSM-5-TR-Kriterium und keine eigenständige Diagnose. Es beschreibt aber ein klinisch häufig beobachtetes Phänomen: intensive emotionale Schmerzen bei wahrgenommener Ablehnung, Kritik oder sogar neutralen sozialen Signalen. Viele Menschen mit ADHS berichten davon, auch wenn die Forschungslage noch dünn ist.",
       mechanism:
-        "RSD ist ein Nervensystem-Phänomen. Durch jahrelange korrigierende oder abwertende Rückmeldungen lernt das Gehirn, soziale Signale mit Bedrohung zu verknüpfen. Die Amygdala reagiert sensibler, das Stresssystem aktiviert sich, der Körper geht in Alarmbereitschaft. Das passiert oft automatisch und schneller, als der präfrontale Cortex eingreifen kann.",
+        "RSD steht in enger Verbindung mit emotionaler Dysregulation. Betroffen sind das anteriore Cingulum, der präfrontale Cortex und die Amygdala – also dieselben Strukturen, die bei ADHS die Intensität und Dauer emotionaler Reaktionen regulieren. Durch wiederholte korrigierende oder abwertende Rückmeldungen kann das Nervensystem lernen, soziale Signale mit Bedrohung zu verknüpfen. Die Reaktion erfolgt dann oft automatisch und schneller, als der präfrontale Cortex eingreifen kann.",
       context:
-        "Wichtig ist: RSD ist kein Charakterfehler und keine Überempfindlichkeit im moralischen Sinn. Es ist ein konditioniertes Alarmmuster. Alpha-2-Agonisten wie Guanfacin oder Clonidin werden in schweren Fällen klinisch eingesetzt, weil sie das Nervensystem beruhigen.",
+        "Wichtig ist die wissenschaftliche Einordnung: Kritiker wie Russell Barkley betonen, dass RSD kein valides, eigenständiges Störungsbild ist – 'RSD is not a valid disorder. ADHD already has a basis for explaining the high levels of emotional behavior.' RSD-ähnliche Erfahrungen kommen auch bei sozialer Angst, Borderline oder Depression vor. Für Betroffene sind die Empfindungen dennoch real. RSD ist kein Charakterfehler, sondern ein konditioniertes Alarmmuster, das sich mit Selbstmitgefühl, Regulation und gegebenenfalls medizinischer Unterstützung mildern lässt.",
     },
     strategies: [
       {
@@ -522,9 +517,10 @@ export const topics: Topic[] = [
       },
     ],
     sources: [
-      { title: "Dodson & Modestino (2024) – Rejection Sensitivity Dysphoria in ADHD" },
-      { title: "Sol Smith – Lived-Experience-Erklärungen zu RSD" },
-      { title: "Understood.org – Sorry, I Missed This Podcast" },
+      { title: "Dodson & Modestino (2024) – Rejection Sensitivity Dysphoria in ADHD", url: "https://actascientific.com/ASNE/pdf/ASNE-07-0762.pdf" },
+      { title: "Barkley, R. A. – Kritik an RSD als eigenständiges Konstrukt" },
+      { title: "Soler-Gutiérrez et al. (2023) – Emotional dysregulation in ADHD", url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0280131" },
+      { title: "American Psychiatric Association (2022) – DSM-5-TR" },
     ],
   },
   {
@@ -604,9 +600,9 @@ export const topics: Topic[] = [
       },
     ],
     sources: [
-      { title: "Huberman Lab Podcast #37 – ADHD & Focus" },
       { title: "Barkley, R. A. (2012) – Executive Functions" },
       { title: "Brown, T. E. (2017) – Smart but Stuck" },
+      { title: "Kooij et al. (2019) – Updated European Consensus Statement on adult ADHD", url: "https://www.tandfonline.com/doi/full/10.1080/09297049.2019.1580211" },
     ],
   },
   {
@@ -686,9 +682,9 @@ export const topics: Topic[] = [
       },
     ],
     sources: [
-      { title: "Huberman Lab Podcast #37 – Interozeption" },
-      { title: "Soler-Gutiérrez et al. (2023) – Emotional dysregulation in ADHD" },
-      { title: "Sol Smith – Neurodivergent Recharging" },
+      { title: "Soler-Gutiérrez et al. (2023) – Emotional dysregulation in ADHD", url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0280131" },
+      { title: "Brown, T. E. (2017) – Smart but Stuck" },
+      { title: "American Psychiatric Association (2022) – DSM-5-TR" },
     ],
   },
   {
@@ -734,11 +730,11 @@ export const topics: Topic[] = [
     ],
     neurobiology: {
       intro:
-        "Hyperfokus ist das Gegenstück zur Unaufmerksamkeit. Während uninteressante Aufgaben kaum Dopamin freisetzen, lösen faszinierende Themen eine starke Dopamin-Ausschüttung aus. Das Gehirn verbeißt sich in die Aktivität.",
+        "Hyperfokus ist das Gegenstück zur Unaufmerksamkeit: Während uninteressante Aufgaben kaum Dopamin freisetzen, lösen faszinierende Themen eine starke Dopamin-Ausschüttung aus – das Gehirn verbeißt sich in die Aktivität. Wichtig ist: Hyperfokus ist kein diagnostisches Kriterium im DSM-5-TR. Er kann bei ADHS häufiger vorkommen, tritt aber auch bei anderen Menschen auf und ist keine alleinige Beweislast für ADHS.",
       mechanism:
-        "Das Belohnungssystem und das task-related network arbeiten bei hohem Interesse extrem effizient zusammen. Das Default Mode Network wird stark unterdrückt, externe Reize werden ausgeblendet. Zeitgefühl und Körperbedürfnisse treten in den Hintergrund.",
+        "Das Belohnungssystem und das task-related network arbeiten bei hohem Interesse extrem effizient zusammen. Das Default Mode Network wird stark unterdrückt, externe Reize werden ausgeblendet. Zeitgefühl und Körperbedürfnisse treten in den Hintergrund. Studien mit dem Adult Hyperfocus Questionnaire (AHQ-D) zeigen eine moderate Korrelation zwischen Hyperfokus und ADHS-Traits – ein Zusammenhang, aber kein ADHS-Symptom im klassischen Sinne.",
       context:
-        "Hyperfokus ist weder Gabe noch Fluch – er ist beides. Er kann enorm produktiv sein, aber auch dazu führen, dass Schlaf, Essen oder Pflichten vernachlässigt werden. Das Ziel ist nicht, ihn abzuschaffen, sondern ihn zu kanalisieren.",
+        "Hyperfokus ist nicht dasselbe wie Flow: Flow ist freiwillig, befriedigend und tritt bei einer guten Balance aus Herausforderung und Können auf. Hyperfokus hingegen ist dysreguliert – er beginnt oft ungeplant, ist schwer zu beenden und endet häufig in Erschöpfung, verpassten Mahlzeiten oder Schlafmangel. Hyperfokus ist weder Gabe noch Fluch, sondern beides: Er kann enorm produktiv sein, aber auch dazu führen, dass Schlaf, Essen oder Pflichten vernachlässigt werden. Das Ziel ist nicht, ihn abzuschaffen, sondern ihn zu kanalisieren.",
     },
     strategies: [
       {
@@ -768,9 +764,10 @@ export const topics: Topic[] = [
       },
     ],
     sources: [
-      { title: "Huberman Lab Podcast #37 – Hyperfocus" },
+      { title: "Hupfeld et al. (2024) – Validation of the AHQ-D", url: "https://www.nature.com/articles/s41598-024-70028-y" },
+      { title: "Ashinoff & Abu-Akel (2021) – Hyperfocus: The forgotten frontier of attention", url: "https://link.springer.com/article/10.1007/s00426-019-01245-8" },
       { title: "Brown, T. E. (2017) – Smart but Stuck" },
-      { title: "Cate Osborn – The ADHD Field Guide for Adults" },
+      { title: "American Psychiatric Association (2022) – DSM-5-TR" },
     ],
   },
   {
@@ -850,9 +847,9 @@ export const topics: Topic[] = [
       },
     ],
     sources: [
-      { title: "ADHD Foundation UK / NHS Taskforce Report (2025)" },
-      { title: "Huberman Lab Podcast #37 – Sensorische Reize" },
-      { title: "Understood.org – Sensory Processing" },
+      { title: "NHS England (2025) – Report of the independent ADHD Taskforce", url: "https://www.england.nhs.uk/long-read/report-of-the-independent-adhd-taskforce-part-1/" },
+      { title: "American Psychiatric Association (2022) – DSM-5-TR" },
+      { title: "Kooij et al. (2019) – Updated European Consensus Statement on adult ADHD", url: "https://www.tandfonline.com/doi/full/10.1080/09297049.2019.1580211" },
     ],
   },
   {
@@ -934,7 +931,7 @@ export const topics: Topic[] = [
     sources: [
       { title: "Morgan, J. (2023) – Women's experiences of ADHD diagnosis" },
       { title: "King's College London Thesis (2025) – ADHD in Girls and Women" },
-      { title: "Sol Smith – Restraint Collapse & Masking" },
+      { title: "American Psychiatric Association (2022) – DSM-5-TR" },
     ],
   },
   {
@@ -1014,9 +1011,9 @@ export const topics: Topic[] = [
       },
     ],
     sources: [
-      { title: "Huberman Lab Podcast #37 – Schlaf & Circadiane Rhythmen" },
+      { title: "Luu & Fabiano (2025) – ADHD as a circadian rhythm disorder", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12728042/" },
       { title: "American Psychiatric Association (2022) – DSM-5-TR" },
-      { title: "ADHD Foundation UK – Schlaf und ADHS" },
+      { title: "Kooij et al. (2019) – Updated European Consensus Statement on adult ADHD", url: "https://www.tandfonline.com/doi/full/10.1080/09297049.2019.1580211" },
     ],
   },
 ];

@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import type { Strategy, Effort } from "@/lib/data/strategies";
+import { effortLabels, evidenceLabels, type Strategy, type Effort, type EvidenceLevel } from "@/lib/data/strategies";
 
 interface StrategyCardProps {
   strategy: Strategy;
@@ -17,6 +17,28 @@ const effortVariant: Record<Effort, "default" | "secondary" | "outline"> = {
   low: "default",
   medium: "secondary",
   high: "outline",
+};
+
+const evidenceStyles: Record<
+  EvidenceLevel,
+  { className: string; dot: string }
+> = {
+  strong: {
+    className: "bg-green-100 text-green-800 hover:bg-green-100",
+    dot: "bg-green-600",
+  },
+  moderate: {
+    className: "bg-blue-100 text-blue-800 hover:bg-blue-100",
+    dot: "bg-blue-600",
+  },
+  emerging: {
+    className: "bg-amber-100 text-amber-800 hover:bg-amber-100",
+    dot: "bg-amber-600",
+  },
+  "lived-experience": {
+    className: "bg-purple-100 text-purple-800 hover:bg-purple-100",
+    dot: "bg-purple-600",
+  },
 };
 
 export function StrategyCard({ strategy, dimensionColors, dimensionNames }: StrategyCardProps) {
@@ -41,9 +63,17 @@ export function StrategyCard({ strategy, dimensionColors, dimensionNames }: Stra
             </Badge>
           ))}
           <Badge variant={effortVariant[strategy.effort]} className="text-xs">
-            {strategy.effort === "low" && "Leichter Einstieg"}
-            {strategy.effort === "medium" && "Mittlerer Aufwand"}
-            {strategy.effort === "high" && "Mehr Aufwand"}
+            {effortLabels[strategy.effort]}
+          </Badge>
+          <Badge
+            variant="outline"
+            className={`gap-1.5 text-xs ${evidenceStyles[strategy.evidenceLevel].className}`}
+          >
+            <span
+              aria-hidden="true"
+              className={`inline-block size-1.5 rounded-full ${evidenceStyles[strategy.evidenceLevel].dot}`}
+            />
+            {evidenceLabels[strategy.evidenceLevel]}
           </Badge>
         </div>
         <CardTitle className="mt-2 text-lg font-medium leading-snug">
@@ -76,11 +106,11 @@ export function StrategyCard({ strategy, dimensionColors, dimensionNames }: Stra
         >
           {expanded ? (
             <>
-              Weniger anzeigen <ChevronUp className="size-4" />
+              Weniger anzeigen <ChevronUp className="size-4" aria-hidden="true" />
             </>
           ) : (
             <>
-              Schritte anzeigen <ChevronDown className="size-4" />
+              Schritte anzeigen <ChevronDown className="size-4" aria-hidden="true" />
             </>
           )}
         </Button>

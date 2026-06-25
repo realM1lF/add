@@ -24,10 +24,12 @@ export function StrategyFilter<T extends string>({
     }
   };
 
+  const labelId = React.useId();
+
   return (
     <div className="space-y-2">
-      <p className="text-sm font-medium text-muted-foreground">{label}</p>
-      <div className="flex flex-wrap gap-2">
+      <p id={labelId} className="text-sm font-medium text-muted-foreground">{label}</p>
+      <div className="flex flex-wrap gap-2" role="group" aria-labelledby={labelId}>
         {options.map((option) => {
           const active = selected.includes(option.value);
           return (
@@ -35,6 +37,7 @@ export function StrategyFilter<T extends string>({
               key={option.value}
               type="button"
               onClick={() => toggle(option.value)}
+              aria-pressed={active}
               className={cn(
                 "rounded-full border px-3 py-1.5 text-sm transition-colors focus-ring",
                 active

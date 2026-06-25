@@ -6,7 +6,9 @@ import {
   dimensions,
   situationTags,
   effortLabels,
+  evidenceLabels,
   type Effort,
+  type EvidenceLevel,
 } from "@/lib/data/strategies";
 import { topics } from "@/lib/data/topics";
 import { StrategyCard } from "./StrategyCard";
@@ -28,10 +30,18 @@ const effortOptions: { value: Effort; label: string }[] = [
   { value: "high", label: effortLabels.high },
 ];
 
+const evidenceOptions: { value: EvidenceLevel; label: string }[] = [
+  { value: "strong", label: evidenceLabels.strong },
+  { value: "moderate", label: evidenceLabels.moderate },
+  { value: "emerging", label: evidenceLabels.emerging },
+  { value: "lived-experience", label: evidenceLabels["lived-experience"] },
+];
+
 export default function StrategiesPage() {
   const [selectedDimensions, setSelectedDimensions] = React.useState<string[]>([]);
   const [selectedTags, setSelectedTags] = React.useState<string[]>([]);
   const [selectedEffort, setSelectedEffort] = React.useState<Effort[]>([]);
+  const [selectedEvidence, setSelectedEvidence] = React.useState<EvidenceLevel[]>([]);
 
   const filtered = strategies.filter((strategy) => {
     const matchesDimension =
@@ -42,18 +52,23 @@ export default function StrategiesPage() {
       strategy.situationTags.some((tag) => selectedTags.includes(tag));
     const matchesEffort =
       selectedEffort.length === 0 || selectedEffort.includes(strategy.effort);
-    return matchesDimension && matchesTag && matchesEffort;
+    const matchesEvidence =
+      selectedEvidence.length === 0 ||
+      selectedEvidence.includes(strategy.evidenceLevel);
+    return matchesDimension && matchesTag && matchesEffort && matchesEvidence;
   });
 
   const hasFilters =
     selectedDimensions.length > 0 ||
     selectedTags.length > 0 ||
-    selectedEffort.length > 0;
+    selectedEffort.length > 0 ||
+    selectedEvidence.length > 0;
 
   const reset = () => {
     setSelectedDimensions([]);
     setSelectedTags([]);
     setSelectedEffort([]);
+    setSelectedEvidence([]);
   };
 
   return (
@@ -87,7 +102,7 @@ export default function StrategiesPage() {
                 onClick={reset}
                 className="gap-1.5"
               >
-                <RotateCcw className="size-4" />
+                <RotateCcw className="size-4" aria-hidden="true" />
                 Filter zurücksetzen
               </Button>
             )}
@@ -106,12 +121,19 @@ export default function StrategiesPage() {
             selected={selectedEffort}
             onChange={setSelectedEffort}
           />
+
+          <StrategyFilter
+            label="Evidenz"
+            options={evidenceOptions}
+            selected={selectedEvidence}
+            onChange={setSelectedEvidence}
+          />
         </section>
 
         <section className="mt-12">
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-muted/20 py-16 text-center">
-              <Lightbulb className="size-8 text-muted-foreground" />
+              <Lightbulb className="size-8 text-muted-foreground" aria-hidden="true" />
               <p className="mt-4 text-lg font-medium text-foreground">
                 Keine Strategien gefunden
               </p>
