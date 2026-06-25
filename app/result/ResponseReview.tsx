@@ -250,7 +250,7 @@ function ResponseTrail({
               backgroundColor: dimColor,
               opacity,
             }}
-            title={`${answerLabels[value]} (${value}/4)`}
+            title={`${answerLabels[value as 0 | 1 | 2 | 3 | 4]} (${value}/4)`}
           />
         );
       })}
@@ -285,7 +285,7 @@ function QuestionDetail({
           className="shrink-0 border-current font-mono text-xs font-medium"
           style={{ color: dimColor, backgroundColor: `${dimColor}14` }}
         >
-          {answerLabels[answer]}
+          {answerLabels[answer as 0 | 1 | 2 | 3 | 4]}
         </Badge>
       </div>
       {question.examples.length > 0 && (

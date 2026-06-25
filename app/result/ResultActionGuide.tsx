@@ -12,6 +12,7 @@ import {
   Sparkles,
   ArrowRight,
 } from "lucide-react";
+import { allQuestions, dimensions } from "@/lib/data/dimensions";
 
 interface Action {
   icon: React.ReactNode;
@@ -178,7 +179,7 @@ function getActions(band: Band): Action[] {
           icon: <ClipboardList className="size-4" />,
           title: "Erweitertes Profil ausfüllen",
           description:
-            "Mit 68 Fragen entlang zwölf Dimensionen bekommst du ein genaueres Bild.",
+            `Mit ${allQuestions.length} Fragen entlang ${dimensions.length} Dimensionen bekommst du ein genaueres Bild.`,
           cta: { label: "Profil erweitern", href: "/screener", variant: "default" },
         },
       ];

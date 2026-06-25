@@ -5,6 +5,31 @@ import {
   type DimensionCategory,
 } from "./data/dimensions";
 
+export const categoryStyles: Record<
+  DimensionCategory,
+  {
+    label: string;
+    fillClass: string;
+    indicatorClass: string;
+  }
+> = {
+  core: {
+    label: "Kernsymptome / etablierte ADHS-Bereiche",
+    fillClass: "fill-blue-600 dark:fill-blue-400",
+    indicatorClass: "bg-blue-600 dark:bg-blue-400",
+  },
+  experience: {
+    label: "Häufige Erfahrungen bei ADHS",
+    fillClass: "fill-amber-700 dark:fill-amber-500",
+    indicatorClass: "bg-amber-700 dark:bg-amber-500",
+  },
+  comorbidity: {
+    label: "Häufige Begleiterscheinungen / Komorbiditäten",
+    fillClass: "fill-slate-500 dark:fill-slate-400",
+    indicatorClass: "bg-slate-500 dark:bg-slate-400",
+  },
+};
+
 export interface Answers {
   [questionId: string]: number;
 }
@@ -17,6 +42,21 @@ export interface DimensionScore {
   color: string;
   fill: string;
   category: DimensionCategory;
+}
+
+function makeDimensionScore(
+  dim: (typeof dimensions)[number],
+  value: number
+): DimensionScore {
+  return {
+    id: dim.id,
+    name: dim.name,
+    shortName: dim.shortName,
+    value,
+    color: dim.color,
+    fill: dim.fill,
+    category: dim.category,
+  };
 }
 
 export function calculateDimensionScores(answers: Answers): DimensionScore[] {
@@ -44,15 +84,7 @@ export function calculateDimensionScores(answers: Answers): DimensionScore[] {
       value = Math.round((scores[dim.id] / maxPoints) * 100);
     }
 
-    return {
-      id: dim.id,
-      name: dim.name,
-      shortName: dim.shortName,
-      value,
-      color: dim.color,
-      fill: dim.fill,
-      category: dim.category,
-    };
+    return makeDimensionScore(dim, value);
   });
 }
 
@@ -70,6 +102,28 @@ export function getASRS5Level(score: number): ASRS5Level {
   if (score <= 9) return "niedrig";
   if (score <= 13) return "mittel";
   return "erhöht";
+}
+
+export function getASRS5Color(level: ASRS5Level): string {
+  switch (level) {
+    case "erhöht":
+      return "hsl(0, 76%, 44%)";
+    case "mittel":
+      return "hsl(57, 76%, 44%)";
+    case "niedrig":
+      return "hsl(142, 76%, 44%)";
+  }
+}
+
+export function getASRS5DisplayLabel(level: ASRS5Level): string {
+  switch (level) {
+    case "erhöht":
+      return "Erhöht";
+    case "mittel":
+      return "Mittel";
+    case "niedrig":
+      return "Niedrig";
+  }
 }
 
 export function getASRS5Interpretation(score: number): string {
@@ -98,15 +152,7 @@ export function decodeScores(hash: string): DimensionScore[] | null {
     const parsed = JSON.parse(atob(hash)) as [string, number][];
     const map = new Map(parsed);
 
-    return dimensions.map((dim) => ({
-      id: dim.id,
-      name: dim.name,
-      shortName: dim.shortName,
-      value: map.get(dim.id) ?? 15,
-      color: dim.color,
-      fill: dim.fill,
-      category: dim.category,
-    }));
+    return dimensions.map((dim) => makeDimensionScore(dim, map.get(dim.id) ?? 15));
   } catch {
     return null;
   }
@@ -130,32 +176,27 @@ const NEUROTYPICAL_AVERAGE: Record<string, number> = {
   schlaf: 30,
 };
 
-export const exampleAverageScores: DimensionScore[] = dimensions.map((dim) => ({
-  id: dim.id,
-  name: dim.name,
-  shortName: dim.shortName,
-  value: NEUROTYPICAL_AVERAGE[dim.id] ?? 25,
-  color: dim.color,
-  fill: dim.fill,
-  category: dim.category,
-}));
+export const exampleAverageScores: DimensionScore[] = dimensions.map((dim) =>
+  makeDimensionScore(dim, NEUROTYPICAL_AVERAGE[dim.id] ?? 25)
+);
 
 export function getAverageScore<T extends { value: number }>(scores: T[]): number {
   if (scores.length === 0) return 0;
   return scores.reduce((sum, s) => sum + s.value, 0) / scores.length;
 }
 
-export function getLevelColor(average: number): string {
+function getLevelHue(average: number): number {
   const clamped = Math.max(0, Math.min(100, average));
   // Grün (142°) → Rot (0°)
-  const hue = 142 - (clamped / 100) * 142;
-  return `hsl(${hue}, 76%, 44%)`;
+  return 142 - (clamped / 100) * 142;
+}
+
+export function getLevelColor(average: number): string {
+  return `hsl(${getLevelHue(average)}, 76%, 44%)`;
 }
 
 export function getLevelFill(average: number): string {
-  const clamped = Math.max(0, Math.min(100, average));
-  const hue = 142 - (clamped / 100) * 142;
-  return `hsla(${hue}, 76%, 44%, 0.22)`;
+  return `hsla(${getLevelHue(average)}, 76%, 44%, 0.22)`;
 }
 
 export function getLevelLabel(average: number): string {

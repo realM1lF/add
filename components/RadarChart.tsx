@@ -11,13 +11,14 @@ import {
   Tooltip,
 } from "recharts";
 
-import { dimensions } from "@/lib/data/dimensions";
+import { dimensions, type DimensionCategory } from "@/lib/data/dimensions";
 import { cn } from "@/lib/utils";
 import {
   getAverageScore,
   getLevelColor,
   getLevelFill,
   getLevelLabel,
+  categoryStyles,
 } from "@/lib/score";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,6 +28,10 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Eye, EyeOff, Users, User, Info, HelpCircle } from "lucide-react";
+
+const categoryByShortName = new Map(
+  dimensions.map((d) => [d.shortName, d.category])
+);
 
 export interface RadarChartPoint {
   subject: string;
@@ -44,12 +49,17 @@ interface AngleAxisTickProps {
 }
 
 function AngleAxisTick({ x, y, payload, textAnchor }: AngleAxisTickProps) {
+  const category = categoryByShortName.get(payload.value);
+  const styles = category ? categoryStyles[category] : null;
   return (
     <text
       x={x}
       y={y}
       textAnchor={textAnchor}
-      className="fill-foreground text-[10px] font-mono uppercase tracking-wider sm:text-xs"
+      className={cn(
+        "text-[10px] font-mono uppercase tracking-wider sm:text-xs",
+        styles?.fillClass ?? "fill-foreground"
+      )}
     >
       {payload.value}
     </text>
@@ -61,6 +71,8 @@ interface TooltipPayloadItem {
     fullName: string;
     own: number;
     compare: number;
+    color: string;
+    category: DimensionCategory;
   };
 }
 
@@ -134,6 +146,7 @@ export function RadarChart({
           own: own?.value ?? 0,
           compare: compare?.value ?? 0,
           color: dim.color,
+          category: dim.category,
         };
       });
   }, [ownScores, compareScores, visibleIds]);
@@ -160,7 +173,11 @@ export function RadarChart({
 
   return (
     <div className={cn("flex flex-col gap-6", className)}>
-      <div className="relative aspect-square w-full max-w-lg mx-auto">
+      <div
+        className="relative aspect-square w-full max-w-lg mx-auto"
+        role="img"
+        aria-label={`Radar-Chart: Mein Profil entlang ${dimensions.length} Dimensionen`}
+      >
         <ResponsiveContainer width="100%" height="100%">
           <RechartsRadarChart
             data={data}
@@ -230,12 +247,8 @@ export function RadarChart({
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="top" className="max-w-xs text-center">
-                Orientierungswert für Erwachsene ohne ADHS-Diagnose. Für
-                Unaufmerksamkeit, Hyperaktivität und Impulsivität angelehnt an
-                Screening-Forschung zu erwachsenem ADHS, leicht angehoben wegen
-                aktueller Bevölkerungstrends. Für die weiteren Dimensionen liegt
-                keine Normierung vor; hier wurde ein konservativer Schätzwert
-                verwendet.
+                Zeigt oder blendet geschätzte Vergleichswerte für Erwachsene ohne
+                ADHS-Diagnose ein.
               </TooltipContent>
             </UiTooltip>
           </TooltipProvider>
@@ -255,6 +268,26 @@ export function RadarChart({
         )}
       </div>
 
+      <div className="flex flex-wrap justify-center gap-3">
+        {(Object.keys(categoryStyles) as DimensionCategory[]).map(
+          (cat) => (
+            <div
+              key={cat}
+              className="inline-flex items-center gap-1.5 text-xs text-muted-foreground"
+            >
+              <span
+                className={cn(
+                  "size-2.5 rounded-full",
+                  categoryStyles[cat].indicatorClass
+                )}
+                aria-hidden="true"
+              />
+              <span>{categoryStyles[cat].label}</span>
+            </div>
+          )
+        )}
+      </div>
+
       <div className="flex flex-wrap justify-center gap-2">
         {dimensions.map((dim) => {
           const visible = visibleIds.has(dim.id);
@@ -262,9 +295,10 @@ export function RadarChart({
             <button
               key={dim.id}
               type="button"
+              aria-pressed={visible}
               onClick={() => toggleDimension(dim.id)}
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium transition-colors focus-ring",
+                "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                 visible
                   ? "bg-background text-foreground border-border"
                   : "bg-muted/50 text-muted-foreground border-transparent"

@@ -11,11 +11,14 @@ import {
   calculateASRS5Score,
   decodeScores,
   exampleAverageScores,
+  getASRS5Color,
+  getASRS5DisplayLabel,
   getASRS5Interpretation,
   getASRS5Level,
   getAverageScore,
   getLevelColor,
   getLevelLabel,
+  type DimensionScore,
 } from "@/lib/score";
 import { STORAGE_KEY } from "@/hooks/useScreener";
 import {
@@ -28,29 +31,54 @@ import {
 } from "lucide-react";
 import { ResultActionGuide } from "./ResultActionGuide";
 import { ResponseReview } from "./ResponseReview";
+import {
+  allQuestions,
+  dimensions,
+  type DimensionCategory,
+} from "@/lib/data/dimensions";
 
-let cachedRaw: string | null = "__initial__";
-let cachedAnswers: Record<string, number> = {};
+const CATEGORY_ORDER: DimensionCategory[] = [
+  "core",
+  "experience",
+  "comorbidity",
+];
 
-function loadAnswers(): Record<string, number> {
-  if (typeof window === "undefined") return cachedAnswers;
+const categoryHeadlines: Record<DimensionCategory, string> = {
+  core: "Deine stärksten Kernbereiche:",
+  experience: "Weitere häufige ADHS-Erfahrungen bei dir:",
+  comorbidity: "Begleitbereiche, die du im Blick behalten solltest:",
+};
+
+function subscribe(callback: () => void) {
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+}
+
+function readLocalStorageAnswers(): Record<string, number> {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (raw === cachedRaw) return cachedAnswers;
-    cachedRaw = raw;
-    cachedAnswers = raw ? JSON.parse(raw) : {};
-    return cachedAnswers;
+    return raw ? JSON.parse(raw) : {};
   } catch {
-    return cachedAnswers;
+    return {};
   }
 }
 
 function useLocalStorageAnswers(): Record<string, number> {
   return React.useSyncExternalStore(
-    () => () => {},
-    () => loadAnswers(),
-    () => cachedAnswers
+    subscribe,
+    () => readLocalStorageAnswers(),
+    () => ({})
   );
+}
+
+function toRadarPoints(scores: DimensionScore[]) {
+  return scores.map((s) => ({
+    subject: s.shortName,
+    fullName: s.name,
+    id: s.id,
+    value: s.value,
+    color: s.color,
+  }));
 }
 
 export function ResultClient() {
@@ -66,26 +94,27 @@ export function ResultClient() {
     return calculateDimensionScores(localAnswers);
   }, [scoreHash, localAnswers]);
 
-  const ownPoints = scores.map((s) => ({
-    subject: s.shortName,
-    fullName: s.name,
-    id: s.id,
-    value: s.value,
-    color: s.color,
-  }));
+  const ownPoints = React.useMemo(() => toRadarPoints(scores), [scores]);
 
-  const comparePoints = exampleAverageScores.map((s) => ({
-    subject: s.shortName,
-    fullName: s.name,
-    id: s.id,
-    value: s.value,
-    color: s.color,
-  }));
+  const comparePoints = React.useMemo(
+    () => toRadarPoints(exampleAverageScores),
+    []
+  );
 
-  const topDimensions = [...scores]
-    .filter((s) => s.value > 15)
-    .sort((a, b) => b.value - a.value)
-    .slice(0, 3);
+  const notablesByCategory = React.useMemo(() => {
+    const result: Record<DimensionCategory, DimensionScore[]> = {
+      core: [],
+      experience: [],
+      comorbidity: [],
+    };
+    for (const category of CATEGORY_ORDER) {
+      result[category] = [...scores]
+        .filter((s) => s.category === category && s.value > 15)
+        .sort((a, b) => b.value - a.value)
+        .slice(0, 2);
+    }
+    return result;
+  }, [scores]);
 
   const averageScore = getAverageScore(scores);
   const levelColor = getLevelColor(averageScore);
@@ -93,19 +122,14 @@ export function ResultClient() {
 
   const asrs5Score = calculateASRS5Score(localAnswers);
   const asrs5Level = getASRS5Level(asrs5Score);
-  const asrs5Color =
-    asrs5Level === "erhöht"
-      ? "hsl(0, 76%, 44%)"
-      : asrs5Level === "mittel"
-      ? "hsl(40, 76%, 44%)"
-      : "hsl(142, 76%, 44%)";
+  const asrs5Color = getASRS5Color(asrs5Level);
 
   const scaleSteps = [
     { label: "Unauffällig", threshold: 0 },
-    { label: "Leicht", threshold: 20 },
-    { label: "Mäßig", threshold: 40 },
-    { label: "Deutlich", threshold: 60 },
-    { label: "Stark", threshold: 80 },
+    { label: "Leicht erhöht", threshold: 20 },
+    { label: "Mäßig erhöht", threshold: 40 },
+    { label: "Deutlich erhöht", threshold: 60 },
+    { label: "Stark erhöht", threshold: 80 },
   ];
 
   return (
@@ -128,6 +152,8 @@ export function ResultClient() {
           <div
             className="flex size-16 items-center justify-center rounded-full border-4 border-background shadow-lg"
             style={{ backgroundColor: levelColor }}
+            role="img"
+            aria-label={`Durchschnitt aller Dimensionen: ${Math.round(averageScore)}%, ${levelLabel}`}
           >
             <span className="text-2xl font-medium text-white">
               {Math.round(averageScore)}
@@ -147,15 +173,97 @@ export function ResultClient() {
         </div>
       </section>
 
+      <section className="mt-12">
+        <Card className="border-0 shadow-sm">
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center gap-2 text-base font-medium">
+              <ClipboardList className="size-4 text-primary" />
+              ASRS-5 Schnell-Screener
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-8">
+              <div
+                className="flex size-28 items-center justify-center rounded-full border-4 border-background shadow-lg"
+                style={{ backgroundColor: asrs5Color }}
+                role="img"
+                aria-label={`ASRS-5 Ergebnis: ${asrs5Score} von 24 Punkten, Level ${asrs5Level}`}
+              >
+                <span className="text-5xl font-medium text-white">
+                  {asrs5Score}
+                </span>
+              </div>
+              <div className="text-center sm:text-left">
+                <p
+                  className="text-3xl font-medium tracking-tight"
+                  style={{ color: asrs5Color }}
+                >
+                  {getASRS5DisplayLabel(asrs5Level)}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Von maximal 24 Punkten
+                </p>
+              </div>
+            </div>
+
+            {asrs5Level === "erhöht" && (
+              <div className="mt-6 rounded-xl border border-destructive/20 bg-destructive/5 p-4" role="alert">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle
+                    className="mt-0.5 size-5 shrink-0"
+                    style={{ color: asrs5Color }}
+                  />
+                  <p className="text-sm leading-relaxed text-foreground">
+                    Ein Wert von 14 oder mehr Punkten ist ein Hinweis auf eine
+                    erhöhte Wahrscheinlichkeit von ADHS. Sprich mit einer Fachkraft
+                    über eine Abklärung.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+              {getASRS5Interpretation(asrs5Score)}
+            </p>
+
+            <div className="mt-4 flex items-start gap-3 text-sm text-muted-foreground">
+              <Info className="mt-0.5 size-4 shrink-0" />
+              <p>
+                Der ASRS-5 ist ein wissenschaftlich validiertes Screening-Instrument
+                der WHO. Er ersetzt keine Diagnose.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
       <section className="mt-10">
-        <RadarChart
-          ownScores={ownPoints}
-          compareScores={comparePoints}
-          className="w-full"
-          animate
-          showAverageInfo={false}
-          showToggleAll={false}
-        />
+        {comparePoints.length > 0 ? (
+          <figure>
+            <RadarChart
+              ownScores={ownPoints}
+              compareScores={comparePoints}
+              className="w-full"
+              animate
+              showAverageInfo={false}
+              showToggleAll={false}
+            />
+            <figcaption className="mt-4 flex items-start gap-3 text-sm text-muted-foreground">
+              <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+              Der eingezeichnete Durchschnitt ist eine vereinfachte Schätzung aus
+              Screening-Forschung, keine klinische Norm.
+            </figcaption>
+          </figure>
+        ) : (
+          <RadarChart
+            ownScores={ownPoints}
+            compareScores={comparePoints}
+            className="w-full"
+            animate
+            showAverageInfo={false}
+            showToggleAll={false}
+          />
+        )}
       </section>
 
       <section className="mt-16">
@@ -167,27 +275,50 @@ export function ResultClient() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {topDimensions.length === 0 ? (
-              <p className="text-sm text-muted-foreground">
-                Bisher liegen noch keine ausreichenden Daten vor. Starte den
-                Screener, um deine Schwerpunkte zu ermitteln.
-              </p>
-            ) : (
-              <ul className="space-y-3">
-                {topDimensions.map((dim) => (
-                  <li key={dim.id} className="flex items-center gap-3">
-                    <span
-                      className="size-2.5 rounded-full"
-                      style={{ backgroundColor: dim.color }}
-                    />
-                    <span className="flex-1 text-sm font-medium">{dim.name}</span>
-                    <span className="font-mono text-sm text-muted-foreground">
-                      {Math.round(dim.value)}%
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
+            <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+              Dein Profil zeigt Merkmale, die bei ADHS häufig vorkommen. Diese
+              Bereiche könnten in einer diagnostischen Abklärung besprochen
+              werden.
+            </p>
+
+            <div className="space-y-6">
+              {CATEGORY_ORDER.map((category) => {
+                const dims = notablesByCategory[category];
+                return (
+                  <div key={category}>
+                    <h3 className="mb-2 text-sm font-medium text-foreground">
+                      {categoryHeadlines[category]}
+                    </h3>
+                    {dims.length === 0 ? (
+                      <p className="text-sm text-muted-foreground">
+                        Keine auffälligen Werte in dieser Kategorie.
+                      </p>
+                    ) : (
+                      <ul className="space-y-2">
+                        {dims.map((dim) => (
+                          <li
+                            key={dim.id}
+                            className="flex items-center gap-3"
+                          >
+                            <span
+                              className="size-2.5 rounded-full"
+                              style={{ backgroundColor: dim.color }}
+                              aria-hidden="true"
+                            />
+                            <span className="flex-1 text-sm font-medium">
+                              {dim.name}
+                            </span>
+                            <span className="font-mono text-sm text-muted-foreground">
+                              {Math.round(dim.value)}%
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </CardContent>
         </Card>
       </section>
@@ -239,8 +370,6 @@ export function ResultClient() {
           <p>
             Die Skala zeigt Orientierungswerte auf Basis deines Durchschnitts über
             alle Dimensionen. Höhere Werte deuten auf eine stärkere Ausprägung hin.
-            Sie ersetzen keine Diagnose – die finale Beurteilung obliegt immer einer
-            Fachkraft.
           </p>
         </div>
       </section>
@@ -251,50 +380,6 @@ export function ResultClient() {
           levelColor={levelColor}
           levelLabel={levelLabel}
         />
-      </section>
-
-      <section className="mt-16">
-        <Card className="border-0 shadow-sm">
-          <CardHeader className="pb-4">
-            <CardTitle className="flex items-center gap-2 text-base font-medium">
-              <ClipboardList className="size-4 text-primary" />
-              ASRS-5 Schnell-Screener
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-              <div
-                className="flex size-16 items-center justify-center rounded-full border-4 border-background shadow-lg"
-                style={{ backgroundColor: asrs5Color }}
-              >
-                <span className="text-2xl font-medium text-white">
-                  {asrs5Score}
-                </span>
-              </div>
-              <div className="text-center sm:text-left">
-                <p
-                  className="text-2xl font-medium tracking-tight"
-                  style={{ color: asrs5Color }}
-                >
-                  {asrs5Level.charAt(0).toUpperCase() + asrs5Level.slice(1)}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Von maximal 24 Punkten
-                </p>
-              </div>
-            </div>
-            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              {getASRS5Interpretation(asrs5Score)}
-            </p>
-            <div className="mt-4 text-sm text-muted-foreground">
-              <p>
-                Der ASRS-5 ist ein wissenschaftlich validiertes Screening-Instrument der WHO.
-                Ein Wert von 14 oder mehr Punkten gilt als Hinweis auf eine erhöhte Wahrscheinlichkeit
-                von ADHS. Er ersetzt keine Diagnose.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
       </section>
 
       <ResponseReview answers={localAnswers} />
@@ -319,7 +404,7 @@ export function ResultClient() {
             Möchtest du das Profil wiederholen?
           </h3>
           <p className="text-muted-foreground">
-            Das Profil umfasst 68 Fragen entlang zwölf Dimensionen.
+            Das Profil umfasst {allQuestions.length} Fragen entlang {dimensions.length} Dimensionen.
           </p>
         </div>
         <div className="flex gap-3">

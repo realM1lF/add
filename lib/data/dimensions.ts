@@ -578,7 +578,7 @@ export const extendedQuestions: Question[] = [
 
 export const allQuestions: Question[] = [...extendedQuestions];
 
-export const answerLabels: Record<number, string> = {
+export const answerLabels: Record<0 | 1 | 2 | 3 | 4, string> = {
   0: "Nie",
   1: "Selten",
   2: "Manchmal",
