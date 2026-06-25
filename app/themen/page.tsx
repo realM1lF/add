@@ -21,7 +21,7 @@ export default function TopicsOverviewPage() {
         <section className="relative grid items-center gap-10 lg:grid-cols-2">
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-xs font-medium text-muted-foreground shadow-sm">
-              <Sparkles className="size-3.5 text-primary" />
+              <Sparkles className="size-3.5 text-primary" aria-hidden="true" />
               12 Dimensionen – verständlich erklärt
             </div>
 
@@ -41,7 +41,7 @@ export default function TopicsOverviewPage() {
         </section>
 
         <Alert className="mt-8 max-w-3xl border-l-4 border-l-primary bg-card/50">
-          <Info className="size-5 text-primary" />
+          <Info className="size-5 text-primary" aria-hidden="true" />
           <AlertDescription>
             Nicht alle Themen müssen auf dich zutreffen. Manche Menschen haben
             vor allem Schwierigkeiten mit der Aufmerksamkeit, andere mit
@@ -86,7 +86,7 @@ export default function TopicsOverviewPage() {
                 >
                   <Link href={`/themen/${topic.slug}`}>
                     Mehr erfahren
-                    <ArrowRight className="size-4" />
+                    <ArrowRight className="size-4" aria-hidden="true" />
                   </Link>
                 </Button>
               </CardContent>

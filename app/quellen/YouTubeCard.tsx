@@ -35,7 +35,7 @@ export function YouTubeCard({ source, accent }: YouTubeCardProps) {
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">
-            <Play className="size-10 text-muted-foreground/40" />
+            <Play className="size-10 text-muted-foreground/40" aria-hidden="true" />
           </div>
         )}
 
@@ -52,7 +52,7 @@ export function YouTubeCard({ source, accent }: YouTubeCardProps) {
           <h3 className="font-heading text-base font-medium leading-snug text-foreground">
             {source.title}
           </h3>
-          <ExternalLink className="mt-0.5 size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" />
+          <ExternalLink className="mt-0.5 size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" aria-hidden="true" />
         </div>
 
         <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">

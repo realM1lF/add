@@ -236,14 +236,14 @@ export function RadarChart({
                   className="gap-1.5"
                 >
                   {showCompare ? (
-                    <Users className="size-4" />
+                    <Users className="size-4" aria-hidden="true" />
                   ) : (
-                    <User className="size-4" />
+                    <User className="size-4" aria-hidden="true" />
                   )}
                   {showCompare
                     ? "Neurotypischen Mittelwert ausblenden"
                     : "Neurotypischen Mittelwert zeigen"}
-                  <HelpCircle className="size-3.5 text-muted-foreground" />
+                  <HelpCircle className="size-3.5 text-muted-foreground" aria-hidden="true" />
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="top" className="max-w-xs text-center">
@@ -262,7 +262,7 @@ export function RadarChart({
             onClick={toggleAll}
             className="gap-1.5"
           >
-            {allVisible ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+            {allVisible ? <EyeOff className="size-4" aria-hidden="true" /> : <Eye className="size-4" aria-hidden="true" />}
             {allVisible ? "Alle ausblenden" : "Alle zeigen"}
           </Button>
         )}
@@ -319,7 +319,7 @@ export function RadarChart({
         <div className="rounded-xl border bg-muted/20 p-4">
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
             <div className="flex items-center gap-2 text-sm">
-              <Info className="size-4 text-muted-foreground" />
+              <Info className="size-4 text-muted-foreground" aria-hidden="true" />
               <span className="text-muted-foreground">
                 Profilfärbung basiert auf dem Durchschnitt aller Dimensionen:
               </span>

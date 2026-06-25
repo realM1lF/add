@@ -32,7 +32,7 @@ export function Footer() {
               Daten bleiben auf deinem Gerät.
             </p>
             <p className="mt-4 inline-flex items-center gap-2 text-xs text-muted-foreground">
-              <Shield className="size-4" />
+              <Shield className="size-4" aria-hidden="true" />
               Keine Diagnose. Nur Selbsterkundung.
             </p>
           </div>

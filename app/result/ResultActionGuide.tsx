@@ -92,12 +92,12 @@ export function ResultActionGuide({
                   {action.cta.onClick ? (
                     <>
                       {action.cta.label}
-                      <ArrowRight className="size-3.5" />
+                      <ArrowRight className="size-3.5" aria-hidden="true" />
                     </>
                   ) : (
                     <Link href={action.cta.href ?? "#"}>
                       {action.cta.label}
-                      <ArrowRight className="size-3.5" />
+                      <ArrowRight className="size-3.5" aria-hidden="true" />
                     </Link>
                   )}
                 </Button>
@@ -152,14 +152,14 @@ function getActions(band: Band): Action[] {
     case "low":
       return [
         {
-          icon: <BookOpen className="size-4" />,
+          icon: <BookOpen className="size-4" aria-hidden="true" />,
           title: "Themen durchstöbern",
           description:
             "Lies in den Bereichen, die dich interessieren, nach Strategien und Hintergründen.",
           cta: { label: "Zu den Themen", href: "/themen" },
         },
         {
-          icon: <Sparkles className="size-4" />,
+          icon: <Sparkles className="size-4" aria-hidden="true" />,
           title: "Strategien ausprobieren",
           description:
             "Auch ohne auffälliges Profil können dir Organisationstools oder Fokus-Techniken helfen.",
@@ -169,14 +169,14 @@ function getActions(band: Band): Action[] {
     case "mild":
       return [
         {
-          icon: <BookOpen className="size-4" />,
+          icon: <BookOpen className="size-4" aria-hidden="true" />,
           title: "Schwerpunkte vertiefen",
           description:
             "Schau dir die Themen-Seiten zu deinen höchsten Dimensionen an.",
           cta: { label: "Themen ansehen", href: "/themen" },
         },
         {
-          icon: <ClipboardList className="size-4" />,
+          icon: <ClipboardList className="size-4" aria-hidden="true" />,
           title: "Erweitertes Profil ausfüllen",
           description:
             `Mit ${allQuestions.length} Fragen entlang ${dimensions.length} Dimensionen bekommst du ein genaueres Bild.`,
@@ -186,14 +186,14 @@ function getActions(band: Band): Action[] {
     case "moderate":
       return [
         {
-          icon: <ClipboardList className="size-4" />,
+          icon: <ClipboardList className="size-4" aria-hidden="true" />,
           title: "Erweitertes Profil ausfüllen",
           description:
             "Der kurze Screener zeigt nur einen Ausschnitt. Das erweiterte Profil hilft, Muster zu erkennen.",
           cta: { label: "Jetzt erweitern", href: "/screener", variant: "default" },
         },
         {
-          icon: <BookOpen className="size-4" />,
+          icon: <BookOpen className="size-4" aria-hidden="true" />,
           title: "Passende Strategien lernen",
           description:
             "Entdecke gezielte Ansätze für die Bereiche, die bei dir am stärksten ausgeprägt sind.",
@@ -203,14 +203,14 @@ function getActions(band: Band): Action[] {
     case "elevated":
       return [
         {
-          icon: <Stethoscope className="size-4" />,
+          icon: <Stethoscope className="size-4" aria-hidden="true" />,
           title: "Fachkraft kontaktieren",
           description:
             "Ein Gespräch mit Hausarzt, Psychiater:in oder Psychotherapeut:in ist der nächste sinnvolle Schritt.",
           cta: { label: "Vorbereitungstipps", href: "#arztgespraech" },
         },
         {
-          icon: <Printer className="size-4" />,
+          icon: <Printer className="size-4" aria-hidden="true" />,
           title: "Ergebnis mitnehmen",
           description:
             "Drucke dein Profil aus oder speichere es, um es im Gespräch mit einer Fachkraft zu verwenden.",
@@ -220,14 +220,14 @@ function getActions(band: Band): Action[] {
     case "high":
       return [
         {
-          icon: <Stethoscope className="size-4" />,
+          icon: <Stethoscope className="size-4" aria-hidden="true" />,
           title: "Zeitnah abklären lassen",
           description:
             "Bei stark ausgeprägten Mustern ist eine professionelle Diagnostik wichtig, um passende Hilfe zu bekommen.",
           cta: { label: "Wie finde ich Hilfe?", href: "#arztgespraech", variant: "default" },
         },
         {
-          icon: <Printer className="size-4" />,
+          icon: <Printer className="size-4" aria-hidden="true" />,
           title: "Ergebnis dokumentieren",
           description:
             "Nimm dein Profil und konkrete Alltagsbeispiele zum Termin mit.",

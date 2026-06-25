@@ -21,7 +21,7 @@ export function NewsCard({ source, accent }: NewsCardProps) {
       />
 
       <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground transition-colors group-hover:text-foreground">
-        <Globe className="size-5" />
+        <Globe className="size-5" aria-hidden="true" />
       </div>
 
       <div className="min-w-0 flex-1">
@@ -29,7 +29,7 @@ export function NewsCard({ source, accent }: NewsCardProps) {
           <h3 className="font-heading text-base font-medium leading-snug text-foreground">
             {source.title}
           </h3>
-          <ExternalLink className="mt-0.5 size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" />
+          <ExternalLink className="mt-0.5 size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" aria-hidden="true" />
         </div>
 
         <p className="mt-1 text-sm leading-relaxed text-muted-foreground">

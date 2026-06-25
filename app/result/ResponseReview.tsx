@@ -94,7 +94,7 @@ export function ResponseReview({ answers }: ResponseReviewProps) {
             onClick={() => setViewMode("dimensions")}
             className="gap-1.5 rounded-full"
           >
-            <LayoutGrid className="size-4" />
+            <LayoutGrid className="size-4" aria-hidden="true" />
             Nach Dimension
           </Button>
           <Button
@@ -103,7 +103,7 @@ export function ResponseReview({ answers }: ResponseReviewProps) {
             onClick={() => setViewMode("order")}
             className="gap-1.5 rounded-full"
           >
-            <ListOrdered className="size-4" />
+            <ListOrdered className="size-4" aria-hidden="true" />
             Nach Reihenfolge
           </Button>
         </div>
@@ -186,6 +186,7 @@ function DimensionCard({
             "size-5 shrink-0 text-muted-foreground transition-transform duration-200",
             expanded && "rotate-180"
           )}
+          aria-hidden="true"
         />
       </button>
 

@@ -5,7 +5,7 @@ export function SourceDisclaimer() {
     <div className="rounded-2xl border border-border bg-card/50 p-6 sm:p-8">
       <div className="flex items-start gap-4">
         <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted">
-          <AlertCircle className="size-5 text-muted-foreground" />
+          <AlertCircle className="size-5 text-muted-foreground" aria-hidden="true" />
         </div>
         <div>
           <h3 className="font-heading text-base font-medium text-foreground">

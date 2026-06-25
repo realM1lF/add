@@ -25,7 +25,7 @@ export function Trust() {
         {items.map((item) => (
           <div key={item.title} className="flex flex-col items-center text-center">
             <div className="mb-4 flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-              <item.icon className="size-6" />
+              <item.icon className="size-6" aria-hidden="true" />
             </div>
             <h3 className="text-base font-medium text-foreground">{item.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

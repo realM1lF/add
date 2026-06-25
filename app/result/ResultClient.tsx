@@ -177,7 +177,7 @@ export function ResultClient() {
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-base font-medium">
-              <ClipboardList className="size-4 text-primary" />
+              <ClipboardList className="size-4 text-primary" aria-hidden="true" />
               ASRS-5 Schnell-Screener
             </CardTitle>
           </CardHeader>
@@ -212,6 +212,7 @@ export function ResultClient() {
                   <AlertTriangle
                     className="mt-0.5 size-5 shrink-0"
                     style={{ color: asrs5Color }}
+                    aria-hidden="true"
                   />
                   <p className="text-sm leading-relaxed text-foreground">
                     Ein Wert von 14 oder mehr Punkten ist ein Hinweis auf eine
@@ -227,7 +228,7 @@ export function ResultClient() {
             </p>
 
             <div className="mt-4 flex items-start gap-3 text-sm text-muted-foreground">
-              <Info className="mt-0.5 size-4 shrink-0" />
+              <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
               <p>
                 Der ASRS-5 ist ein wissenschaftlich validiertes Screening-Instrument
                 der WHO. Er ersetzt keine Diagnose.
@@ -270,7 +271,7 @@ export function ResultClient() {
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-base font-medium">
-              <Sparkles className="size-4 text-primary" />
+              <Sparkles className="size-4 text-primary" aria-hidden="true" />
               Deine Schwerpunkte
             </CardTitle>
           </CardHeader>
@@ -366,7 +367,7 @@ export function ResultClient() {
         </div>
 
         <div className="mt-6 flex items-start gap-3 text-sm text-muted-foreground">
-          <Info className="mt-0.5 size-4 shrink-0" />
+          <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
           <p>
             Die Skala zeigt Orientierungswerte auf Basis deines Durchschnitts über
             alle Dimensionen. Höhere Werte deuten auf eine stärkere Ausprägung hin.
@@ -386,7 +387,7 @@ export function ResultClient() {
 
       <Card className="mt-16 border-l-4 border-l-primary">
         <CardContent className="flex gap-4 py-6">
-          <AlertTriangle className="mt-0.5 size-5 shrink-0 text-primary" />
+          <AlertTriangle className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
           <div>
             <h3 className="font-medium text-foreground">Wichtiger Hinweis</h3>
             <p className="mt-1 leading-relaxed text-muted-foreground">
@@ -410,13 +411,13 @@ export function ResultClient() {
         <div className="flex gap-3">
           <Button asChild variant="outline" className="rounded-full gap-2">
             <Link href="/screener">
-              <ArrowLeft className="size-4" />
+              <ArrowLeft className="size-4" aria-hidden="true" />
               Zurück zum Screener
             </Link>
           </Button>
           <Button asChild variant="outline" className="rounded-full gap-2">
             <Link href="/">
-              <RotateCcw className="size-4" />
+              <RotateCcw className="size-4" aria-hidden="true" />
               Neu beginnen
             </Link>
           </Button>

@@ -39,7 +39,7 @@ export function InstagramCard({ source, accent }: InstagramCardProps) {
         className="mt-1 inline-flex items-center gap-1 font-mono text-xs"
         style={{ color: accent }}
       >
-        <AtSign className="size-3" />
+        <AtSign className="size-3" aria-hidden="true" />
         {source.handle}
       </p>
 
@@ -57,7 +57,7 @@ export function InstagramCard({ source, accent }: InstagramCardProps) {
         </div>
       )}
 
-      <ExternalLink className="mt-5 size-4 text-muted-foreground transition-colors group-hover:text-foreground" />
+      <ExternalLink className="mt-5 size-4 text-muted-foreground transition-colors group-hover:text-foreground" aria-hidden="true" />
     </a>
   );
 }

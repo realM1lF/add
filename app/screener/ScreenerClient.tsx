@@ -148,7 +148,7 @@ export function ScreenerClient() {
       <Card className="mx-auto max-w-2xl">
         <CardContent className="pt-8 text-center">
           <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <AlertCircle className="size-8" />
+            <AlertCircle className="size-8" aria-hidden="true" />
           </div>
           <h2 className="text-2xl font-medium tracking-tight">
             Du hast alle Fragen beantwortet
@@ -159,10 +159,10 @@ export function ScreenerClient() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Button onClick={handleFinish} className="gap-2 rounded-full">
               Ergebnis ansehen
-              <ArrowRight className="size-4" />
+              <ArrowRight className="size-4" aria-hidden="true" />
             </Button>
             <Button variant="outline" onClick={handleRestart} className="gap-2 rounded-full">
-              <RotateCcw className="size-4" />
+              <RotateCcw className="size-4" aria-hidden="true" />
               Neu starten
             </Button>
           </div>
@@ -198,7 +198,7 @@ export function ScreenerClient() {
                 className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               >
                 <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <AlertCircle className="size-8" />
+                  <AlertCircle className="size-8" aria-hidden="true" />
                 </div>
                 <h2 className="text-2xl font-medium tracking-tight">
                   Danke. Im nächsten Teil geht es um weitere ADHS-relevante
@@ -216,7 +216,7 @@ export function ScreenerClient() {
                   onClick={handlePrevious}
                   className="gap-2 rounded-full"
                 >
-                  <ArrowLeft className="size-4" />
+                  <ArrowLeft className="size-4" aria-hidden="true" />
                   Zurück
                 </Button>
                 <Button
@@ -224,7 +224,7 @@ export function ScreenerClient() {
                   className="gap-2 rounded-full"
                 >
                   Weiter
-                  <ArrowRight className="size-4" />
+                  <ArrowRight className="size-4" aria-hidden="true" />
                 </Button>
               </div>
             </CardFooter>
@@ -291,7 +291,7 @@ export function ScreenerClient() {
                   disabled={isFirst}
                   className="gap-2 rounded-full"
                 >
-                  <ArrowLeft className="size-4" />
+                  <ArrowLeft className="size-4" aria-hidden="true" />
                   Zurück
                 </Button>
 
@@ -302,7 +302,7 @@ export function ScreenerClient() {
                     className="gap-2 rounded-full"
                   >
                     Ergebnis ansehen
-                    <ArrowRight className="size-4" />
+                    <ArrowRight className="size-4" aria-hidden="true" />
                   </Button>
                 ) : (
                   <Button
@@ -311,7 +311,7 @@ export function ScreenerClient() {
                     className="gap-2 rounded-full"
                   >
                     Weiter
-                    <ArrowRight className="size-4" />
+                    <ArrowRight className="size-4" aria-hidden="true" />
                   </Button>
                 )}
               </div>

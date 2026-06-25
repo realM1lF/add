@@ -34,7 +34,7 @@ export function Hero() {
           <Button asChild size="lg" className="h-12 gap-2 rounded-full px-8 text-base">
             <Link href="/screener">
               Jetzt Profil erkunden
-              <ArrowRight className="size-4" />
+              <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </Button>
           <Button
