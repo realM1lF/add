@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Heart, Shield } from "lucide-react";
+import { AlertTriangle, Heart, Lock } from "lucide-react";
 
 const navLinks = [
   { href: "/themen", label: "Das Spektrum" },
@@ -16,7 +16,20 @@ const legalLinks = [
 export function Footer() {
   return (
     <footer className="mt-auto border-t border-border bg-card/30 px-6 py-14 sm:px-8 lg:px-12">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl space-y-10">
+        {/* Medical disclaimer */}
+        <div className="flex items-start gap-4 rounded-2xl border border-border bg-card/50 p-5">
+          <AlertTriangle
+            className="mt-0.5 size-5 shrink-0 text-foreground"
+            aria-hidden="true"
+          />
+          <p className="text-sm leading-relaxed text-foreground">
+            <strong className="font-medium">Medizinischer Hinweis:</strong>{" "}
+            Diese Website ersetzt keine medizinische oder psychotherapeutische
+            Beratung. Bei Verdacht auf ADHS wende dich an eine Fachkraft.
+          </p>
+        </div>
+
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-2">
@@ -28,12 +41,11 @@ export function Footer() {
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
               Verstehe dein individuelles ADHS-Profil entlang zwölf Dimensionen.
-              Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck. Deine
-              Daten bleiben auf deinem Gerät.
+              Wissenschaftlich fundiert, empathisch und ohne Diagnose-Druck.
             </p>
             <p className="mt-4 inline-flex items-center gap-2 text-xs text-muted-foreground">
-              <Shield className="size-4" aria-hidden="true" />
-              Keine Diagnose. Nur Selbsterkundung.
+              <Lock className="size-4" aria-hidden="true" />
+              Alle Antworten werden nur lokal in deinem Browser gespeichert.
             </p>
           </div>
 
@@ -76,7 +88,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} ADHS-Spektrum. Mit{" "}
             <Heart className="inline size-3 text-primary" aria-hidden="true" /> für
