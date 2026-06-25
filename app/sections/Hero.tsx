@@ -14,7 +14,7 @@ export function Hero() {
           <div className="absolute -right-2 top-0 z-20 sm:-right-4 sm:top-2">
             <div className="relative max-w-[12rem] rounded-2xl border border-border bg-card px-4 py-3 shadow-lg sm:max-w-[14rem]">
               <p className="text-balance text-sm font-medium leading-snug text-foreground sm:text-base">
-                Lass uns dein Spektrum ansehen!
+                Ich bin nur hier um süß auszusehen.
               </p>
               <span
                 className="absolute -bottom-1.5 left-4 size-3 rotate-45 border-b border-r border-border bg-card"
