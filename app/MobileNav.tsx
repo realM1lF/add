@@ -36,7 +36,11 @@ export function MobileNav() {
         aria-label={open ? "Menü schließen" : "Menü öffnen"}
         className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground"
       >
-        {open ? <X className="size-6" /> : <Menu className="size-6" />}
+        {open ? (
+          <X className="size-6" aria-hidden="true" />
+        ) : (
+          <Menu className="size-6" aria-hidden="true" />
+        )}
       </button>
 
       {open && (

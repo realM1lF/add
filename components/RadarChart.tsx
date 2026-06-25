@@ -262,7 +262,11 @@ export function RadarChart({
             onClick={toggleAll}
             className="gap-1.5"
           >
-            {allVisible ? <EyeOff className="size-4" aria-hidden="true" /> : <Eye className="size-4" aria-hidden="true" />}
+            {allVisible ? (
+              <EyeOff className="size-4" aria-hidden="true" />
+            ) : (
+              <Eye className="size-4" aria-hidden="true" />
+            )}
             {allVisible ? "Alle ausblenden" : "Alle zeigen"}
           </Button>
         )}

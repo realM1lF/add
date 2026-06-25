@@ -70,7 +70,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
             className="mb-6 gap-2 rounded-full pl-0 hover:bg-transparent hover:underline"
           >
             <Link href="/themen">
-              <ArrowLeft className="size-4" />
+              <ArrowLeft className="size-4" aria-hidden="true" />
               Zurück zur Übersicht
             </Link>
           </Button>
@@ -109,7 +109,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
                         className="flex size-8 items-center justify-center rounded-full text-white"
                         style={{ backgroundColor: topic.color }}
                       >
-                        <Icon className="size-4" />
+                        <Icon className="size-4" aria-hidden="true" />
                       </span>
                       <span className="font-medium text-foreground">
                         {section.label}
@@ -141,7 +141,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
                 className="flex size-10 items-center justify-center rounded-xl text-white"
                 style={{ backgroundColor: topic.color }}
               >
-                <Heart className="size-5" />
+                <Heart className="size-5" aria-hidden="true" />
               </span>
               <h2 className="text-2xl font-medium tracking-tight text-foreground">
                 So fühlt sich das an
@@ -194,7 +194,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
                 className="flex size-10 items-center justify-center rounded-xl text-white"
                 style={{ backgroundColor: topic.color }}
               >
-                <Brain className="size-5" />
+                <Brain className="size-5" aria-hidden="true" />
               </span>
               <h2 className="text-2xl font-medium tracking-tight text-foreground">
                 Warum passiert das?
@@ -242,7 +242,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
                 className="flex size-10 items-center justify-center rounded-xl text-white"
                 style={{ backgroundColor: topic.color }}
               >
-                <Lightbulb className="size-5" />
+                <Lightbulb className="size-5" aria-hidden="true" />
               </span>
               <h2 className="text-2xl font-medium tracking-tight text-foreground">
                 Was hilft?
@@ -282,7 +282,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
                 className="flex size-10 items-center justify-center rounded-xl text-white"
                 style={{ backgroundColor: topic.color }}
               >
-                <BookOpen className="size-5" />
+                <BookOpen className="size-5" aria-hidden="true" />
               </span>
               <h2 className="text-2xl font-medium tracking-tight text-foreground">
                 Quellen & Weiterführendes
@@ -331,7 +331,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
             <Button asChild className="mt-6 gap-2 rounded-full">
               <Link href="/screener">
                 Zum Screener
-                <ArrowLeft className="size-4 rotate-180" />
+                <ArrowLeft className="size-4 rotate-180" aria-hidden="true" />
               </Link>
             </Button>
           </div>
