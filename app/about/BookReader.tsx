@@ -48,7 +48,15 @@ export function BookReader({ book }: BookReaderProps) {
 
   return (
     <main className="flex flex-1 flex-col px-6 py-16 sm:px-8 lg:px-12">
-      <div className="mx-auto w-full max-w-2xl">
+      <div className="relative mx-auto w-full max-w-2xl">
+        <div className="absolute right-0 top-0 flex items-center gap-2 rounded-full border border-border bg-card/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-sm sm:right-0 sm:top-0">
+          <span className="relative flex size-2">
+            <span className="absolute inline-flex size-full animate-ping rounded-full bg-blue-500 opacity-60" />
+            <span className="relative inline-flex size-2 rounded-full bg-blue-600" />
+          </span>
+          Work just started
+        </div>
+
         <header className="text-center">
           <h1 className="font-heading text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
             {meta.title}
