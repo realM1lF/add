@@ -38,7 +38,7 @@ export function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-40" />
             <span className="relative inline-flex size-2 rounded-full bg-primary" />
           </span>
-          Forschungsbasiert · Keine Diagnose · Daten bleiben auf deinem Gerät
+          Eine Website von einem ADHS-Guy für alle
         </p>
 
         <h1 className="text-balance text-4xl font-medium leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl">

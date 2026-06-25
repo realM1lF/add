@@ -4,6 +4,7 @@ import { parseIndex, parseChapter, paginate } from "./book";
 const indexSource = `---
 title: "About"
 subtitle: "Ein Buch im Werden"
+intro: "Hier kommt ein kurzer Einleitungstext."
 lastEdited: "2026-06-25"
 ---
 
@@ -26,6 +27,7 @@ describe("parseIndex", () => {
     const { meta } = parseIndex(indexSource);
     expect(meta.title).toBe("About");
     expect(meta.subtitle).toBe("Ein Buch im Werden");
+    expect(meta.intro).toBe("Hier kommt ein kurzer Einleitungstext.");
     expect(meta.lastEdited).toBe("2026-06-25");
   });
 

@@ -1,6 +1,7 @@
 ---
 title: "About"
 subtitle: "Ein Buch im Werden"
+intro: "Haha, jetzt hast du bestimmt gedacht, du bekommst hier kurz und knapp zusammengefasst ein paar Worte zu mir zusammengefasst, hm? Falsch gedacht. Ja sorry, aber das hier wird nix für kurz mal auschecken, das wird ne längere Geschichte..."
 lastEdited: "2026-06-25"
 ---
 

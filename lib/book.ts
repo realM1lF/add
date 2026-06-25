@@ -5,6 +5,7 @@ import matter from "gray-matter";
 export interface BookMeta {
   title: string;
   subtitle?: string;
+  intro?: string;
   lastEdited?: string;
 }
 
@@ -39,6 +40,7 @@ function parseMeta(data: Record<string, unknown>): BookMeta {
   return {
     title: typeof data.title === "string" ? data.title : "",
     subtitle: typeof data.subtitle === "string" ? data.subtitle : undefined,
+    intro: typeof data.intro === "string" ? data.intro : undefined,
     lastEdited: typeof data.lastEdited === "string" ? data.lastEdited : undefined,
   };
 }
