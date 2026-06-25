@@ -42,7 +42,8 @@ export function Hero() {
         </p>
 
         <h1 className="text-balance text-4xl font-medium leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl">
-          Verstehe dein ADHS-Profil: wissenschaftlich fundiert und ohne Scham
+          Lerne dich selbst besser kennen und werfe einen Blick auf dein
+          Spektrum.
         </h1>
 
         <p className="mx-auto mt-8 max-w-2xl text-balance text-lg leading-relaxed text-muted-foreground sm:text-xl">
@@ -52,7 +53,11 @@ export function Hero() {
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button asChild size="lg" className="h-12 gap-2 rounded-full px-8 text-base">
+          <Button
+            asChild
+            size="lg"
+            className="h-12 gap-2 rounded-full px-8 text-base"
+          >
             <Link href="/screener">
               Jetzt Profil erkunden
               <ArrowRight className="size-4" aria-hidden="true" />

@@ -48,7 +48,7 @@ export default function TopicsOverviewPage() {
             Nicht alle Themen müssen auf dich zutreffen. Manche Menschen haben
             vor allem Schwierigkeiten mit der Aufmerksamkeit, andere mit
             Impulsivität, wieder andere mit emotionaler Dysregulation oder
-            Masking. Es gibt kein „richtiges“ ADHS-Profil.
+            Masking. Es gibt nicht „das eine“ ADHS-Profil.
           </AlertDescription>
         </Alert>
 
