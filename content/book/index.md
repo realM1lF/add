@@ -1,5 +1,5 @@
 ---
-title: "Meine Gedanken"
+title: "About"
 subtitle: "Ein Buch im Werden"
 lastEdited: "2026-06-25"
 ---

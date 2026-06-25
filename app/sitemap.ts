@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/themen",
     "/strategien",
     "/quellen",
-    "/meine-gedanken",
+    "/about",
     "/impressum",
     "/datenschutz",
   ].map((route) => ({

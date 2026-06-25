@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { parseIndex, parseChapter, paginate } from "./book";
 
 const indexSource = `---
-title: "Meine Gedanken"
+title: "About"
 subtitle: "Ein Buch im Werden"
 lastEdited: "2026-06-25"
 ---
@@ -24,7 +24,7 @@ Dritter Abschnitt.
 describe("parseIndex", () => {
   it("parses frontmatter metadata", () => {
     const { meta } = parseIndex(indexSource);
-    expect(meta.title).toBe("Meine Gedanken");
+    expect(meta.title).toBe("About");
     expect(meta.subtitle).toBe("Ein Buch im Werden");
     expect(meta.lastEdited).toBe("2026-06-25");
   });

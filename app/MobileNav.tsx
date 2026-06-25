@@ -11,7 +11,7 @@ const links = [
   { href: "/themen", label: "Das Spektrum" },
   { href: "/strategien", label: "Strategien" },
   { href: "/quellen", label: "Quellen" },
-  { href: "/meine-gedanken", label: "Meine Gedanken" },
+  { href: "/about", label: "About" },
 ];
 
 function getFocusableElements(container: HTMLElement): HTMLElement[] {
