@@ -1,4 +1,9 @@
-import { allQuestions, dimensions, ASRS5_QUESTION_IDS } from "./data/dimensions";
+import {
+  allQuestions,
+  dimensions,
+  ASRS5_QUESTION_IDS,
+  type DimensionCategory,
+} from "./data/dimensions";
 
 export interface Answers {
   [questionId: string]: number;
@@ -11,6 +16,7 @@ export interface DimensionScore {
   value: number; // 0–100
   color: string;
   fill: string;
+  category: DimensionCategory;
 }
 
 export function calculateDimensionScores(answers: Answers): DimensionScore[] {
@@ -45,14 +51,15 @@ export function calculateDimensionScores(answers: Answers): DimensionScore[] {
       value,
       color: dim.color,
       fill: dim.fill,
+      category: dim.category,
     };
   });
 }
 
 // ASRS-5 (WHO Adult ADHD Self-Report Scale, 6 Items).
-// The first six questions of the screener map to this validated instrument.
-// Score range: 0–24. Cut-off ≥ 14 points indicates an elevated likelihood
-// of ADHD (research/04, research/10).
+// We use the unweighted 0–4 sum scoring recommended by Ron Kessler to avoid
+// overestimating prevalence. Range 0–24. Cut-off ≥ 14 indicates an elevated
+// likelihood of ADHD (research/04, research/10, research/13).
 export function calculateASRS5Score(answers: Answers): number {
   return ASRS5_QUESTION_IDS.reduce((sum, id) => sum + (answers[id] ?? 0), 0);
 }
@@ -98,6 +105,7 @@ export function decodeScores(hash: string): DimensionScore[] | null {
       value: map.get(dim.id) ?? 15,
       color: dim.color,
       fill: dim.fill,
+      category: dim.category,
     }));
   } catch {
     return null;
@@ -105,21 +113,15 @@ export function decodeScores(hash: string): DimensionScore[] | null {
 }
 
 // Neurotypical (community) reference values used for the "compare" overlay.
-// - The reference values for Unaufmerksamkeit, Hyperaktivität and Impulsivität
-//   are loosely derived from adult ADHD screening research (community samples
-//   such as Adler et al., 2018).
-// - Because newer data (e.g. NHS England 2023/24; Nivins et al. 2026) suggest
-//   a modest population-level rise in ADHD-like symptoms, we nudge these
-//   reference values up slightly to ~50% and use ~30% for the extended
-//   dimensions (no normed data exist for those; this is a conservative estimate
-//   that corresponds to "seldom" to "sometimes" on average).
+// These are simplified estimates, not clinical norms. Core dimensions use a
+// slightly higher baseline; experience/context dimensions and comorbidities
+// use a conservative ~30% estimate. Always label this transparently in the UI.
 const NEUROTYPICAL_AVERAGE: Record<string, number> = {
   unaufmerksamkeit: 50,
   hyperaktivitaet: 50,
   impulsivitaet: 50,
   "exekutive-funktionen": 30,
   "emotionale-dysregulation": 30,
-  rsd: 30,
   zeitwahrnehmung: 30,
   interozeption: 30,
   hyperfokus: 30,
@@ -135,6 +137,7 @@ export const exampleAverageScores: DimensionScore[] = dimensions.map((dim) => ({
   value: NEUROTYPICAL_AVERAGE[dim.id] ?? 25,
   color: dim.color,
   fill: dim.fill,
+  category: dim.category,
 }));
 
 export function getAverageScore<T extends { value: number }>(scores: T[]): number {
