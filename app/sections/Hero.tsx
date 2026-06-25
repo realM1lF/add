@@ -42,9 +42,13 @@ export function Hero() {
         </p>
 
         <h1 className="text-balance text-4xl font-medium leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl">
+          ADHS Spektrum
+        </h1>
+
+        <h2 className="text-balance text-2xl font-medium leading-[1.1] tracking-tight text-foreground sm:text-3xl md:text-3xl">
           Lerne dich selbst besser kennen und werfe einen Blick auf dein
           Spektrum.
-        </h1>
+        </h2>
 
         <p className="mx-auto mt-8 max-w-2xl text-balance text-lg leading-relaxed text-muted-foreground sm:text-xl">
           Kein Diagnose-Tool, sondern ein erster Schritt zur Selbsterkundung.
