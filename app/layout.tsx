@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Footer } from "./sections/Footer";
@@ -159,9 +160,17 @@ export default function RootLayout({
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 sm:px-8 lg:px-12">
               <Link
                 href="/"
-                className="font-heading text-lg font-medium tracking-tight text-foreground"
+                className="flex items-center gap-2.5 font-heading text-lg font-medium tracking-tight text-foreground"
               >
-                ADHS-Spektrum
+                <Image
+                  src="/logo.png"
+                  alt=""
+                  width={36}
+                  height={36}
+                  className="rounded-full"
+                  priority
+                />
+                <span className="hidden sm:inline">ADHS-Spektrum</span>
               </Link>
               <nav className="hidden items-center gap-4 text-sm sm:flex">
                 <NavLink href="/themen">Das Spektrum</NavLink>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { SpectrumGlow } from "@/components/SpectrumGlow";
 import { ArrowRight } from "lucide-react";
@@ -9,6 +10,29 @@ export function Hero() {
       <SpectrumGlow />
 
       <div className="relative z-10 mx-auto max-w-3xl">
+        <div className="relative mx-auto mb-8 w-56 sm:w-72 md:w-80">
+          <div className="absolute -right-2 top-0 z-20 sm:-right-4 sm:top-2">
+            <div className="relative max-w-[12rem] rounded-2xl border border-border bg-card px-4 py-3 shadow-lg sm:max-w-[14rem]">
+              <p className="text-balance text-sm font-medium leading-snug text-foreground sm:text-base">
+                Lass uns dein Spektrum ansehen!
+              </p>
+              <span
+                className="absolute -bottom-1.5 left-4 size-3 rotate-45 border-b border-r border-border bg-card"
+                aria-hidden="true"
+              />
+            </div>
+          </div>
+
+          <Image
+            src="/logo.png"
+            alt="ADHS-Spektrum Maskottchen"
+            width={320}
+            height={320}
+            className="h-auto w-full"
+            priority
+          />
+        </div>
+
         <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-xs font-medium text-muted-foreground shadow-sm">
           <span className="relative flex size-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-40" />
