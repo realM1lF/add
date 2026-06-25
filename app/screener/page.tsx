@@ -15,7 +15,8 @@ export default function ScreenerPage() {
           Dein ADHS-Profil
         </h1>
         <p className="mb-12 text-center text-lg text-muted-foreground">
-          68 Fragen entlang zwölf Dimensionen. Nimm dir die Zeit, die du brauchst.
+          51 Fragen entlang zwölf Dimensionen. Nimm dir die Zeit, die du
+          brauchst.
         </p>
         <ScreenerClient />
       </div>
