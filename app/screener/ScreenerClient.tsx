@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { useScreener } from "@/hooks/useScreener";
+import { useScreener, ASRS_TRANSITION_SHOWN_KEY } from "@/hooks/useScreener";
 import { calculateDimensionScores, encodeScores } from "@/lib/score";
 import { allQuestions, answerLabels } from "@/lib/data/dimensions";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,6 @@ import { ArrowLeft, ArrowRight, RotateCcw, AlertCircle, Pause } from "lucide-rea
 
 const TOTAL_QUESTIONS = allQuestions.length;
 const ANSWER_TRANSITION_DELAY_MS = 220;
-const ASRS_TRANSITION_SHOWN_KEY = "adhs-screener-asrs-transition-shown";
 
 function useIsClient() {
   return React.useSyncExternalStore(
@@ -335,11 +334,34 @@ export function ScreenerClient() {
         )}
       </Card>
 
-      <p className="mt-6 text-center text-xs text-muted-foreground">
-        Du kannst jederzeit pausieren und später zurückkehren. Dein Fortschritt
-        wird automatisch in diesem Browser gespeichert. Das vollständige Profil
-        umfasst {TOTAL_QUESTIONS} Fragen entlang zwölf Dimensionen.
-      </p>
+      <div className="mt-6 flex flex-col items-center gap-3">
+        <p className="text-center text-xs text-muted-foreground">
+          Du kannst jederzeit pausieren und später zurückkehren. Dein Fortschritt
+          wird automatisch in diesem Browser gespeichert. Das vollständige Profil
+          umfasst {TOTAL_QUESTIONS} Fragen entlang zwölf Dimensionen.
+        </p>
+
+        {!isComplete && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => {
+              if (
+                typeof window !== "undefined" &&
+                window.confirm(
+                  "Möchtest du den Screener wirklich neu starten? Alle bisherigen Antworten werden gelöscht."
+                )
+              ) {
+                handleRestart();
+              }
+            }}
+            className="gap-1.5 text-muted-foreground hover:text-foreground"
+          >
+            <RotateCcw className="size-4" aria-hidden="true" />
+            Screener neu starten
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

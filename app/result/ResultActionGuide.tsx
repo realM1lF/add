@@ -6,13 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   BookOpen,
-  ClipboardList,
   Stethoscope,
   Printer,
   Sparkles,
   ArrowRight,
 } from "lucide-react";
-import { allQuestions, dimensions } from "@/lib/data/dimensions";
 
 interface Action {
   icon: React.ReactNode;
@@ -139,7 +137,7 @@ function getInterpretation(band: Band): string {
     case "mild":
       return "Einige deiner Antworten passen zu ADHS-typischen Mustern, aber sie sind eher leicht ausgeprägt. Es lohnt sich, gezielt Strategien auszuprobieren und zu beobachten, in welchen Situationen du Unterstützung brauchst.";
     case "moderate":
-      return "Mehrere Dimensionen sind mittelstark ausgeprägt. Das ist ein guter Anlass, das erweiterte Profil auszufüllen und dich mit den Themen auseinanderzusetzen, die am meisten zutreffen.";
+      return "Mehrere Dimensionen sind mittelstark ausgeprägt. Das ist ein guter Anlass, sich mit den Themen auseinanderzusetzen, die am meisten zutreffen, und passende Strategien auszuprobieren.";
     case "elevated":
       return "Dein Profil deckt sich deutlich mit ADHS-typischen Mustern. Wir empfehlen dir, mit einer Fachkraft über eine Abklärung zu sprechen – besonders wenn du dich im Alltag stark beeinträchtigt fühlst.";
     case "high":
@@ -176,24 +174,24 @@ function getActions(band: Band): Action[] {
           cta: { label: "Themen ansehen", href: "/themen" },
         },
         {
-          icon: <ClipboardList className="size-4" aria-hidden="true" />,
-          title: "Erweitertes Profil ausfüllen",
+          icon: <Sparkles className="size-4" aria-hidden="true" />,
+          title: "Strategien ausprobieren",
           description:
-            `Mit ${allQuestions.length} Fragen entlang ${dimensions.length} Dimensionen bekommst du ein genaueres Bild.`,
-          cta: { label: "Profil erweitern", href: "/screener", variant: "default" },
+            "Auch bei leicht ausgeprägten Mustern können dir Organisationstools oder Fokus-Techniken helfen.",
+          cta: { label: "Toolbox entdecken", href: "/strategien", variant: "default" },
         },
       ];
     case "moderate":
       return [
         {
-          icon: <ClipboardList className="size-4" aria-hidden="true" />,
-          title: "Erweitertes Profil ausfüllen",
+          icon: <BookOpen className="size-4" aria-hidden="true" />,
+          title: "Schwerpunkte vertiefen",
           description:
-            "Der kurze Screener zeigt nur einen Ausschnitt. Das erweiterte Profil hilft, Muster zu erkennen.",
-          cta: { label: "Jetzt erweitern", href: "/screener", variant: "default" },
+            "Schau dir die Themen-Seiten zu deinen höchsten Dimensionen genauer an.",
+          cta: { label: "Themen ansehen", href: "/themen", variant: "default" },
         },
         {
-          icon: <BookOpen className="size-4" aria-hidden="true" />,
+          icon: <Sparkles className="size-4" aria-hidden="true" />,
           title: "Passende Strategien lernen",
           description:
             "Entdecke gezielte Ansätze für die Bereiche, die bei dir am stärksten ausgeprägt sind.",
