@@ -1,21 +1,21 @@
 const steps = [
   {
     number: "01",
-    title: "Schnell einschätzen",
+    title: "Screener ausfüllen",
     description:
-      "Beantworte den Fragebogen entlang zwölf Dimensionen. Ein Schritt nach dem anderen.",
+      "Beantworte den ASRS-5 und weitere Fragen zu deinem Erleben.",
   },
   {
     number: "02",
-    title: "Dein Profil sehen",
+    title: "Profil erhalten",
     description:
-      "Ein interaktives Radar-Chart zeigt deine Ausprägungen entlang elf ADHS-relevanter Dimensionen.",
+      "Erhalte dein individuelles Profil – ohne Diagnose, aber mit klaren Hinweisen.",
   },
   {
     number: "03",
-    title: "Nächste Schritte finden",
+    title: "Strategien entdecken",
     description:
-      "Erhalte eine erste Einschätzung und erfahre, ob eine Abklärung durch eine Fachkraft sinnvoll sein könnte.",
+      "Entdecke Strategien und Quellen, die zu dir passen.",
   },
 ];
 

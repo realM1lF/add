@@ -4,17 +4,17 @@ const items = [
   {
     icon: Brain,
     title: "Wissenschaftlich fundiert",
-    description: "Inhaltlich angelehnt an ASRS-5, DSM-5-TR und aktuelle ADHS-Forschung.",
+    description: "Basierend auf DSM-5-TR, ASRS-5 und aktueller Forschung.",
   },
   {
     icon: Shield,
-    title: "Keine Diagnose",
-    description: "Ein Selbsterkundungs-Tool. Kein Ersatz für eine Fachkraft.",
+    title: "Kein Diagnose-Tool",
+    description: "Ein Selbsterkundungs-Tool – kein Ersatz für eine Fachkraft.",
   },
   {
     icon: Lock,
-    title: "Anonym & lokal",
-    description: "Deine Antworten werden nur in deinem Browser gespeichert.",
+    title: "Keine Datenspeicherung",
+    description: "Deine Antworten werden nur lokal in deinem Browser gespeichert.",
   },
 ];
 

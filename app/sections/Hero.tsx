@@ -14,20 +14,17 @@ export function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-40" />
             <span className="relative inline-flex size-2 rounded-full bg-primary" />
           </span>
-          Wissenschaftlich fundiert · Keine Diagnose · Daten bleiben auf deinem Gerät
+          Forschungsbasiert · Keine Diagnose · Daten bleiben auf deinem Gerät
         </p>
 
         <h1 className="text-balance text-4xl font-medium leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl">
-          ADHS ist kein Entweder-Oder.
-          <br />
-          <span className="text-primary">Es ist ein Spektrum.</span>
+          Verstehe dein ADHS-Profil: wissenschaftlich fundiert und ohne Scham
         </h1>
 
         <p className="mx-auto mt-8 max-w-2xl text-balance text-lg leading-relaxed text-muted-foreground sm:text-xl">
-          Verstehe dein individuelles Profil entlang zwölf Dimensionen – mit einem
-          wissenschaftlich fundierten Fragebogen und einem interaktiven
-          Radar-Chart. Kein Label, kein Druck. Nur ein Spiegel, der dir hilft,
-          dein Gehirn besser zu verstehen.
+          Kein Diagnose-Tool, sondern ein erster Schritt zur Selbsterkundung.
+          Beantworte den Screener, entdecke dein individuelles Profil und finde
+          Strategien, die zu dir passen.
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
