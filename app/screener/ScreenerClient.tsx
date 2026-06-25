@@ -274,11 +274,12 @@ export function ScreenerClient() {
                       key={value}
                       variant={selected ? "default" : "outline"}
                       aria-pressed={selected}
+                      aria-label={`${value} – ${answerLabels[value]}`}
                       onClick={() => handleAnswer(value)}
                       className="h-auto min-h-[3.5rem] flex-col gap-1 rounded-xl px-2 py-3 text-sm"
                     >
                       <span className="font-mono text-xs opacity-70">{value}</span>
-                      <span>{answerLabels[value]}</span>
+                      <span aria-hidden="true">{answerLabels[value]}</span>
                     </Button>
                   );
                 })}

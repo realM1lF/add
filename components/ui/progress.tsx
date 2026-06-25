@@ -17,6 +17,9 @@ function Progress({
         "relative flex h-1 w-full items-center overflow-x-hidden rounded-full bg-muted",
         className
       )}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={value ?? 0}
       {...props}
     >
       <ProgressPrimitive.Indicator

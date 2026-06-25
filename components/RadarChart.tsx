@@ -232,6 +232,12 @@ export function RadarChart({
                   type="button"
                   variant={showCompare ? "default" : "outline"}
                   size="sm"
+                  aria-pressed={showCompare}
+                  aria-label={
+                    showCompare
+                      ? "Neurotypischen Mittelwert ausblenden"
+                      : "Neurotypischen Mittelwert einblenden"
+                  }
                   onClick={() => setShowCompare((s) => !s)}
                   className="gap-1.5"
                 >
@@ -240,9 +246,11 @@ export function RadarChart({
                   ) : (
                     <User className="size-4" aria-hidden="true" />
                   )}
-                  {showCompare
-                    ? "Neurotypischen Mittelwert ausblenden"
-                    : "Neurotypischen Mittelwert zeigen"}
+                  <span aria-hidden="true">
+                    {showCompare
+                      ? "Neurotypischen Mittelwert ausblenden"
+                      : "Neurotypischen Mittelwert zeigen"}
+                  </span>
                   <HelpCircle className="size-3.5 text-muted-foreground" aria-hidden="true" />
                 </Button>
               </TooltipTrigger>
@@ -259,6 +267,8 @@ export function RadarChart({
             type="button"
             variant="outline"
             size="sm"
+            aria-pressed={allVisible}
+            aria-label={allVisible ? "Alle Dimensionen ausblenden" : "Alle Dimensionen anzeigen"}
             onClick={toggleAll}
             className="gap-1.5"
           >
@@ -267,7 +277,7 @@ export function RadarChart({
             ) : (
               <Eye className="size-4" aria-hidden="true" />
             )}
-            {allVisible ? "Alle ausblenden" : "Alle zeigen"}
+            <span aria-hidden="true">{allVisible ? "Alle ausblenden" : "Alle zeigen"}</span>
           </Button>
         )}
       </div>
@@ -300,9 +310,10 @@ export function RadarChart({
               key={dim.id}
               type="button"
               aria-pressed={visible}
+              aria-label={`${dim.name} ${visible ? "ausblenden" : "anzeigen"}`}
               onClick={() => toggleDimension(dim.id)}
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                 visible
                   ? "bg-background text-foreground border-border"
                   : "bg-muted/50 text-muted-foreground border-transparent"
@@ -313,7 +324,7 @@ export function RadarChart({
                 style={{ backgroundColor: dim.color }}
                 aria-hidden="true"
               />
-              {dim.shortName}
+              <span aria-hidden="true">{dim.shortName}</span>
             </button>
           );
         })}
