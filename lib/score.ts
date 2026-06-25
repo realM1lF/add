@@ -163,17 +163,17 @@ export function decodeScores(hash: string): DimensionScore[] | null {
 // slightly higher baseline; experience/context dimensions and comorbidities
 // use a conservative ~30% estimate. Always label this transparently in the UI.
 const NEUROTYPICAL_AVERAGE: Record<string, number> = {
-  unaufmerksamkeit: 25,
-  hyperaktivitaet: 25,
-  impulsivitaet: 25,
-  "exekutive-funktionen": 30,
-  "emotionale-dysregulation": 30,
-  zeitwahrnehmung: 40,
-  interozeption: 20,
-  hyperfokus: 20,
-  sensorik: 20,
-  masking: 20,
-  schlaf: 35,
+  unaufmerksamkeit: 35,
+  hyperaktivitaet: 35,
+  impulsivitaet: 35,
+  "exekutive-funktionen": 35,
+  "emotionale-dysregulation": 35,
+  zeitwahrnehmung: 45,
+  interozeption: 25,
+  hyperfokus: 25,
+  sensorik: 25,
+  masking: 25,
+  schlaf: 40,
 };
 
 export const exampleAverageScores: DimensionScore[] = dimensions.map((dim) =>
