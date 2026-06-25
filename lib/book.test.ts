@@ -64,18 +64,33 @@ describe("paginate", () => {
   });
 
   it("splits a long chapter into multiple pages", () => {
-    // Foreword is 3 words, so target words per page is 3.
+    const paragraph = "Wort ".repeat(450).trim();
     const { chapters, pages } = paginate([
       { id: "vorwort", title: "Vorwort", content: "Eins zwei drei." },
       {
         id: "kapitel-1",
         title: "Kapitel 1",
-        content: "Vier fünf sechs.\n\nSieben acht neun zehn.\n\nElf zwölf dreizehn.",
+        content: `${paragraph}\n\n${paragraph}\n\n${paragraph}`,
       },
     ]);
     expect(chapters[1].pageIndex).toBe(1);
     expect(pages.length).toBeGreaterThan(2);
     expect(pages[1].title).toBe("Kapitel 1");
     expect(pages[1].id).toBe("kapitel-1-seite-1");
+    expect(pages[1].showTitle).toBe(true);
+    expect(pages[2].showTitle).toBe(false);
+  });
+
+  it("shows the chapter title only on the first page", () => {
+    const paragraph = "Wort ".repeat(450).trim();
+    const { pages } = paginate([
+      {
+        id: "kapitel-1",
+        title: "Kapitel 1",
+        content: `${paragraph}\n\n${paragraph}`,
+      },
+    ]);
+    expect(pages[0].showTitle).toBe(true);
+    expect(pages[1].showTitle).toBe(false);
   });
 });

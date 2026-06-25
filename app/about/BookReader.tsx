@@ -11,28 +11,64 @@ interface BookReaderProps {
   book: Book;
 }
 
+const BOOK_PAGE_KEY = "adhs-book-reader-page";
+const BOOK_LOCKED = true;
+
 export function BookReader({ book }: BookReaderProps) {
   const { meta, chapters, pages } = book;
   const [activePageIndex, setActivePageIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
+  const lastAllowedPageIndex = BOOK_LOCKED
+    ? Math.max(0, (chapters[1]?.pageIndex ?? pages.length) - 1)
+    : pages.length - 1;
+
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const hash = window.location.hash.replace("#", "");
-    const index = pages.findIndex((page) => page.id === hash);
-    if (index !== -1) {
-      setActivePageIndex(index);
+    const hashIndex = pages.findIndex((page) => page.id === hash);
+
+    const resolvedIndex =
+      hashIndex !== -1
+        ? Math.min(hashIndex, lastAllowedPageIndex)
+        : (() => {
+            const saved = window.localStorage.getItem(BOOK_PAGE_KEY);
+            const savedIndex = saved ? parseInt(saved, 10) : 0;
+            if (
+              !Number.isNaN(savedIndex) &&
+              savedIndex >= 0 &&
+              savedIndex < pages.length
+            ) {
+              return Math.min(savedIndex, lastAllowedPageIndex);
+            }
+            return 0;
+          })();
+
+    if (hashIndex !== -1) {
+      window.localStorage.setItem(BOOK_PAGE_KEY, String(resolvedIndex));
     }
-  }, [pages]);
+
+    const raf = requestAnimationFrame(() => {
+      setActivePageIndex(resolvedIndex);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [lastAllowedPageIndex, pages]);
 
   useEffect(() => {
     const page = pages[activePageIndex];
-    if (page) {
+    if (!page) return;
+    if (typeof window !== "undefined") {
       window.history.replaceState(null, "", `#${page.id}`);
+      window.localStorage.setItem(
+        BOOK_PAGE_KEY,
+        String(Math.min(activePageIndex, lastAllowedPageIndex))
+      );
     }
-  }, [activePageIndex, pages]);
+  }, [activePageIndex, lastAllowedPageIndex, pages]);
 
   const goTo = (index: number, dir: number) => {
-    if (index < 0 || index >= pages.length) return;
+    if (index < 0 || index > lastAllowedPageIndex) return;
     setDirection(dir);
     setActivePageIndex(index);
   };
@@ -48,13 +84,13 @@ export function BookReader({ book }: BookReaderProps) {
 
   return (
     <main className="flex flex-1 flex-col px-6 py-16 sm:px-8 lg:px-12">
-      <div className="relative mx-auto w-full max-w-2xl">
+      <div className="relative mx-auto w-full max-w-2xl pt-10">
         <div className="absolute right-0 top-0 flex items-center gap-2 rounded-full border border-border bg-card/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-sm sm:right-0 sm:top-0">
           <span className="relative flex size-2">
             <span className="absolute inline-flex size-full animate-ping rounded-full bg-blue-500 opacity-60" />
             <span className="relative inline-flex size-2 rounded-full bg-blue-600" />
           </span>
-          Work just started
+          Work just started and will probably never be finished
         </div>
 
         <header className="text-center">
@@ -71,14 +107,13 @@ export function BookReader({ book }: BookReaderProps) {
               {meta.intro}
             </p>
           )}
-          <a
-            href="/about.epub"
-            download
-            className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+          <span
+            aria-disabled="true"
+            className="mt-6 inline-flex cursor-not-allowed items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground opacity-60"
           >
             <Download className="size-4" aria-hidden="true" />
             Als E-Book herunterladen
-          </a>
+          </span>
         </header>
 
         <nav
@@ -90,21 +125,25 @@ export function BookReader({ book }: BookReaderProps) {
             const isActive =
               activePageIndex >= chapter.pageIndex &&
               activePageIndex < endPageIndex;
+            const isLocked = BOOK_LOCKED && chapter.pageIndex > lastAllowedPageIndex;
             return (
               <button
                 key={chapter.id}
                 type="button"
+                disabled={isLocked}
                 onClick={() =>
                   goTo(
                     chapter.pageIndex,
-                    chapter.pageIndex > activePageIndex ? 1 : -1
+                    chapter.pageIndex > activePageIndex ? 1 : -1,
                   )
                 }
                 aria-current={isActive ? "page" : undefined}
                 className={`rounded-full px-3 py-1 text-sm transition-colors ${
                   isActive
                     ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:text-foreground"
+                    : isLocked
+                      ? "cursor-not-allowed bg-muted text-muted-foreground opacity-50"
+                      : "bg-muted text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {chapter.title}
@@ -125,7 +164,9 @@ export function BookReader({ book }: BookReaderProps) {
                 transition={{ duration: 0.25, ease: "easeInOut" }}
                 className="[&_h2]:mb-4 [&_h2]:mt-8 [&_h2]:font-heading [&_h2]:text-2xl [&_h2]:font-medium [&_h2]:tracking-tight [&_h3]:mb-3 [&_h3]:mt-6 [&_h3]:font-heading [&_h3]:text-xl [&_h3]:font-medium [&_p]:mb-4 [&_p]:leading-relaxed [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1"
               >
-                <ReactMarkdown>{`## ${activePage.title}\n\n${activePage.content}`}</ReactMarkdown>
+                <ReactMarkdown>{`${
+                  activePage.showTitle ? `## ${activePage.title}\n\n` : ""
+                }${activePage.content}`}</ReactMarkdown>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -147,7 +188,7 @@ export function BookReader({ book }: BookReaderProps) {
             <Button
               variant="ghost"
               onClick={() => goTo(activePageIndex + 1, 1)}
-              disabled={activePageIndex === pages.length - 1}
+              disabled={activePageIndex >= lastAllowedPageIndex}
               className="gap-1"
               aria-label="Nächste Seite"
             >

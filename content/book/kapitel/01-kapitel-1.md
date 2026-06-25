@@ -1,8 +1,3 @@
 ---
-title: "Kapitel 1: Was ich kürzlich entdeckt habe"
+title: "Kapitel 1"
 ---
-
-
-
-
-**WORK IN PROGRESS**

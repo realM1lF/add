@@ -19,6 +19,7 @@ export interface Page {
   id: string;
   title: string;
   content: string;
+  showTitle: boolean;
 }
 
 export interface Book {
@@ -45,33 +46,103 @@ function parseMeta(data: Record<string, unknown>): BookMeta {
   };
 }
 
-function countWords(text: string): number {
-  return text.trim().split(/\s+/).filter(Boolean).length;
+function splitTextAtWordBoundary(
+  text: string,
+  targetLength: number
+): [string, string] {
+  if (text.length <= targetLength) return [text, ""];
+
+  const before = text.lastIndexOf(" ", targetLength);
+  const after = text.indexOf(" ", targetLength);
+
+  const beforeValid = before > 0 ? before : 0;
+  const afterValid = after !== -1 ? after : text.length;
+
+  const beforeDistance = targetLength - beforeValid;
+  const afterDistance = afterValid - targetLength;
+
+  const splitAt =
+    before === -1
+      ? afterValid
+      : beforeDistance <= afterDistance
+        ? beforeValid
+        : afterValid;
+
+  return [text.slice(0, splitAt).trimEnd(), text.slice(splitAt).trimStart()];
 }
 
-function splitIntoPages(content: string, targetWords: number): string[] {
+const MIN_CHARS_PER_PAGE = 1700;
+const MAX_CHARS_PER_PAGE = 1750;
+
+function splitIntoPages(content: string): string[] {
   const paragraphs = content.split(/\n\s*\n/).filter((p) => p.trim() !== "");
   if (paragraphs.length === 0) return [""];
 
+  const totalChars = paragraphs.reduce((sum, p) => sum + p.length, 0);
+  if (totalChars <= MAX_CHARS_PER_PAGE) {
+    return [paragraphs.join("\n\n")];
+  }
+
   const pages: string[] = [];
   let current: string[] = [];
-  let currentWords = 0;
+  let currentChars = 0;
+
+  const flushCurrent = () => {
+    if (current.length === 0) return;
+    pages.push(current.join("\n\n"));
+    current = [];
+    currentChars = 0;
+  };
 
   for (const paragraph of paragraphs) {
-    const words = countWords(paragraph);
-    if (currentWords > 0 && currentWords + words > targetWords) {
-      pages.push(current.join("\n\n"));
-      current = [paragraph];
-      currentWords = words;
-    } else {
-      current.push(paragraph);
-      currentWords += words;
+    let remaining = paragraph;
+
+    while (remaining.length > 0) {
+      if (current.length === 0) {
+        if (remaining.length <= MAX_CHARS_PER_PAGE) {
+          current.push(remaining);
+          currentChars = remaining.length;
+          remaining = "";
+        } else {
+          const [piece, rest] = splitTextAtWordBoundary(
+            remaining,
+            MAX_CHARS_PER_PAGE
+          );
+          current.push(piece);
+          currentChars = piece.length;
+          remaining = rest;
+        }
+        continue;
+      }
+
+      const separatorChars = 2; // "\n\n"
+      const projectedChars = currentChars + separatorChars + remaining.length;
+
+      if (projectedChars <= MAX_CHARS_PER_PAGE) {
+        current.push(remaining);
+        currentChars = projectedChars;
+        remaining = "";
+        continue;
+      }
+
+      if (currentChars < MIN_CHARS_PER_PAGE) {
+        const needed = MIN_CHARS_PER_PAGE - currentChars - separatorChars;
+        const [piece, rest] = splitTextAtWordBoundary(
+          remaining,
+          Math.max(needed, 1)
+        );
+        current.push(piece);
+        pages.push(current.join("\n\n"));
+        current = [];
+        currentChars = 0;
+        remaining = rest;
+      } else {
+        flushCurrent();
+      }
     }
   }
 
-  if (current.length > 0) {
-    pages.push(current.join("\n\n"));
-  }
+  flushCurrent();
 
   return pages;
 }
@@ -91,12 +162,11 @@ export function paginate(rawChapters: { id: string; title: string; content: stri
   chapters: ChapterInfo[];
   pages: Page[];
 } {
-  const targetWords = countWords(rawChapters[0]?.content ?? "");
   const chapters: ChapterInfo[] = [];
   const pages: Page[] = [];
 
   for (const chapter of rawChapters) {
-    const chapterPages = splitIntoPages(chapter.content, Math.max(targetWords, 1));
+    const chapterPages = splitIntoPages(chapter.content);
     chapters.push({
       id: chapter.id,
       title: chapter.title,
@@ -104,11 +174,13 @@ export function paginate(rawChapters: { id: string; title: string; content: stri
     });
 
     for (let i = 0; i < chapterPages.length; i++) {
-      const pageId = chapterPages.length === 1 ? chapter.id : `${chapter.id}-seite-${i + 1}`;
+      const pageId =
+        chapterPages.length === 1 ? chapter.id : `${chapter.id}-seite-${i + 1}`;
       pages.push({
         id: pageId,
         title: chapter.title,
         content: chapterPages[i],
+        showTitle: i === 0,
       });
     }
   }
