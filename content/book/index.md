@@ -10,7 +10,7 @@ lastEdited: "2026-06-25"
 Ich sag es ehrlich: Das ganze Thema ist eine echte Hass-Liebe für mich. Klar, es ist super interessant, aber man muss sich nunmal auch viel mit nicht so schönen Mitbringseln dieser – jetzt wollte ich Krankheit schreiben, aber ja, du weist was ich meine – beschäftigen. Ich habe aktuell das Gefühl, dass ich mich immer besser verstehe, um so länger ich mich mit all dem auseinandersetze. Auch um so mehr ich darüber schreibe. Gleichzeitig aber tun sich mir auch immer mehr Fragen auf. Naja, ich habe zudem halt echt kein Bock, dass man alleine vom Lesen hier depresiv wird. Es ist ja auch nicht alles Scheiße, lol. Wie dem auch sei, ich möchte einfach ein bisschen was erzählen und vielleicht findest du dich ja selbst in einer dieser Erzählungen wieder.
 
 ### Tipp
-All das informieren, diagnostizieren und all die tollen Erkenntnisse die du zu ADHS sammelst, werden dir nur bedingt etwas bringen, solange du dich nicht aktiv daran arbeitest. Und ja, Tipps geben kann ich. Sie selbst einhalten eher weniger.
+All das informieren, diagnostizieren und all die tollen Erkenntnisse die du zu ADHS sammelst, werden dir nur bedingt etwas bringen, solange du nicht aktiv daran arbeitest. Und ja, Tipps geben kann ich. Sie selbst einhalten eher weniger.
 
 Nun gut, ich habe noch keinen blassen Schimmer was genau das hier werden soll. Ich schätze wenn es irgendwann sehr viele Seiten hat, ist es ein Buch? Nun ja, falls du bis hierhin gelesen hast, bist du recht herzlich dazu eingeladen, weiterzulsen.
 
