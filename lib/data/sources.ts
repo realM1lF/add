@@ -1,6 +1,9 @@
 export type SourceCategory = "news" | "science" | "youtube" | "instagram";
 export type ScienceGroup = "screening" | "overview" | "special";
 
+export const categoryOrder: SourceCategory[] = ["news", "science", "youtube", "instagram"];
+export const scienceGroupOrder: ScienceGroup[] = ["screening", "overview", "special"];
+
 export interface Source {
   id: string;
   category: SourceCategory;
@@ -302,7 +305,7 @@ export const sources: AnySource[] = [
     group: "overview",
     title: "DSM-5-TR",
     description:
-      "Enthält die offiziellen diagnostischen Kriterien für ADHS in der Text Revision und dient als Referenz für Symptombeschreibungen.",
+      "Enthält die offiziellen diagnostischen Kriterien für ADHS in der Textrevision und dient als Referenz für Symptombeschreibungen.",
     url: "https://www.psychiatry.org/psychiatrists/practice/dsm",
     author: "APA",
     language: "en",

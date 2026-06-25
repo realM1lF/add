@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { SourceHero } from "./SourceHero";
 import { SourceSection } from "./SourceSection";
 import { SourceDisclaimer } from "./SourceDisclaimer";
+import { categoryOrder } from "@/lib/data/sources";
 
 export const metadata: Metadata = {
   title: "Quellen – ADHS-Spektrum",
   description:
     "Organisationen, wissenschaftliche Quellen, YouTube-Kanäle und Instagram-Stimmen rund um ADHS – kuratiert und verständlich.",
 };
-
-const categoryOrder = ["news", "science", "youtube", "instagram"] as const;
 
 export default function SourcesPage() {
   return (

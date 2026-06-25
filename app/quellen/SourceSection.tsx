@@ -6,8 +6,8 @@ import {
   youtubeSources,
   instagramSources,
   scienceGroupMeta,
+  scienceGroupOrder,
   type SourceCategory,
-  type ScienceGroup,
 } from "@/lib/data/sources";
 import { NewsCard } from "./NewsCard";
 import { ScienceCard } from "./ScienceCard";
@@ -17,8 +17,6 @@ import { InstagramCard } from "./InstagramCard";
 interface SourceSectionProps {
   category: SourceCategory;
 }
-
-const scienceGroupOrder: ScienceGroup[] = ["screening", "overview", "special"];
 
 function ScienceSubsections() {
   const accent = categoryMeta.science.accent;

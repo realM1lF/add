@@ -2,12 +2,9 @@ import * as React from "react";
 import {
   categoryMeta,
   scienceGroupMeta,
-  type SourceCategory,
-  type ScienceGroup,
+  categoryOrder,
+  scienceGroupOrder,
 } from "@/lib/data/sources";
-
-const categoryOrder: SourceCategory[] = ["news", "science", "youtube", "instagram"];
-const scienceGroupOrder: ScienceGroup[] = ["screening", "overview", "special"];
 
 export function SourceHero() {
   return (
