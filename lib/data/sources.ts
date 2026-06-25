@@ -1,4 +1,5 @@
 export type SourceCategory = "news" | "science" | "youtube" | "instagram";
+export type ScienceGroup = "screening" | "overview" | "special";
 
 export interface Source {
   id: string;
@@ -10,6 +11,7 @@ export interface Source {
   author?: string;
   language?: "de" | "en";
   tags?: string[];
+  group?: ScienceGroup;
 }
 
 export interface YouTubeSource extends Source {
@@ -69,6 +71,30 @@ export const categoryMeta: Record<
       "Menschen, die offen über ihr Leben mit ADHS sprechen. Persönlich, visuell und oft mit viel Humor.",
     accent: "#C98CB3",
     accentLight: "rgba(201, 140, 179, 0.12)",
+  },
+};
+
+export const scienceGroupMeta: Record<
+  ScienceGroup,
+  {
+    label: string;
+    description: string;
+  }
+> = {
+  screening: {
+    label: "Screening-Tools",
+    description:
+      "Validierte Selbstbeurteilungsinstrumente, die einen ersten Hinweis auf ein mögliches ADHS im Erwachsenenalter geben können. Ein positives Ergebnis ersetzt keine ärztliche oder psychotherapeutische Diagnostik.",
+  },
+  overview: {
+    label: "Wissenschaftliche Übersichten",
+    description:
+      "Leitlinien, Fachbücher und Übersichtsarbeiten, die den aktuellen Stand von Diagnostik, Neurobiologie und Versorgung zusammenfassen.",
+  },
+  special: {
+    label: "Spezielle Themen",
+    description:
+      "Studien zu zusätzlichen Aspekten des ADHS-Spektrums wie emotionaler Dysregulation, Schlaf, Hyperfokus und RSD, die in der öffentlichen Wahrnehmung oft übersehen werden.",
   },
 };
 
@@ -189,9 +215,10 @@ export const sources: AnySource[] = [
   {
     id: "osborn-field-guide",
     category: "science",
+    group: "overview",
     title: "The ADHD Field Guide for Adults",
     description:
-      "Osborn, C., Gude, E., & Dyball, R. (2026). Gallery Books / Simon & Schuster. ISBN: 9781668053164",
+      "Bietet eine zugängliche Übersicht über Erwachsenen-ADHS aus der Perspektive von Lived Experience und Fachwissen und unterstützt damit die inhaltliche Grundlage der Website.",
     url: "https://www.simonandschuster.com/books/The-ADHD-Field-Guide-for-Adults/Cate-Osborn/9781668053164",
     author: "Osborn, Gude & Dyball",
     language: "en",
@@ -200,8 +227,10 @@ export const sources: AnySource[] = [
   {
     id: "brown-unfocused-mind",
     category: "science",
+    group: "overview",
     title: "Attention Deficit Disorder: The Unfocused Mind",
-    description: "Brown, T. E. (2005, 2017). Klassische Darstellung der exekutiven Funktionen bei ADHS.",
+    description:
+      "Stellt das Modell der exekutiven Funktionen bei ADHS dar und zeigt, warum ADHS mehr ist als Auffälligkeiten der Aufmerksamkeit.",
     url: "https://yalebooks.yale.edu/book/9780300119893/attention-deficit-disorder/",
     author: "Thomas E. Brown",
     language: "en",
@@ -210,8 +239,10 @@ export const sources: AnySource[] = [
   {
     id: "barkley-executive-functions",
     category: "science",
+    group: "overview",
     title: "ADHD and the Nature of Self-Control / Executive Functions",
-    description: "Barkley, R. A. (1997, 2006, 2012). Zentrale Arbeiten zur Selbstregulation.",
+    description:
+      "Zentrale Schriften zur Selbstregulation und exekutiven Funktionen bei ADHS, auf die Erklärungen zu Impulskontrolle und Arbeitsgedächtnis aufbauen.",
     url: "https://www.guilford.com/books/Executive-Functions/Russell-Barkley/9781462545933",
     author: "Russell A. Barkley",
     language: "en",
@@ -220,8 +251,10 @@ export const sources: AnySource[] = [
   {
     id: "kessler-asrs-2005",
     category: "science",
+    group: "screening",
     title: "The World Health Organization Adult ADHD Self-Report Scale (ASRS)",
-    description: "Kessler, R. C., et al. (2005). Psychological Medicine, 35(2), 245–256.",
+    description:
+      "Liefert die ursprüngliche ASRS-Skala zur Erwachsenen-Selbstbeurteilung, die als Vorläufer für gängige Screening-Fragebögen dient.",
     url: "https://www.cambridge.org/core/journals/psychological-medicine/article/abs/world-health-organization-adult-adhd-selfreport-scale-asrs/EBCBF2074DEE66A0A4168B82E056A77B",
     author: "Kessler et al.",
     language: "en",
@@ -230,8 +263,10 @@ export const sources: AnySource[] = [
   {
     id: "ustun-asrs-2017",
     category: "science",
+    group: "screening",
     title: "ASRS Screening Scale for DSM-5",
-    description: "Ustün, T. B., et al. (2017). JAMA Psychiatry, 74(5), 520–527.",
+    description:
+      "Stellt die an DSM-5 angepasste ASRS-Version vor, die kurze, validierte Items zur Selbstbeurteilung erwachsener ADHS-Merkmale enthält.",
     url: "https://jamanetwork.com/journals/jamapsychiatry/fullarticle/2604299",
     author: "Ustün et al.",
     language: "en",
@@ -240,8 +275,10 @@ export const sources: AnySource[] = [
   {
     id: "faraone-genetics-2019",
     category: "science",
+    group: "overview",
     title: "Genetics of attention deficit hyperactivity disorder",
-    description: "Faraone, S. V., & Larsson, H. (2019). Molecular Psychiatry, 24(4), 562–575.",
+    description:
+      "Fasst den aktuellen Stand der genetischen ADHS-Forschung zusammen und zeigt die Bedeutung von Vererbung und Polygenität.",
     url: "https://www.nature.com/articles/s41380-018-0070-7",
     author: "Faraone & Larsson",
     language: "en",
@@ -250,8 +287,10 @@ export const sources: AnySource[] = [
   {
     id: "volkow-dopamine-2009",
     category: "science",
+    group: "overview",
     title: "Evaluating dopamine reward pathway in ADHD",
-    description: "Volkow, N. D., et al. (2009). JAMA, 302(10), 1084–1091.",
+    description:
+      "Untermauert die neurobiologischen Grundlagen von ADHS, insbesondere die Rolle dopaminerger Belohnungsprozesse.",
     url: "https://jamanetwork.com/journals/jama/fullarticle/184394",
     author: "Volkow et al.",
     language: "en",
@@ -260,8 +299,10 @@ export const sources: AnySource[] = [
   {
     id: "dsm-5-tr",
     category: "science",
+    group: "overview",
     title: "DSM-5-TR",
-    description: "American Psychiatric Association. (2022). Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition, Text Revision.",
+    description:
+      "Enthält die offiziellen diagnostischen Kriterien für ADHS in der Text Revision und dient als Referenz für Symptombeschreibungen.",
     url: "https://www.psychiatry.org/psychiatrists/practice/dsm",
     author: "APA",
     language: "en",
@@ -270,8 +311,10 @@ export const sources: AnySource[] = [
   {
     id: "nhs-taskforce-2025",
     category: "science",
+    group: "overview",
     title: "Report of the independent ADHD Taskforce: Part 1",
-    description: "NHS England (Juni 2025). Unabhängiger Bericht zur ADHD-Versorgung in England.",
+    description:
+      "Unabhängiger Bericht zur ADHD-Versorgung in England, der aktuelle Versorgungslücken und Empfehlungen zusammenfasst.",
     url: "https://www.england.nhs.uk/long-read/report-of-the-independent-adhd-taskforce-part-1/",
     author: "NHS England",
     language: "en",
@@ -280,8 +323,10 @@ export const sources: AnySource[] = [
   {
     id: "european-consensus-2019",
     category: "science",
+    group: "overview",
     title: "Updated European Consensus Statement on diagnosis and treatment of adult ADHD",
-    description: "Kooij, J. J. S., et al. (2019). European Konsensusleitlinie.",
+    description:
+      "Europäische Konsensusleitlinie zur Diagnostik und Behandlung von ADHS im Erwachsenenalter.",
     url: "https://www.tandfonline.com/doi/full/10.1080/09297049.2019.1580211",
     author: "Kooij et al.",
     language: "en",
@@ -290,8 +335,10 @@ export const sources: AnySource[] = [
   {
     id: "ballmann-asrs-2022",
     category: "science",
+    group: "screening",
     title: "Evaluation of the German Version of the Adult ADHD Self-Report Screening Scale for DSM-5",
-    description: "Ballmann, C., et al. (2022). Frontiers in Psychology, 13, 858147. Deutsche Validierung der ASRS-5.",
+    description:
+      "Deutsche Validierung der ASRS-5, die die sprachliche und statistische Fundierung eines gängigen Screening-Instruments belegt.",
     url: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.858147/full",
     author: "Ballmann et al.",
     language: "en",
@@ -300,8 +347,10 @@ export const sources: AnySource[] = [
   {
     id: "dodson-rsd-2024",
     category: "science",
+    group: "special",
     title: "Rejection Sensitivity Dysphoria in Attention-Deficit/Hyperactivity Disorder: A Case Series",
-    description: "Dodson, W. W., Modestino, E. J., Ceritoğlu, H. T., & Zayed, B. (2024). Acta Scientific Neurology, 7(8), 23–30.",
+    description:
+      "Beschreibt klinische Beobachtungen zu RSD bei ADHS und hebt damit einen wichtigen, aber nicht-diagnostischen Aspekt emotionaler Dysregulation hervor.",
     url: "https://actascientific.com/ASNE/pdf/ASNE-07-0762.pdf",
     author: "Dodson et al.",
     language: "en",
@@ -310,8 +359,10 @@ export const sources: AnySource[] = [
   {
     id: "soler-gutierrez-emotion-2023",
     category: "science",
+    group: "special",
     title: "Evidence of emotion dysregulation as a core symptom of adult ADHD: A systematic review",
-    description: "Soler-Gutiérrez, A. M., Pérez-González, J. C., & Mayas, J. (2023). PLoS ONE, 18(1), e0280131.",
+    description:
+      "Systematischer Review, der Evidenz dafür zusammenträgt, dass emotionale Dysregulation als zentrale Facette von Erwachsenen-ADHS verstanden werden sollte.",
     url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0280131",
     author: "Soler-Gutiérrez et al.",
     language: "en",
@@ -320,8 +371,10 @@ export const sources: AnySource[] = [
   {
     id: "hupfeld-ahq-2024",
     category: "science",
+    group: "special",
     title: "Validation of the dispositional adult hyperfocus questionnaire (AHQ-D)",
-    description: "Hupfeld, K. E., Osborne, J. B., Tran, Q. T., Hyatt, H. W., Abagis, T. R., & Shah, P. (2024). Scientific Reports, 14, 19460.",
+    description:
+      "Stellt ein validiertes Instrument zur Erfassung von Hyperfokus vor, ohne ihn als diagnostisches Kriterium zu behandeln.",
     url: "https://www.nature.com/articles/s41598-024-70028-y",
     author: "Hupfeld et al.",
     language: "en",
@@ -330,8 +383,10 @@ export const sources: AnySource[] = [
   {
     id: "ashinoff-hyperfocus-2021",
     category: "science",
+    group: "special",
     title: "Hyperfocus: The forgotten frontier of attention",
-    description: "Ashinoff, B. K., & Abu-Akel, A. (2021). Psychological Research, 85(1), 1–19.",
+    description:
+      "Wissenschaftliche Einordnung von Hyperfokus als Aufmerksamkeitsphänomen, das bei ADHS häufig vorkommt, aber kein Diagnosemerkmal ist.",
     url: "https://link.springer.com/article/10.1007/s00426-019-01245-8",
     author: "Ashinoff & Abu-Akel",
     language: "en",
@@ -340,8 +395,10 @@ export const sources: AnySource[] = [
   {
     id: "luu-sleep-2025",
     category: "science",
+    group: "special",
     title: "ADHD as a circadian rhythm disorder: evidence and implications for chronotherapy",
-    description: "Luu, B., & Fabiano, N. (2025). Frontiers in Psychiatry, 16, 1697900.",
+    description:
+      "Diskutiert Zusammenhänge zwischen ADHS, Schlaf und zirkadianen Rhythmen und zeigt Ansätze für chronotherapeutische Interventionen auf.",
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12728042/",
     author: "Luu & Fabiano",
     language: "en",
@@ -350,8 +407,10 @@ export const sources: AnySource[] = [
   {
     id: "rowney-smith-rsd-2026",
     category: "science",
+    group: "special",
     title: "The lived experience of rejection sensitivity in ADHD: A qualitative exploration",
-    description: "Rowney-Smith, A., Sutton, B., Quadt, L., & Eccles, J. A. (2026). PLoS ONE, 21(1), e0314669.",
+    description:
+      "Qualitative Studie zum subjektiven Erleben von Rejection Sensitivity bei ADHS, die Lived-Experience-Perspektiven mit wissenschaftlicher Methodik verbindet.",
     url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0314669",
     author: "Rowney-Smith et al.",
     language: "en",

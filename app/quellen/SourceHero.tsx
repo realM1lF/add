@@ -1,6 +1,13 @@
-import { categoryMeta, type SourceCategory } from "@/lib/data/sources";
+import * as React from "react";
+import {
+  categoryMeta,
+  scienceGroupMeta,
+  type SourceCategory,
+  type ScienceGroup,
+} from "@/lib/data/sources";
 
 const categoryOrder: SourceCategory[] = ["news", "science", "youtube", "instagram"];
+const scienceGroupOrder: ScienceGroup[] = ["screening", "overview", "special"];
 
 export function SourceHero() {
   return (
@@ -23,22 +30,37 @@ export function SourceHero() {
           </p>
         </div>
 
-        <nav className="mt-12 flex flex-wrap gap-2">
+        <nav className="mt-12 flex flex-wrap items-center gap-2">
           {categoryOrder.map((key) => {
             const meta = categoryMeta[key];
+            const isScience = key === "science";
+
             return (
-              <a
-                key={key}
-                href={`#${key}`}
-                className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground transition-colors hover:border-foreground/20 hover:bg-background focus-ring"
-                style={{ borderLeftColor: meta.accent, borderLeftWidth: "3px" }}
-              >
-                <span
-                  className="inline-block size-2 rounded-full"
-                  style={{ backgroundColor: meta.accent }}
-                />
-                {meta.label}
-              </a>
+              <React.Fragment key={key}>
+                <a
+                  href={`#${key}`}
+                  className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground transition-colors hover:border-foreground/20 hover:bg-background focus-ring"
+                  style={{ borderLeftColor: meta.accent, borderLeftWidth: "3px" }}
+                >
+                  <span
+                    className="inline-block size-2 rounded-full"
+                    style={{ backgroundColor: meta.accent }}
+                  />
+                  {meta.label}
+                </a>
+
+                {isScience &&
+                  scienceGroupOrder.map((group) => (
+                    <a
+                      key={`science-${group}`}
+                      href={`#science-${group}`}
+                      className="inline-flex items-center rounded-full border border-border bg-card/50 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-foreground/20 hover:bg-background hover:text-foreground focus-ring"
+                      title={scienceGroupMeta[group].label}
+                    >
+                      {scienceGroupMeta[group].label}
+                    </a>
+                  ))}
+              </React.Fragment>
             );
           })}
         </nav>

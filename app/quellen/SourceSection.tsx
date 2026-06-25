@@ -5,7 +5,9 @@ import {
   scienceSources,
   youtubeSources,
   instagramSources,
+  scienceGroupMeta,
   type SourceCategory,
+  type ScienceGroup,
 } from "@/lib/data/sources";
 import { NewsCard } from "./NewsCard";
 import { ScienceCard } from "./ScienceCard";
@@ -16,6 +18,40 @@ interface SourceSectionProps {
   category: SourceCategory;
 }
 
+const scienceGroupOrder: ScienceGroup[] = ["screening", "overview", "special"];
+
+function ScienceSubsections() {
+  const accent = categoryMeta.science.accent;
+
+  return (
+    <div className="space-y-12">
+      {scienceGroupOrder.map((group) => {
+        const groupSources = scienceSources.filter((s) => s.group === group);
+        const meta = scienceGroupMeta[group];
+
+        return (
+          <div key={group} id={`science-${group}`} className="scroll-mt-28">
+            <div className="mb-5">
+              <h3 className="text-xl font-medium tracking-tight text-foreground">
+                {meta.label}
+              </h3>
+              <p className="mt-1.5 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                {meta.description}
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {groupSources.map((source) => (
+                <ScienceCard key={source.id} source={source} accent={accent} />
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 const sourceLists: Record<SourceCategory, React.ReactNode> = {
   news: (
     <div className="grid gap-3 sm:grid-cols-2">
@@ -24,13 +60,7 @@ const sourceLists: Record<SourceCategory, React.ReactNode> = {
       ))}
     </div>
   ),
-  science: (
-    <div className="grid gap-3 sm:grid-cols-2">
-      {scienceSources.map((source) => (
-        <ScienceCard key={source.id} source={source} accent={categoryMeta.science.accent} />
-      ))}
-    </div>
-  ),
+  science: <ScienceSubsections />,
   youtube: (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {youtubeSources.map((source) => (
