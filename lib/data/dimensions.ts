@@ -142,7 +142,7 @@ export const extendedQuestions: Question[] = [
     dimensionId: "unaufmerksamkeit",
     text: `Wie oft fällt es dir schwer, dich auf das zu konzentrieren, was andere dir sagen, auch wenn sie direkt mit dir sprechen?`,
     examples: [
-      `Jemand spricht direkt mit dir und du merkst plötzlich, dass du den letzten Satz gar nicht mitbekommen hast.`,
+      `Jemand spricht direkt mit dir und du merkst plötzlich, dass du nichts oder nur sehr wenig mitbekommen hast.`,
     ],
   },
   {
@@ -263,9 +263,10 @@ export const extendedQuestions: Question[] = [
   {
     id: "i3",
     dimensionId: "impulsivitaet",
-    text: `Wie oft unterbrichst du andere Menschen im Gespräch?`,
+    text: `Wie oft unterbrichst du andere Menschen im Gespräch und/oder beziehst alles auf dich?`,
     examples: [
       `Du weißt, dass du den anderen ausreden lassen solltest, aber du kannst deinen Gedanken nicht festhalten, wenn du ihn nicht sofort loswirst.`,
+      `Während du jeamandem "zuhörst", rattert dein Kopf und bezieht gesagtest auf dich selbst. Wahrscheinlich sagst du das dann auch direkt und unterbrichst damit dein Gegenüber.`,
     ],
   },
   {
@@ -313,6 +314,7 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft werden deine Gefühle schnell sehr intensiv?`,
     examples: [
       `Eine kleine Kritik oder ein ärgerlicher Moment lässt dich innerlich explodieren, auch wenn du weißt, dass es „nicht so schlimm“ ist.`,
+      `Du fühlst dich die meiste Zeit in deinem Leben von Grund auf emotional aufgeladen.`,
     ],
   },
   {
@@ -320,7 +322,7 @@ export const extendedQuestions: Question[] = [
     dimensionId: "emotionale-dysregulation",
     text: `Wie oft hast du Schwierigkeiten, wieder runterzukommen, wenn du einmal wütend oder traurig bist?`,
     examples: [
-      `Ein kleiner Konflikt verfolgt dich stundenlang oder tagelang und du kannst nicht aufhören, ihn zu analysieren.`,
+      `Ein kleiner Konflikt verfolgt dich stunden- oder tagelang und du kannst nicht aufhören, ihn zu analysieren.`,
     ],
   },
   {
@@ -339,7 +341,9 @@ export const extendedQuestions: Question[] = [
     dimensionId: "emotionale-dysregulation",
     text: `Wie oft fühlst du dich von Kritik oder vermeintlicher Ablehnung unverhältnismäßig stark getroffen?`,
     examples: [
-      `Eine kurze Rückmeldung oder eine nicht sofort beantwortete Nachricht belastet dich stundenlang oder tagelang.`,
+      `Eine vermeintlich kurze Rückmeldung oder eine nicht sofort beantwortete Nachricht belastet dich sehr und lange.`,
+      `Du nimmst Witze über dich direkt persönlich.`,
+      `Dein/e Partner/in ist eben genau von den Dingen genervt, die dir schwer fallen. Kleine Bemerkungen brigen dich schnell aus dem Konzept und belasten dich.`,
     ],
   },
   {
@@ -347,7 +351,7 @@ export const extendedQuestions: Question[] = [
     dimensionId: "emotionale-dysregulation",
     text: `Wie oft vermeidest du Situationen, in denen du Kritik oder Ablehnung erfahren könntest?`,
     examples: [
-      `Du stellst keine Frage, bewirbst dich nicht auf eine Stelle oder sagst ab, weil die Angst vor Ablehnung zu groß ist.`,
+      `Du stellst keine Frage, bewirbst dich nicht auf eine Stelle oder sagst ab, weil die Angst vor Ablehnung, Kritik oder Spott zu groß ist.`,
     ],
   },
 
@@ -442,6 +446,7 @@ export const extendedQuestions: Question[] = [
     text: `Wie oft fällt es dir schwer, von einer spannenden Aktivität abzulassen, um alltägliche Pflichten zu erledigen?`,
     examples: [
       `Du bist in ein Buch oder Spiel vertieft und kannst nicht aufhören, obwohl du weißt, dass du eigentlich schlafen musst.`,
+      `Du würdest spontane Ideen am liebsten direkt umsetzen, auch wenn du eigentlich keine Zeit hast. Das ist dann aber wichtiger als alles andere.`,
     ],
   },
   {
