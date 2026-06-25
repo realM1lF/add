@@ -59,7 +59,7 @@ export function BookReader({ book }: BookReaderProps) {
             </p>
           )}
           {meta.intro && (
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground">
+            <p className="mt-5 max-w-full text-base leading-relaxed text-foreground">
               {meta.intro}
             </p>
           )}
