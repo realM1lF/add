@@ -8,7 +8,7 @@ import { allQuestions, answerLabels } from "@/lib/data/dimensions";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { ArrowLeft, ArrowRight, RotateCcw, AlertCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, RotateCcw, AlertCircle, Pause } from "lucide-react";
 
 const TOTAL_QUESTIONS = allQuestions.length;
 const ANSWER_TRANSITION_DELAY_MS = 220;
@@ -157,11 +157,11 @@ export function ScreenerClient() {
             Jetzt kannst du dein Profil als interaktives Radar-Chart ansehen.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Button onClick={handleFinish} className="gap-2 rounded-full">
+            <Button data-testid="view-result-button" onClick={handleFinish} className="min-h-11 gap-2 rounded-full">
               Ergebnis ansehen
               <ArrowRight className="size-4" aria-hidden="true" />
             </Button>
-            <Button variant="outline" onClick={handleRestart} className="gap-2 rounded-full">
+            <Button variant="outline" onClick={handleRestart} className="min-h-11 gap-2 rounded-full">
               <RotateCcw className="size-4" aria-hidden="true" />
               Neu starten
             </Button>
@@ -175,7 +175,7 @@ export function ScreenerClient() {
     <div className="mx-auto max-w-2xl">
       <div className="mb-8">
         <div className="mb-3 flex items-center justify-between text-sm text-muted-foreground">
-          <span className="font-mono">Frage {currentIndex + 1} / {TOTAL_QUESTIONS}</span>
+          <span data-testid="question-counter" className="font-mono">Frage {currentIndex + 1} / {TOTAL_QUESTIONS}</span>
           <span>Zwölf Dimensionen</span>
         </div>
         <Progress
@@ -186,7 +186,7 @@ export function ScreenerClient() {
         />
       </div>
 
-      <Card className="overflow-hidden">
+      <Card data-testid="question-card" className="overflow-hidden">
         {showAsrsTransition ? (
           <>
             <CardContent className="pt-8 pb-4 text-center">
@@ -214,14 +214,15 @@ export function ScreenerClient() {
                 <Button
                   variant="ghost"
                   onClick={handlePrevious}
-                  className="gap-2 rounded-full"
+                  className="min-h-11 gap-2 rounded-full"
                 >
                   <ArrowLeft className="size-4" aria-hidden="true" />
                   Zurück
                 </Button>
                 <Button
+                  data-testid="transition-continue-button"
                   onClick={handleTransitionContinue}
-                  className="gap-2 rounded-full"
+                  className="min-h-11 gap-2 rounded-full"
                 >
                   Weiter
                   <ArrowRight className="size-4" aria-hidden="true" />
@@ -266,12 +267,13 @@ export function ScreenerClient() {
             </CardContent>
 
             <CardFooter className="flex-col gap-3 pb-8">
-              <div className="grid w-full gap-2 sm:grid-cols-5">
+              <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-5">
                 {([0, 1, 2, 3, 4] as const).map((value) => {
                   const selected = answers[currentQuestion.id] === value;
                   return (
                     <Button
                       key={value}
+                      data-testid={`answer-${value}`}
                       variant={selected ? "default" : "outline"}
                       aria-pressed={selected}
                       aria-label={`${value} – ${answerLabels[value]}`}
@@ -290,26 +292,38 @@ export function ScreenerClient() {
                   variant="ghost"
                   onClick={handlePrevious}
                   disabled={isFirst}
-                  className="gap-2 rounded-full"
+                  className="min-h-11 gap-2 rounded-full"
                 >
                   <ArrowLeft className="size-4" aria-hidden="true" />
                   Zurück
                 </Button>
 
+                <Button
+                  data-testid="pause-button"
+                  variant="outline"
+                  onClick={() => router.push("/")}
+                  className="min-h-11 gap-2 rounded-full"
+                >
+                  <Pause className="size-4" aria-hidden="true" />
+                  Pause
+                </Button>
+
                 {isLast ? (
                   <Button
+                    data-testid="finish-button"
                     onClick={handleFinish}
                     disabled={answers[currentQuestion.id] === undefined}
-                    className="gap-2 rounded-full"
+                    className="min-h-11 gap-2 rounded-full"
                   >
                     Ergebnis ansehen
                     <ArrowRight className="size-4" aria-hidden="true" />
                   </Button>
                 ) : (
                   <Button
+                    data-testid="next-button"
                     onClick={handleNext}
                     disabled={answers[currentQuestion.id] === undefined}
-                    className="gap-2 rounded-full"
+                    className="min-h-11 gap-2 rounded-full"
                   >
                     Weiter
                     <ArrowRight className="size-4" aria-hidden="true" />

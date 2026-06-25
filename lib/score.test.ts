@@ -6,6 +6,10 @@ import {
   getASRS5Interpretation,
   decodeScores,
   encodeScores,
+  getAverageScore,
+  getLevelColor,
+  getLevelFill,
+  getLevelLabel,
 } from "./score";
 
 describe("calculateASRS5Score", () => {
@@ -57,6 +61,12 @@ describe("calculateASRS5Score", () => {
     expect(getASRS5Level(13)).toBe("mittel");
   });
 
+  it("treats missing ASRS answers as 0", () => {
+    expect(calculateASRS5Score({})).toBe(0);
+    expect(calculateASRS5Score({ "asrs-1": 4 })).toBe(4);
+    expect(calculateASRS5Score({ "asrs-6": 3 })).toBe(3);
+  });
+
   it("interpretation mentions professional evaluation for elevated scores", () => {
     const text = getASRS5Interpretation(14);
     expect(text).toContain("Fachkraft");
@@ -105,6 +115,15 @@ describe("calculateDimensionScores", () => {
     expect(ef?.value).toBe(60);
   });
 
+  it("normalizes partial dimension answers against the answered questions only", () => {
+    const answers = {
+      "h2": 4,
+    };
+    const scores = calculateDimensionScores(answers);
+    const hyperactivity = scores.find((s) => s.id === "hyperaktivitaet");
+    expect(hyperactivity?.value).toBe(100);
+  });
+
   it("no longer contains an rsd dimension", () => {
     const scores = calculateDimensionScores({});
     expect(scores.find((s) => s.id === "rsd")).toBeUndefined();
@@ -129,5 +148,59 @@ describe("encodeScores / decodeScores", () => {
 
   it("returns null for invalid hashes", () => {
     expect(decodeScores("not-valid")).toBeNull();
+  });
+
+  it("round-trips every dimension id and value", () => {
+    const scores = calculateDimensionScores({
+      "asrs-1": 4,
+      "u1": 4,
+      "u2": 4,
+      "u3": 4,
+      "u4": 4,
+      "asrs-2": 0,
+      "h1": 2,
+      "h2": 2,
+      "h3": 2,
+    });
+    const encoded = encodeScores(scores);
+    const decoded = decodeScores(encoded);
+    expect(decoded).not.toBeNull();
+    for (const original of scores) {
+      const match = decoded?.find((s) => s.id === original.id);
+      expect(match).toBeDefined();
+      expect(match?.value).toBe(original.value);
+      expect(match?.category).toBe(original.category);
+    }
+  });
+});
+
+describe("helper functions", () => {
+  it("getAverageScore returns 0 for empty arrays and the arithmetic mean otherwise", () => {
+    expect(getAverageScore([])).toBe(0);
+    expect(getAverageScore([{ value: 10 }, { value: 20 }, { value: 30 }])).toBe(20);
+  });
+
+  it("getLevelColor returns a valid HSL string", () => {
+    expect(getLevelColor(0)).toMatch(/^hsl\(/);
+    expect(getLevelColor(50)).toMatch(/^hsl\(/);
+    expect(getLevelColor(100)).toMatch(/^hsl\(/);
+  });
+
+  it("getLevelFill returns a transparent HSLA string", () => {
+    expect(getLevelFill(25)).toMatch(/^hsla\(/);
+    expect(getLevelFill(75)).toContain("0.22");
+  });
+
+  it("getLevelLabel returns the expected labels for its ranges", () => {
+    expect(getLevelLabel(0)).toBe("Unauffällig");
+    expect(getLevelLabel(19)).toBe("Unauffällig");
+    expect(getLevelLabel(20)).toBe("Leicht erhöht");
+    expect(getLevelLabel(39)).toBe("Leicht erhöht");
+    expect(getLevelLabel(40)).toBe("Mäßig erhöht");
+    expect(getLevelLabel(59)).toBe("Mäßig erhöht");
+    expect(getLevelLabel(60)).toBe("Deutlich erhöht");
+    expect(getLevelLabel(79)).toBe("Deutlich erhöht");
+    expect(getLevelLabel(80)).toBe("Stark erhöht");
+    expect(getLevelLabel(100)).toBe("Stark erhöht");
   });
 });

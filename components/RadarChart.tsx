@@ -33,6 +33,20 @@ const categoryByShortName = new Map(
   dimensions.map((d) => [d.shortName, d.category])
 );
 
+function useIsNarrow(breakpoint = 480) {
+  const [isNarrow, setIsNarrow] = React.useState(false);
+
+  React.useEffect(() => {
+    const query = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    const update = () => setIsNarrow(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, [breakpoint]);
+
+  return isNarrow;
+}
+
 export interface RadarChartPoint {
   subject: string;
   fullName: string;
@@ -42,14 +56,22 @@ export interface RadarChartPoint {
 }
 
 interface AngleAxisTickProps {
-  x: string | number;
-  y: string | number;
-  payload: { value: string };
+  x?: string | number;
+  y?: string | number;
+  payload?: { value: string };
   textAnchor?: "start" | "middle" | "end" | "inherit";
+  compact?: boolean;
 }
 
-function AngleAxisTick({ x, y, payload, textAnchor }: AngleAxisTickProps) {
-  const category = categoryByShortName.get(payload.value);
+function AngleAxisTick({
+  x,
+  y,
+  payload,
+  textAnchor,
+  compact,
+}: AngleAxisTickProps) {
+  const label = payload?.value ?? "";
+  const category = categoryByShortName.get(label);
   const styles = category ? categoryStyles[category] : null;
   return (
     <text
@@ -61,7 +83,7 @@ function AngleAxisTick({ x, y, payload, textAnchor }: AngleAxisTickProps) {
         styles?.fillClass ?? "fill-foreground"
       )}
     >
-      {payload.value}
+      {compact ? label.slice(0, 1) : label}
     </text>
   );
 }
@@ -127,6 +149,7 @@ export function RadarChart({
   const [showCompare, setShowCompare] = React.useState(false);
 
   const allVisible = visibleIds.size === dimensions.length;
+  const isNarrow = useIsNarrow();
 
   const averageScore = React.useMemo(() => getAverageScore(ownScores), [ownScores]);
   const levelColor = getLevelColor(averageScore);
@@ -174,17 +197,26 @@ export function RadarChart({
   return (
     <div className={cn("flex flex-col gap-6", className)}>
       <div
-        className="relative aspect-square w-full max-w-lg mx-auto"
+        className="relative w-full max-w-lg mx-auto aspect-square min-h-[280px] sm:min-h-[420px]"
         role="img"
         aria-label={`Radar-Chart: Mein Profil entlang ${dimensions.length} Dimensionen`}
       >
-        <ResponsiveContainer width="100%" height="100%">
+        <div className="absolute inset-0">
+          <ResponsiveContainer width="100%" height="100%">
           <RechartsRadarChart
             data={data}
-            margin={{ top: 24, right: 24, bottom: 24, left: 24 }}
+            margin={
+              isNarrow
+                ? { top: 12, right: 12, bottom: 12, left: 12 }
+                : { top: 24, right: 24, bottom: 24, left: 24 }
+            }
+            outerRadius={isNarrow ? "72%" : "80%"}
           >
             <PolarGrid stroke="rgba(30, 35, 48, 0.12)" />
-            <PolarAngleAxis dataKey="subject" tick={AngleAxisTick} />
+            <PolarAngleAxis
+              dataKey="subject"
+              tick={<AngleAxisTick compact={isNarrow} />}
+            />
             <PolarRadiusAxis
               angle={90}
               domain={[0, 100]}
@@ -221,6 +253,7 @@ export function RadarChart({
             />
           </RechartsRadarChart>
         </ResponsiveContainer>
+        </div>
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-2">

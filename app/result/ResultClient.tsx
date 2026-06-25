@@ -49,26 +49,25 @@ const categoryHeadlines: Record<DimensionCategory, string> = {
   comorbidity: "Begleitbereiche, die du im Blick behalten solltest:",
 };
 
-function subscribe(callback: () => void) {
-  window.addEventListener("storage", callback);
-  return () => window.removeEventListener("storage", callback);
-}
-
-function readLocalStorageAnswers(): Record<string, number> {
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : {};
-  } catch {
-    return {};
-  }
-}
-
 function useLocalStorageAnswers(): Record<string, number> {
-  return React.useSyncExternalStore(
-    subscribe,
-    () => readLocalStorageAnswers(),
-    () => ({})
-  );
+  const [answers, setAnswers] = React.useState<Record<string, number>>({});
+
+  React.useEffect(() => {
+    const read = () => {
+      try {
+        const raw = window.localStorage.getItem(STORAGE_KEY);
+        setAnswers(raw ? (JSON.parse(raw) as Record<string, number>) : {});
+      } catch {
+        setAnswers({});
+      }
+    };
+
+    read();
+    window.addEventListener("storage", read);
+    return () => window.removeEventListener("storage", read);
+  }, []);
+
+  return answers;
 }
 
 function toRadarPoints(scores: DimensionScore[]) {
