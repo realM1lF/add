@@ -168,7 +168,7 @@ const NEUROTYPICAL_AVERAGE: Record<string, number> = {
   impulsivitaet: 50,
   "exekutive-funktionen": 30,
   "emotionale-dysregulation": 30,
-  zeitwahrnehmung: 30,
+  zeitwahrnehmung: 45,
   interozeption: 30,
   hyperfokus: 30,
   sensorik: 30,

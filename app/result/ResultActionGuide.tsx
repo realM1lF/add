@@ -205,7 +205,7 @@ function getActions(band: Band): Action[] {
           title: "Fachkraft kontaktieren",
           description:
             "Ein Gespräch mit Hausarzt, Psychiater:in oder Psychotherapeut:in ist der nächste sinnvolle Schritt.",
-          cta: { label: "Vorbereitungstipps", href: "#arztgespraech" },
+          cta: { label: "Vorbereitungstipps", href: "/strategien" },
         },
         {
           icon: <Printer className="size-4" aria-hidden="true" />,
@@ -222,7 +222,7 @@ function getActions(band: Band): Action[] {
           title: "Zeitnah abklären lassen",
           description:
             "Bei stark ausgeprägten Mustern ist eine professionelle Diagnostik wichtig, um passende Hilfe zu bekommen.",
-          cta: { label: "Wie finde ich Hilfe?", href: "#arztgespraech", variant: "default" },
+          cta: { label: "Wie finde ich Hilfe?", href: "/strategien", variant: "default" },
         },
         {
           icon: <Printer className="size-4" aria-hidden="true" />,
