@@ -49,56 +49,56 @@ export function BookReader({ book }: BookReaderProps) {
   return (
     <main className="flex flex-1 flex-col px-6 py-16 sm:px-8 lg:px-12">
       <div className="mx-auto w-full max-w-2xl">
-        <article className="rounded-2xl bg-[#faf9f7] p-8 shadow-lg sm:p-12">
-          <header className="text-center">
-            <h1 className="font-heading text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
-              {meta.title}
-            </h1>
-            {meta.subtitle && (
-              <p className="mt-2 text-lg text-muted-foreground">
-                {meta.subtitle}
-              </p>
-            )}
-            {lastEditedLabel && (
-              <span className="mt-5 inline-block -rotate-2 rounded border-2 border-primary px-3 py-1 font-mono text-xs font-medium text-primary">
-                Zuletzt bearbeitet: {lastEditedLabel}
-              </span>
-            )}
-          </header>
+        <header className="text-center">
+          <h1 className="font-heading text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
+            {meta.title}
+          </h1>
+          {meta.subtitle && (
+            <p className="mt-2 text-lg text-muted-foreground">
+              {meta.subtitle}
+            </p>
+          )}
+          {lastEditedLabel && (
+            <span className="mt-5 inline-block -rotate-2 rounded border-2 border-primary px-3 py-1 font-mono text-xs font-medium text-primary">
+              Zuletzt bearbeitet: {lastEditedLabel}
+            </span>
+          )}
+        </header>
 
-          <nav
-            className="mt-8 flex flex-wrap justify-center gap-2"
-            aria-label="Kapitel"
-          >
-            {chapters.map((chapter, index) => {
-              const endPageIndex = chapters[index + 1]?.pageIndex ?? pages.length;
-              const isActive =
-                activePageIndex >= chapter.pageIndex &&
-                activePageIndex < endPageIndex;
-              return (
-                <button
-                  key={chapter.id}
-                  type="button"
-                  onClick={() =>
-                    goTo(
-                      chapter.pageIndex,
-                      chapter.pageIndex > activePageIndex ? 1 : -1
-                    )
-                  }
-                  aria-current={isActive ? "page" : undefined}
-                  className={`rounded-full px-3 py-1 text-sm transition-colors ${
-                    isActive
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-muted text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {chapter.title}
-                </button>
-              );
-            })}
-          </nav>
+        <nav
+          className="mt-8 flex flex-wrap justify-center gap-2"
+          aria-label="Kapitel"
+        >
+          {chapters.map((chapter, index) => {
+            const endPageIndex = chapters[index + 1]?.pageIndex ?? pages.length;
+            const isActive =
+              activePageIndex >= chapter.pageIndex &&
+              activePageIndex < endPageIndex;
+            return (
+              <button
+                key={chapter.id}
+                type="button"
+                onClick={() =>
+                  goTo(
+                    chapter.pageIndex,
+                    chapter.pageIndex > activePageIndex ? 1 : -1
+                  )
+                }
+                aria-current={isActive ? "page" : undefined}
+                className={`rounded-full px-3 py-1 text-sm transition-colors ${
+                  isActive
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {chapter.title}
+              </button>
+            );
+          })}
+        </nav>
 
-          <div className="mt-10 min-h-[16rem]">
+        <article className="mt-10 rounded-2xl bg-[#faf9f7] p-8 shadow-lg sm:p-12">
+          <div className="min-h-[16rem]">
             <AnimatePresence mode="wait" initial={false} custom={direction}>
               <motion.div
                 key={activePage.id}
