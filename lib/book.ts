@@ -1,9 +1,10 @@
+import { readFileSync, readdirSync } from "fs";
+import { join } from "path";
 import matter from "gray-matter";
 
 export interface BookMeta {
   title: string;
   subtitle?: string;
-  authorNote?: string;
   lastEdited?: string;
 }
 
@@ -27,42 +28,52 @@ function slugify(title: string): string {
     .replace(/^-|-$/g, "");
 }
 
-export function parseBook(source: string): Book {
-  const { data, content: markdownContent } = matter(source);
-  const lines = markdownContent.split("\n");
-  const chapters: Chapter[] = [];
-  let currentTitle: string | null = null;
-  let currentLines: string[] = [];
-
-  const flush = () => {
-    if (currentTitle !== null) {
-      chapters.push({
-        id: slugify(currentTitle),
-        title: currentTitle,
-        content: currentLines.join("\n").trim(),
-      });
-    }
-  };
-
-  for (const line of lines) {
-    const match = line.match(/^##\s+(.+)$/);
-    if (match) {
-      flush();
-      currentTitle = match[1].trim();
-      currentLines = [];
-    } else if (currentTitle !== null) {
-      currentLines.push(line);
-    }
-  }
-  flush();
-
+function parseMeta(data: Record<string, unknown>): BookMeta {
   return {
-    meta: {
-      title: data.title ?? "",
-      subtitle: data.subtitle,
-      authorNote: data.authorNote,
-      lastEdited: data.lastEdited,
-    },
-    chapters,
+    title: typeof data.title === "string" ? data.title : "",
+    subtitle: typeof data.subtitle === "string" ? data.subtitle : undefined,
+    lastEdited: typeof data.lastEdited === "string" ? data.lastEdited : undefined,
   };
+}
+
+export function parseIndex(source: string): { meta: BookMeta; content: string } {
+  const { data, content } = matter(source);
+  return { meta: parseMeta(data), content: content.trim() };
+}
+
+export function parseChapter(source: string, fallbackTitle: string): Chapter {
+  const { data, content } = matter(source);
+  const title = typeof data.title === "string" ? data.title : fallbackTitle;
+  return {
+    id: slugify(title),
+    title,
+    content: content.trim(),
+  };
+}
+
+export function loadBook(bookDir: string): Book {
+  const indexPath = join(bookDir, "index.md");
+  const indexSource = readFileSync(indexPath, "utf-8");
+  const { meta, content: foreword } = parseIndex(indexSource);
+
+  const chaptersDir = join(bookDir, "kapitel");
+  const chapterFiles = readdirSync(chaptersDir)
+    .filter((name) => name.endsWith(".md"))
+    .sort();
+
+  const chapters: Chapter[] = [
+    {
+      id: "vorwort",
+      title: "Vorwort",
+      content: foreword,
+    },
+    ...chapterFiles.map((fileName) => {
+      const filePath = join(chaptersDir, fileName);
+      const source = readFileSync(filePath, "utf-8");
+      const fallbackTitle = fileName.replace(/\.md$/, "");
+      return parseChapter(source, fallbackTitle);
+    }),
+  ];
+
+  return { meta, chapters };
 }
