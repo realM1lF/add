@@ -1,7 +1,7 @@
 ---
 title: "About"
 subtitle: "Ein Buch im Werden"
-intro: "Haha, jetzt hast du bestimmt gedacht, dass du hier kurz und knapp ein paar Worte zu mir zusammengefasst bekommst, hm? Falsch gedacht. Ja sorry, aber das hier wird nix für kurz mal rein schauen, das wird ne längere Geschichte..."
+intro: "Entschuldige, dass ich dich enttäuschen muss, falls du gedacht hast, auf meiner About-Seite eine kurze Zusammenfassung über mich zu finden. Was soll ich sagen? Das ist nunmal eine längere Geschichte."
 lastEdited: "2026-06-25"
 ---
 
