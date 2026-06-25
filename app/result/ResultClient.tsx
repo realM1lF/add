@@ -20,7 +20,11 @@ import {
   getLevelLabel,
   type DimensionScore,
 } from "@/lib/score";
-import { STORAGE_KEY, PROGRESS_KEY, ASRS_TRANSITION_SHOWN_KEY } from "@/hooks/useScreener";
+import {
+  STORAGE_KEY,
+  PROGRESS_KEY,
+  ASRS_TRANSITION_SHOWN_KEY,
+} from "@/hooks/useScreener";
 import {
   ArrowLeft,
   RotateCcw,
@@ -31,6 +35,7 @@ import {
 } from "lucide-react";
 import { ResultActionGuide } from "./ResultActionGuide";
 import { ResponseReview } from "./ResponseReview";
+import { ResultPageDisclaimer } from "./ResultPageDisclaimer";
 import {
   allQuestions,
   dimensions,
@@ -171,6 +176,7 @@ export function ResultClient() {
             </p>
           </div>
         </div>
+
       </section>
 
       <section className="mt-10">
@@ -432,6 +438,8 @@ export function ResultClient() {
           </Button>
         </div>
       </section>
+
+      <ResultPageDisclaimer />
     </div>
   );
 }

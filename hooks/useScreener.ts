@@ -10,6 +10,8 @@ export interface Answers {
 export const STORAGE_KEY = "adhs-screener-answers-v2";
 export const PROGRESS_KEY = "adhs-screener-progress-v2";
 export const ASRS_TRANSITION_SHOWN_KEY = "adhs-screener-asrs-transition-shown";
+export const RESULT_DISCLAIMER_ACKNOWLEDGED_KEY =
+  "adhs-screener-result-disclaimer-acknowledged";
 
 function loadAnswers(): Answers {
   if (typeof window === "undefined") return {};

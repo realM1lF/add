@@ -2,13 +2,24 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { useScreener, ASRS_TRANSITION_SHOWN_KEY } from "@/hooks/useScreener";
+import {
+  useScreener,
+  ASRS_TRANSITION_SHOWN_KEY,
+  RESULT_DISCLAIMER_ACKNOWLEDGED_KEY,
+} from "@/hooks/useScreener";
 import { calculateDimensionScores, encodeScores } from "@/lib/score";
 import { allQuestions, answerLabels } from "@/lib/data/dimensions";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { ArrowLeft, ArrowRight, RotateCcw, AlertCircle, Pause } from "lucide-react";
+import { ResultDisclaimerDialog } from "./ResultDisclaimerDialog";
+import {
+  ArrowLeft,
+  ArrowRight,
+  RotateCcw,
+  AlertCircle,
+  Pause,
+} from "lucide-react";
 
 const TOTAL_QUESTIONS = allQuestions.length;
 const ANSWER_TRANSITION_DELAY_MS = 220;
@@ -45,6 +56,7 @@ export function ScreenerClient() {
       window.localStorage.getItem(ASRS_TRANSITION_SHOWN_KEY) !== "true"
     );
   });
+  const [showResultDisclaimer, setShowResultDisclaimer] = React.useState(false);
   const transitionRef = React.useRef<HTMLDivElement>(null);
   const questionHeadingRef = React.useRef<HTMLHeadingElement>(null);
   const answerTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -120,9 +132,28 @@ export function ScreenerClient() {
   };
 
   const handleFinish = () => {
+    if (
+      typeof window !== "undefined" &&
+      window.localStorage.getItem(RESULT_DISCLAIMER_ACKNOWLEDGED_KEY) !== "true"
+    ) {
+      setShowResultDisclaimer(true);
+      return;
+    }
+    navigateToResult();
+  };
+
+  const navigateToResult = () => {
     const dimensionScores = calculateDimensionScores(answers);
     const hash = encodeScores(dimensionScores);
     router.push(`/result?scores=${encodeURIComponent(hash)}`);
+  };
+
+  const handleDisclaimerConfirm = () => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(RESULT_DISCLAIMER_ACKNOWLEDGED_KEY, "true");
+    }
+    setShowResultDisclaimer(false);
+    navigateToResult();
   };
 
   const handleRestart = () => {
@@ -131,6 +162,7 @@ export function ScreenerClient() {
     setShowAsrsTransition(false);
     if (typeof window !== "undefined") {
       window.localStorage.setItem(ASRS_TRANSITION_SHOWN_KEY, "false");
+      window.localStorage.removeItem(RESULT_DISCLAIMER_ACKNOWLEDGED_KEY);
     }
   };
 
@@ -144,29 +176,36 @@ export function ScreenerClient() {
 
   if (isComplete) {
     return (
-      <Card className="mx-auto max-w-2xl">
-        <CardContent className="pt-8 text-center">
-          <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <AlertCircle className="size-8" aria-hidden="true" />
-          </div>
-          <h2 className="text-2xl font-medium tracking-tight">
-            Du hast alle Fragen beantwortet
-          </h2>
-          <p className="mt-3 text-muted-foreground">
-            Jetzt kannst du dein Profil als interaktives Radar-Chart ansehen.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Button data-testid="view-result-button" onClick={handleFinish} className="min-h-11 gap-2 rounded-full">
-              Ergebnis ansehen
-              <ArrowRight className="size-4" aria-hidden="true" />
-            </Button>
-            <Button variant="outline" onClick={handleRestart} className="min-h-11 gap-2 rounded-full">
-              <RotateCcw className="size-4" aria-hidden="true" />
-              Neu starten
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+      <>
+        <Card className="mx-auto max-w-2xl">
+          <CardContent className="pt-8 text-center">
+            <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <AlertCircle className="size-8" aria-hidden="true" />
+            </div>
+            <h2 className="text-2xl font-medium tracking-tight">
+              Du hast alle Fragen beantwortet
+            </h2>
+            <p className="mt-3 text-muted-foreground">
+              Jetzt kannst du dein Profil als interaktives Radar-Chart ansehen.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <Button data-testid="view-result-button" onClick={handleFinish} className="min-h-11 gap-2 rounded-full">
+                Ergebnis ansehen
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Button>
+              <Button variant="outline" onClick={handleRestart} className="min-h-11 gap-2 rounded-full">
+                <RotateCcw className="size-4" aria-hidden="true" />
+                Neu starten
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+        <ResultDisclaimerDialog
+          open={showResultDisclaimer}
+          onConfirm={handleDisclaimerConfirm}
+          onCancel={() => setShowResultDisclaimer(false)}
+        />
+      </>
     );
   }
 
@@ -362,6 +401,12 @@ export function ScreenerClient() {
           </Button>
         )}
       </div>
+
+      <ResultDisclaimerDialog
+        open={showResultDisclaimer}
+        onConfirm={handleDisclaimerConfirm}
+        onCancel={() => setShowResultDisclaimer(false)}
+      />
     </div>
   );
 }
